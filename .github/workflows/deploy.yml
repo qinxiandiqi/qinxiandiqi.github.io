@@ -1,0 +1,38 @@
+name: deploy
+
+on:
+  push:
+    branches:
+      - 'site'
+  workflow_dispatch:
+  schedule:
+    # Runs everyday at 8:00 AM
+    - cron: "0 0 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Checkout
+          uses: actions/checkout@v3
+          with:
+            ref: 'site'    
+            submodules: true
+            fetch-depth: 0
+
+        - name: Setup Hugo
+          uses: peaceiris/actions-hugo@v2
+          with:
+              hugo-version: "latest"
+
+        - name: Build Web
+          run: hugo
+
+        - name: Deploy Web
+          uses: peaceiris/actions-gh-pages@v3
+          with:
+              personal_token: ${{ secrets.PERSONAL_TOKEN }}
+              publish_branch: online
+              publish_dir: ./public
+              cname: www.qinxiandiqi.sbs
+              commit_message: ${{ github.event.head_commit.message }}
