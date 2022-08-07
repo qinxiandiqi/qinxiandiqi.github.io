@@ -1,1 +1,2 @@
-# qinxiandiqi.github.io
+# 琴弦第七
+思想自由的行动者。
