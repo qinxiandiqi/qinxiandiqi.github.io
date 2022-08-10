@@ -1,35 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>琴弦第七</title>
-    <link>https://www.qinxiandiqi.sbs/</link>
-    <description>Recent content on 琴弦第七</description>
+    <title>虚拟机 on 琴弦第七</title>
+    <link>https://www.qinxiandiqi.sbs/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/</link>
+    <description>Recent content in 虚拟机 on 琴弦第七</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>&amp;copy; 2016. All rights reserved.</copyright>
-    <lastBuildDate>Sat, 06 Oct 2012 02:27:35 +0800</lastBuildDate><atom:link href="https://www.qinxiandiqi.sbs/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>About</title>
-      <link>https://www.qinxiandiqi.sbs/about/</link>
-      <pubDate>Wed, 09 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.qinxiandiqi.sbs/about/</guid>
-      <description>Hugo is a static site engine written in Go.
-It makes use of a variety of open source projects including:
-Cobra Viper J Walter Weatherman Cast Learn more and contribute on GitHub.
-Setup Some fun facts about Hugo:
-Built in Go Loosely inspired by Jekyll Primarily developed by spf13 on the train while commuting to and from Manhattan. Coded in Vim using spf13-vim Have questions or suggestions? Feel free to open an issue on GitHub or ask me on Twitter.</description>
-    </item>
-    
-    <item>
-      <title>Contact</title>
-      <link>https://www.qinxiandiqi.sbs/contact/</link>
-      <pubDate>Wed, 09 Apr 2014 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.qinxiandiqi.sbs/contact/</guid>
-      <description> &amp;lt;div class=&amp;quot;pure-u-1 pure-u-md-1-3&amp;quot;&amp;gt; &amp;lt;label for=&amp;quot;last-name&amp;quot;&amp;gt;Last Name&amp;lt;/label&amp;gt; &amp;lt;input id=&amp;quot;last-name&amp;quot; class=&amp;quot;pure-u-23-24&amp;quot; type=&amp;quot;text&amp;quot;&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;quot;pure-u-1 pure-u-md-1-3&amp;quot;&amp;gt; &amp;lt;label for=&amp;quot;email&amp;quot;&amp;gt;E-Mail&amp;lt;/label&amp;gt; &amp;lt;input id=&amp;quot;email&amp;quot; class=&amp;quot;pure-u-23-24&amp;quot; type=&amp;quot;email&amp;quot; required&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;quot;pure-u-1 pure-u-md-1-3&amp;quot;&amp;gt; &amp;lt;label for=&amp;quot;city&amp;quot;&amp;gt;City&amp;lt;/label&amp;gt; &amp;lt;input id=&amp;quot;city&amp;quot; class=&amp;quot;pure-u-23-24&amp;quot; type=&amp;quot;text&amp;quot;&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;quot;pure-u-1 pure-u-md-1-3&amp;quot;&amp;gt; &amp;lt;label for=&amp;quot;state&amp;quot;&amp;gt;State&amp;lt;/label&amp;gt; &amp;lt;select id=&amp;quot;state&amp;quot; class=&amp;quot;pure-input-1-2&amp;quot;&amp;gt; &amp;lt;option&amp;gt;AL&amp;lt;/option&amp;gt; &amp;lt;option&amp;gt;CA&amp;lt;/option&amp;gt; &amp;lt;option&amp;gt;IL&amp;lt;/option&amp;gt; &amp;lt;/select&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;fieldset class=&amp;quot;pure-group&amp;quot;&amp;gt; &amp;lt;input type=&amp;quot;text&amp;quot; class=&amp;quot;pure-input-1-2&amp;quot; placeholder=&amp;quot;A title&amp;quot;&amp;gt; &amp;lt;textarea class=&amp;quot;pure-input-1-2&amp;quot; placeholder=&amp;quot;Your message&amp;quot;&amp;gt;&amp;lt;/textarea&amp;gt; &amp;lt;/fieldset&amp;gt; &amp;lt;button type=&amp;quot;submit&amp;quot; class=&amp;quot;pure-button pure-button-primary&amp;quot;&amp;gt;Send&amp;lt;/button&amp;gt; </description>
-    </item>
-    
+    <lastBuildDate>Sat, 06 Oct 2012 02:27:35 +0800</lastBuildDate><atom:link href="https://www.qinxiandiqi.sbs/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Java SE 学习笔记 第一记</title>
       <link>https://www.qinxiandiqi.sbs/post/java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/javase%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%B8%80%E8%AE%B0/</link>
