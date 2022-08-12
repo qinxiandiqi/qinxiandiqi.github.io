@@ -1,12 +1,15 @@
 +++
 title = "Java SE 学习笔记 第一记"
-date = 2012-10-06T02:27:35+08:00
+date = 2012-10-06T10:27:35+08:00
 draft = false
+summary = "Jdk重要工具，Java基本数据类型，Java类的组织方式。"
+description = "Jdk重要工具，Java基本数据类型，Java类的组织方式。"
 tags = [
     "Java",
     "float",
     "虚拟机",
 ]
+read = 813
 +++
 
 
