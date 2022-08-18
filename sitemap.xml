@@ -1,88 +1,16 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <url>
-    <loc>https://www.qinxiandiqi.sbs/about/</loc>
-    <lastmod>2014-04-09T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.qinxiandiqi.sbs/contact/</loc>
-    <lastmod>2014-04-09T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://www.qinxiandiqi.sbs/tags/java/</loc>
-    <lastmod>2012-10-10T08:32:08+08:00</lastmod>
-  </url><url>
-    <loc>https://www.qinxiandiqi.sbs/post/java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/javase%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%BA%94%E8%AE%B0/</loc>
-    <lastmod>2012-10-10T08:32:08+08:00</lastmod>
-  </url><url>
-    <loc>https://www.qinxiandiqi.sbs/post/</loc>
-    <lastmod>2012-10-10T08:32:08+08:00</lastmod>
-  </url><url>
-    <loc>https://www.qinxiandiqi.sbs/tags/</loc>
-    <lastmod>2012-10-10T08:32:08+08:00</lastmod>
-  </url><url>
-    <loc>https://www.qinxiandiqi.sbs/tags/%E5%8C%85%E8%A3%85%E7%B1%BB/</loc>
-    <lastmod>2012-10-10T08:32:08+08:00</lastmod>
-  </url><url>
-    <loc>https://www.qinxiandiqi.sbs/tags/%E5%8F%AF%E5%8F%98%E5%8F%82%E6%95%B0/</loc>
-    <lastmod>2012-10-10T08:32:08+08:00</lastmod>
-  </url><url>
-    <loc>https://www.qinxiandiqi.sbs/tags/%E6%B3%9B%E5%9E%8B/</loc>
-    <lastmod>2012-10-10T08:32:08+08:00</lastmod>
-  </url><url>
-    <loc>https://www.qinxiandiqi.sbs/</loc>
-    <lastmod>2012-10-10T08:32:08+08:00</lastmod>
-  </url><url>
-    <loc>https://www.qinxiandiqi.sbs/post/java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/javase%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%9B%9B%E8%AE%B0/</loc>
-    <lastmod>2012-10-09T11:15:11+08:00</lastmod>
-  </url><url>
-    <loc>https://www.qinxiandiqi.sbs/tags/list/</loc>
-    <lastmod>2012-10-09T11:15:11+08:00</lastmod>
-  </url><url>
-    <loc>https://www.qinxiandiqi.sbs/tags/map/</loc>
-    <lastmod>2012-10-09T11:15:11+08:00</lastmod>
-  </url><url>
-    <loc>https://www.qinxiandiqi.sbs/tags/set/</loc>
-    <lastmod>2012-10-09T11:15:11+08:00</lastmod>
-  </url><url>
-    <loc>https://www.qinxiandiqi.sbs/tags/tree/</loc>
-    <lastmod>2012-10-09T11:15:11+08:00</lastmod>
-  </url><url>
-    <loc>https://www.qinxiandiqi.sbs/tags/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/</loc>
-    <lastmod>2012-10-09T11:15:11+08:00</lastmod>
-  </url><url>
-    <loc>https://www.qinxiandiqi.sbs/post/java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/javase%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%B8%89%E8%AE%B0/</loc>
-    <lastmod>2012-10-08T14:18:10+08:00</lastmod>
-  </url><url>
-    <loc>https://www.qinxiandiqi.sbs/tags/string/</loc>
-    <lastmod>2012-10-08T14:18:10+08:00</lastmod>
-  </url><url>
-    <loc>https://www.qinxiandiqi.sbs/tags/%E6%95%B0%E7%BB%84/</loc>
-    <lastmod>2012-10-08T14:18:10+08:00</lastmod>
-  </url><url>
-    <loc>https://www.qinxiandiqi.sbs/tags/%E9%9B%86%E5%90%88/</loc>
-    <lastmod>2012-10-08T14:18:10+08:00</lastmod>
-  </url><url>
-    <loc>https://www.qinxiandiqi.sbs/post/java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/javase%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%BA%8C%E8%AE%B0/</loc>
-    <lastmod>2012-10-07T08:49:06+08:00</lastmod>
-  </url><url>
-    <loc>https://www.qinxiandiqi.sbs/tags/%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/</loc>
-    <lastmod>2012-10-07T08:49:06+08:00</lastmod>
-  </url><url>
-    <loc>https://www.qinxiandiqi.sbs/tags/%E5%A4%9A%E6%80%81/</loc>
-    <lastmod>2012-10-07T08:49:06+08:00</lastmod>
-  </url><url>
-    <loc>https://www.qinxiandiqi.sbs/tags/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</loc>
-    <lastmod>2012-10-07T08:49:06+08:00</lastmod>
-  </url><url>
-    <loc>https://www.qinxiandiqi.sbs/tags/float/</loc>
-    <lastmod>2012-10-06T10:27:35+08:00</lastmod>
-  </url><url>
-    <loc>https://www.qinxiandiqi.sbs/post/java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/javase%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%B8%80%E8%AE%B0/</loc>
-    <lastmod>2012-10-06T10:27:35+08:00</lastmod>
-  </url><url>
-    <loc>https://www.qinxiandiqi.sbs/tags/%E8%99%9A%E6%8B%9F%E6%9C%BA/</loc>
-    <lastmod>2012-10-06T10:27:35+08:00</lastmod>
-  </url><url>
-    <loc>https://www.qinxiandiqi.sbs/categories/</loc>
-  </url>
-</urlset>
+<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <sitemap>
+    <loc>https://www.qinxiandiqi.sbs/en/sitemap.xml</loc>
+    
+      <lastmod>2022-07-08T11:34:47+08:00</lastmod>
+    
+  </sitemap>
+  
+  <sitemap>
+    <loc>https://www.qinxiandiqi.sbs/zh-cn/sitemap.xml</loc>
+    
+  </sitemap>
+  
+</sitemapindex>

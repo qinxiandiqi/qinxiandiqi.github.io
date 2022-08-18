@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://www.qinxiandiqi.sbs/sitemap.xml
