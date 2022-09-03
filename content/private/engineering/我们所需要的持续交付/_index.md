@@ -8,6 +8,18 @@ style: |
     section.main h1 {
         text-align: center;
     }
+    section.main h2 {
+        text-align: center;
+    }
+    section.main h3 {
+        text-align: center;
+    }
+    section.main h4 {
+        text-align: center;
+    }
+    section.main h5 {
+        text-align: center;
+    }
     section.main p {
         text-align: center;
     }
@@ -53,13 +65,14 @@ style: |
 
 ---
 
-# 首次进化：瀑布流1970
-### 1. 历史环境
+# 瀑布流
+首次进化：1970
+### 1. 历史背景
 - 硬件技术：晶体管 -> 集成电路
-- 技术栈：汇编语言
+- 软件开发：低级语言
 - 软件应用：科学和专业领域计算
 
-### 2. 1968软件危机
+### 2. 解决问题：1968软件危机
 - 软件开发费用和进度失控
 - 软件的可靠性差
 - 软件难以维护
@@ -85,10 +98,28 @@ style: |
 ![bg right:50% 80%](%E6%95%8F%E6%8D%B7%E5%AE%A3%E8%A8%8012%E5%8E%9F%E5%88%99.png)
 
 ---
+
+# 为什么提出敏捷
+<!-- _class: headCenter -->
+## 1. 历史背景
+- 硬件发展：70年代个人计算机出现并爆炸式发展
+- 软件发展：操作系统进化，高级语言层出不穷
+- 软件需求：企业定制
+- 行业变化：互联网成型，web 1.0时代
+## 2. 问题矛盾
+- 软件市场和需求越来越大，软件工程的成功率却依旧很低
+- 重型的瀑布流模式不能适应快速发展的软硬件环境和市场环境
+
+---
 <!-- _class: main -->
 # DevOps
 
 三次进化 · 2008年
+
+---
+<!-- _class: headCenter -->
+# DevOps讲什么
+
 
 ---
 <!-- _class: headCenter -->
@@ -98,7 +129,7 @@ style: |
 > 1996年，Womack、Jones和Roos在《精益思想》一书中指出：精益思想是指导企业根据用户需求，定义企业生产价值，按照价值流来组织全部生产活动，使价值在生产活动之间流动起来，由需求拉动产品的生产，从而识别整个生产过程中不经意间产生的浪费，并消除之。 —— 摘自《持续交付2.0》
 
 ---
-
+<!-- _class: main -->
 # BizDevOps
 
 业务 · 开发 · 运维
@@ -106,7 +137,7 @@ style: |
 ---
 
 # 双环模型
-
+<!-- _class: main -->
 ![](%E5%8F%8C%E7%8E%AF%E6%A8%A1%E5%9E%8B.png)
 
  
