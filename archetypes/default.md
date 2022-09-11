@@ -1,5 +1,5 @@
 ---
-# type: docs 
+# type: posts 
 title: {{ replace .Name "-" " " | title }}
 date: {{ .Date }}
 featured: false
@@ -9,14 +9,11 @@ toc: true
 reward: true
 pinned: false
 carousel: false
-series:
+series: []
 categories: []
 tags: []
 images: []
+summary: 
 ---
 
-Summary.
 
-<!--more-->
-
-Content.
