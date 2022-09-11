@@ -2,18 +2,19 @@
 # type: posts 
 title: 生成新SSH密钥并添加到ssh-agent
 date: 2022-09-11T13:05:10+08:00
+authors: ["Jianan"]
+summary: "新建SSH密钥，并添加到ssh-agent。"
+series: []
+categories: []
+tags: [SSH]
+images: []
 featured: false
-draft: false
 comment: true
 toc: true
 reward: true
 pinned: false
 carousel: false
-series: [SSH]
-categories: []
-tags: [SSH]
-images: []
-summary: "新建SSH密钥，并添加到ssh-agent。"
+draft: false
 ---
 
 ## Window系统

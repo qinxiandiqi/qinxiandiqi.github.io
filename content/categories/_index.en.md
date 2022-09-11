@@ -1,8 +1,8 @@
 ---
-title: 分类
+title: Categories
 menu:
   main:
-    parent: blog
+    # parent: blog
     weight: 3
     pre: <i class="fas fa-fw fa-folder"></i>
 ---

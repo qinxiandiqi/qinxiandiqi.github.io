@@ -1,7 +1,6 @@
 ---
-title: 文档
+title: News
 # menu:
 #   main:
 #     weight: 1
 ---
-

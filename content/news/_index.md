@@ -1,6 +1,6 @@
 ---
-title: News
-menu:
-  main:
-    weight: 1
+title: 新闻
+# menu:
+#   main:
+#     weight: 1
 ---
