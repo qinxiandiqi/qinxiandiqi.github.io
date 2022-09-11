@@ -1,21 +1,22 @@
-+++
-title = "Java SE 学习笔记 第四记"
-date = 2012-10-09T11:15:11+08:00
-draft = false
-summary = "Java的集合和字典，list、set、map、tree；设计模式之策略模式。"
-description = "Java的集合和字典，list、set、map、tree；设计模式之策略模式。"
-tags = [
-    "Java",
-    "Set",
-    "List",
-    "Map",
-    "Tree",
-    "策略模式"
-]
-series = ["Java学习笔记"]
-read = 1213
-+++
-
+---
+# type: posts 
+title: "Java SE 学习笔记 第四记"
+date: 2012-10-09T11:15:11+08:00
+authors: ["Jianan"]
+summary: "Java的集合和字典，list、set、map、tree；设计模式之策略模式。"
+series: ["Java学习笔记"]
+categories: []
+tags: ["Java","Set","List","Map","Tree","策略模式"]
+images: []
+featured: false
+comment: true
+toc: true
+reward: true
+pinned: false
+carousel: false
+draft: false
+read: 1213
+---
 ## 2012-07-19
 
 1. java中的链表节点使用封装的类，节点类包括节点数据和前驱后继节点的引用，java中没有指针的概念，所以使用链表只能使用引用，也就是引用类型变量做“指针”。

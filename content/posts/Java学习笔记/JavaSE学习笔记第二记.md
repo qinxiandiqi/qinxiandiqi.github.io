@@ -1,18 +1,22 @@
-+++
-title = "Java SE 学习笔记 第二记"
-date = 2012-10-07T08:49:06+08:00
-draft = false
-summary = "Java对象的构造过程，Java类的多态。设计模式的单例模式。"
-description = "Java对象的构造过程，Java类的多态。设计模式的单例模式。"
-tags = [
-    "Java",
-    "面向对象",
-    "多态",
-    "单例模式",
-]
-series = ["Java学习笔记"]
-read = 1232
-+++
+---
+# type: posts 
+title: "Java SE 学习笔记 第二记"
+date: 2012-10-07T08:49:06+08:00
+authors: ["Jianan"]
+summary: "Java对象的构造过程，Java类的多态。设计模式的单例模式。"
+series: ["Java学习笔记"]
+categories: []
+tags: ["Java","面向对象","多态","单例模式"]
+images: []
+featured: false
+comment: true
+toc: true
+reward: true
+pinned: false
+carousel: false
+draft: false
+read: 1232
+---
 
 ## 2012-07-15
 

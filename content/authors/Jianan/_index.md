@@ -1,6 +1,6 @@
 ---
 title: Jianan
-description: 不务正业的老师.
+description: 今天做点什么呢？
 social:
   github: qinxiandiqi
   twitter: qinxiandiqi

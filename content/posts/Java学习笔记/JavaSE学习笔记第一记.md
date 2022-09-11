@@ -1,18 +1,22 @@
-+++
-title = "Java SE 学习笔记 第一记"
-date = 2012-10-06T10:27:35+08:00
-draft = false
-summary = "Jdk重要工具，Java基本数据类型，Java类的组织方式。"
-description = "Jdk重要工具，Java基本数据类型，Java类的组织方式。"
-tags = [
-    "Java",
-    "float",
-    "虚拟机",
-]
-series = ["Java学习笔记"]
-read = 813
-+++
-
+---
+# type: posts 
+title: "Java SE 学习笔记 第一记"
+date: 2012-10-06T10:27:35+08:00
+authors: ["Jianan"]
+summary: "Jdk重要工具，Java基本数据类型，Java类的组织方式。"
+series: ["Java学习笔记"]
+categories: []
+tags: ["Java","float","虚拟机"]
+images: []
+featured: false
+comment: true
+toc: true
+reward: true
+pinned: false
+carousel: false
+draft: false
+read: 813
+---
 
 ## 2012-07-12
 

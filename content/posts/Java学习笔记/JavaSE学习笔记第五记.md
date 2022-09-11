@@ -1,19 +1,22 @@
-+++
-title = "Java SE 学习笔记 第五记"
-date = 2012-10-10T08:32:08+08:00
-draft = false
-summary = "Java的泛型和包装类。"
-description = "Java的泛型和包装类。"
-tags = [
-    "Java",
-    "泛型",
-    "包装类",
-    "可变参数"
-]
-series = ["Java学习笔记"]
-read = 1195
-+++
-
+---
+# type: posts 
+title: "Java SE 学习笔记 第五记"
+date: 2012-10-10T08:32:08+08:00
+authors: ["Jianan"]
+summary: "Java的泛型和包装类。"
+series: ["Java学习笔记"]
+categories: []
+tags: ["Java","泛型","包装类","可变参数"]
+images: []
+featured: false
+comment: true
+toc: true
+reward: true
+pinned: false
+carousel: false
+draft: false
+read: 1195
+---
 ## 2012-07-21
 
 1. Vector与ArrayList基本类似，不同的是Vector是同步的。HaseTable与HaseMap类似，只是HaseTable是同步的，不常用HaseTable，但常用HaseTable的子类Properties。

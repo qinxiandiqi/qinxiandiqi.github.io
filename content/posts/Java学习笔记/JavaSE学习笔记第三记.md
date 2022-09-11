@@ -1,20 +1,22 @@
-+++
-title = "Java SE 学习笔记 第三记"
-date = 2012-10-08T14:18:10+08:00
-draft = false
-summary = "Java字符串对象的存储特征；Java数组和集合的使用。"
-description = "Java字符串对象的存储特征；Java数组和集合的使用。"
-tags = [
-    "Java",
-    "String",
-    "集合",
-    "List",
-    "数组"
-]
-series = ["Java学习笔记"]
-read = 1165
-+++
-
+---
+# type: posts 
+title: "Java SE 学习笔记 第三记"
+date: 2012-10-08T14:18:10+08:00
+authors: ["Jianan"]
+summary: "Java字符串对象的存储特征；Java数组和集合的使用。"
+series: ["Java学习笔记"]
+categories: []
+tags: ["Java","String","集合","List","数组"]
+images: []
+featured: false
+comment: true
+toc: true
+reward: true
+pinned: false
+carousel: false
+draft: false
+read: 1165
+---
 ## 2012-07-17
 
 1. java.lang包在编译的时候会自动导入，无需显示导入。此包内包含object类还有一些常用类。
