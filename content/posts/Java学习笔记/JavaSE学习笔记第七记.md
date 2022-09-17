@@ -1,6 +1,6 @@
 ---
 # type: posts 
-title: JavaSE学习笔记第七记
+title: "JavaSE学习笔记 第七记"
 date: 2014-06-01T11:19:26+08:00
 authors: ["Jianan"]
 summary: "代理模式和策略模式的区别，Java注解的使用，JUnit的使用，Java一场的使用。"
