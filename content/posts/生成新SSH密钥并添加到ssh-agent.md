@@ -17,8 +17,8 @@ carousel: false
 draft: false
 ---
 
-## Window系统
-### 新建ssh密钥
+## 一、Window系统
+### 1.1 新建ssh密钥
 1. 打开Terminal（Power Shell终端），使用ssh-keygen生成新密钥：
     ```shell
     $ ssh-keygen -t ed25519 -C "your_email@example.com"
@@ -36,7 +36,7 @@ draft: false
     ```shell
     $ cat ~/.ssh/id_ed25519
     ```
-### 添加新密钥到ssh-agent
+### 1.2 添加新密钥到ssh-agent
 1. Window系统ssh-agent服务默认禁用，先把ssh-agent服务启动方式改为自启动。以管理员身份打开Terminal（Power Shell终端），输入：
     ```shell
     Set-Service -Name ssh-agent -StartupType automatic
@@ -46,8 +46,8 @@ draft: false
     $ ssh-add ~/.ssh/id_ed25519
     ```
 
-## Linux或Mac系统
-### 新建ssh密钥
+## 二、Linux或Mac系统
+### 2.1 新建ssh密钥
 1. 打开终端，使用ssh-keygen生成新密钥：
     ```shell
     $ ssh-keygen -t ed25519 -C "your_email@example.com"
@@ -65,7 +65,7 @@ draft: false
     ```shell
     $ cat ~/.ssh/id_ed25519
     ```
-### 添加新秘钥到ssh-agent
+### 2.2 添加新秘钥到ssh-agent
 1. 启动ssh-agent服务：
     ```shell
     $ eval "$(ssh-agent -s)"

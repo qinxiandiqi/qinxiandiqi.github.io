@@ -1,7 +1,7 @@
 baseURL: "https://www.qinxiandiqi.sbs/"
 title: "琴弦第七"
 theme: hugo-theme-bootstrap
-copyright: 'Copyright © 2016-{year} Jianan. All Rights Reserved.'
+copyright: 'Copyright © 2012-{year} Jianan. All Rights Reserved.'
 defaultContentLanguage: zh-cn
 hasCJKLanguage: true # Uncomment it if your content contains Chinese/Japanese/Korean Languages.
 # defaultContentLanguageInSubdir: true

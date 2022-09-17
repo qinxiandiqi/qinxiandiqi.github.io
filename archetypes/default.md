@@ -15,6 +15,7 @@ reward: true
 pinned: false
 carousel: false
 draft: true
+read: 
 ---
 
 
