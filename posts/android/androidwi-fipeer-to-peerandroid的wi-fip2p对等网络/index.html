@@ -1,0 +1,390 @@
+<!doctype html><html class=position-relative itemscope itemtype=http://schema.org/WebPage lang=zh-cn data-theme=auto data-bs-theme=auto data-palette=purple><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Android Wi-Fi Peer-to-Peer（Android的Wi-Fi P2P对等网络） - 琴弦第七</title><link rel=icon href=https://www.qinxiandiqi.sbs/favicon_huc1d2ba7c7d6d5aa3e01f2f328b911c53_11507_16x16_resize_box_3.png sizes=16x16 type=image/png><link rel=icon href=https://www.qinxiandiqi.sbs/favicon_huc1d2ba7c7d6d5aa3e01f2f328b911c53_11507_32x32_resize_box_3.png sizes=32x32 type=image/png><link rel=apple-touch-icon href=https://www.qinxiandiqi.sbs/favicon_huc1d2ba7c7d6d5aa3e01f2f328b911c53_11507_180x180_resize_box_3.png sizes=180x180 type=image/png><link rel=icon href=https://www.qinxiandiqi.sbs/favicon_huc1d2ba7c7d6d5aa3e01f2f328b911c53_11507_150x150_resize_box_3.png sizes=150x150 type=image/png><link rel=icon href=https://www.qinxiandiqi.sbs/favicon_huc1d2ba7c7d6d5aa3e01f2f328b911c53_11507_192x192_resize_box_3.png sizes=192x192 type=image/png><link rel=mask-icon href=https://www.qinxiandiqi.sbs/safari-pinned-tab.svg color=#6f42c1><link rel=icon href="https://www.qinxiandiqi.sbs/images/icons/favicon.ico?version=2a4098caa2eb82a1f873269b3ff57965"><meta name=keywords content><meta name=description content="Wi-Fi peer-to-peer（P2P，对等网络），它允许具备相应硬件的Android 4.0（API level 14）或者更高版本的设备可以直接通过wifi而不需要其它中间中转节点就能直接通信（Android的Wi-Fi P2P框架符合Wi-Fi联盟的Wi-Fi Direct™直连认证标志）。使用这些API，你可以搜索并连接其它同样支持Wi-Fi P2P的设备，然后再通过一个高速的连接进"><meta name=robots content="index, follow"><meta name=twitter:card content="summary"><meta name=twitter:title content="Android Wi-Fi Peer-to-Peer（Android的Wi-Fi P2P对等网络）"><meta name=twitter:description content="Wi-Fi peer-to-peer（P2P，对等网络），它允许具备相应硬件的Android 4.0（API level 14）或者更高版本的设备可以直接通过wifi而不需要其它中间中转节点就能直接通信（Android的Wi-Fi P2P框架符合Wi-Fi联盟的Wi-Fi Direct™直连认证标志）。使用这些API，你可以搜索并连接其它同样支持Wi-Fi P2P的设备，然后再通过一个高速的连接进"><meta name=twitter:site content="@qinxiandiqi"><meta property="og:title" content="Android Wi-Fi Peer-to-Peer（Android的Wi-Fi P2P对等网络）"><meta property="og:description" content="Wi-Fi peer-to-peer（P2P，对等网络），它允许具备相应硬件的Android 4.0（API level 14）或者更高版本的设备可以直接通过wifi而不需要其它中间中转节点就能直接通信（Android的Wi-Fi P2P框架符合Wi-Fi联盟的Wi-Fi Direct™直连认证标志）。使用这些API，你可以搜索并连接其它同样支持Wi-Fi P2P的设备，然后再通过一个高速的连接进"><meta property="og:type" content="article"><meta property="og:url" content="https://www.qinxiandiqi.sbs/posts/android/androidwi-fipeer-to-peerandroid%E7%9A%84wi-fip2p%E5%AF%B9%E7%AD%89%E7%BD%91%E7%BB%9C/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2014-11-17T18:51:14+08:00"><meta property="article:modified_time" content="2014-11-17T18:51:14+08:00"><meta property="og:see_also" content="https://www.qinxiandiqi.sbs/posts/android/android%E7%9A%84%E8%BF%9B%E7%A8%8B%E4%BC%98%E5%85%88%E7%BA%A7/"><meta property="og:see_also" content="https://www.qinxiandiqi.sbs/posts/android/android%E7%9A%84%E5%B1%9E%E6%80%A7%E5%8A%A8%E7%94%BB/"><meta property="og:see_also" content="https://www.qinxiandiqi.sbs/posts/android/android%E7%9A%84%E5%AE%9A%E4%BD%8D%E7%AD%96%E7%95%A5/"><meta property="og:see_also" content="https://www.qinxiandiqi.sbs/posts/android/android%E6%9D%83%E9%99%90%E7%9A%84%E6%9C%80%E4%BD%B3%E8%BF%90%E7%94%A8/"><meta property="og:see_also" content="https://www.qinxiandiqi.sbs/posts/android/app%E5%9C%A8android6.0%E6%88%96%E4%BB%A5%E4%B8%8A%E5%B9%B3%E5%8F%B0%E7%89%88%E6%9C%AC%E8%BF%90%E8%A1%8C%E8%BF%87%E7%A8%8B%E4%B8%AD%E8%AF%B7%E6%B1%82%E6%9D%83%E9%99%90/"><meta property="og:see_also" content="https://www.qinxiandiqi.sbs/posts/android/android%E7%9A%84%E6%9D%83%E9%99%90%E5%A3%B0%E6%98%8E/"><meta itemprop=name content="Android Wi-Fi Peer-to-Peer（Android的Wi-Fi P2P对等网络）"><meta itemprop=description content="Wi-Fi peer-to-peer（P2P，对等网络），它允许具备相应硬件的Android 4.0（API level 14）或者更高版本的设备可以直接通过wifi而不需要其它中间中转节点就能直接通信（Android的Wi-Fi P2P框架符合Wi-Fi联盟的Wi-Fi Direct™直连认证标志）。使用这些API，你可以搜索并连接其它同样支持Wi-Fi P2P的设备，然后再通过一个高速的连接进"><meta itemprop=datePublished content="2014-11-17T18:51:14+08:00"><meta itemprop=dateModified content="2014-11-17T18:51:14+08:00"><meta itemprop=wordCount content="5329"><meta itemprop=keywords content="android,wi-fi,p2p,对等网络,"><meta property="og:image" content="https://www.qinxiandiqi.sbs/images/logo.png"><meta name=twitter:image content="https://www.qinxiandiqi.sbs/images/logo.png"><link rel=manifest href=https://www.qinxiandiqi.sbs/manifest.json><link data-precache rel=stylesheet href="https://www.qinxiandiqi.sbs/assets/main/bundle.min.4d0a628e427af2df862b411feced006985e5e7f4abf1d52b690dcf44facac475.css" integrity="sha256-TQpijkJ68t+GK0Ef7O0AaYXl5/Sr8dUraQ3PRPrKxHU=" crossorigin=anonymous><link data-precache rel=stylesheet href=https://www.qinxiandiqi.sbs/assets/viewer/bundle.min.6d0fc65b8b058ac563091dc5c36f61afba5dd705058680aa24f1d5a3bcf0064d.css integrity="sha256-bQ/GW4sFisVjCR3Fw29hr7pd1wUFhoCqJPHVo7zwBk0=" crossorigin=anonymous></head><body><script>const items=["theme","palette"];items.forEach(function(e){const t=localStorage.getItem("hbs:"+e);t&&document.body.parentElement.setAttribute("data-"+e,t)})</script><header><nav class="top-app-bar shadow navbar navbar-expand-lg fixed-top"><div class=container><a class="navbar-brand d-flex align-items-center flex-grow-1 flex-lg-grow-0 text-lg-start ms-2 ms-lg-0 mx-auto me-lg-2" href=https://www.qinxiandiqi.sbs/><picture><img class=logo alt=Logo src=https://www.qinxiandiqi.sbs/images/logo.png loading=lazy width=500 height=500>
+</picture>琴弦第七</a>
+<button class="navbar-toggler order-5" type=button data-bs-toggle=offcanvas data-bs-target=#navbarMenus aria-controls=navbarMenus aria-expanded=false aria-label="Toggle navigation">
+<i class="fas fa-ellipsis-h"></i></button><div class="offcanvas-lg offcanvas-end flex-grow-1" data-bs-scroll=true tabindex=-1 id=navbarMenus aria-labelledby=navbarMenusLabel><div class="offcanvas-header px-4 pb-0"><h5 class=offcanvas-title id=navbarMenusLabel>琴弦第七</h5><button type=button class="btn-close btn-close-white" data-bs-dismiss=offcanvas data-bs-target=#navbarMenus aria-label=Close></button></div><div class="offcanvas-body p-4 pt-0 p-lg-0"><hr class=d-lg-none><ul class="navbar-nav flex-row flex-wrap align-items-center me-auto"><li class="nav-item col-6 col-lg-auto"><a class="nav-link py-2 px-0 px-lg-2" href=https://www.qinxiandiqi.sbs/archives/><i class="fas fa-fw fa-file-archive"></i>归档</a></li><li class="nav-item col-6 col-lg-auto"><a class="nav-link py-2 px-0 px-lg-2" href=https://www.qinxiandiqi.sbs/series/><i class="fas fa-fw fa-columns"></i>专栏</a></li><li class="nav-item col-6 col-lg-auto"><a class="nav-link py-2 px-0 px-lg-2" href=https://www.qinxiandiqi.sbs/categories/><i class="fas fa-fw fa-folder"></i>分类</a></li><li class="nav-item col-6 col-lg-auto"><a class="nav-link py-2 px-0 px-lg-2" href=https://www.qinxiandiqi.sbs/tags/><i class="fas fa-fw fa-tags"></i>标签</a></li></ul><hr class=d-lg-none><form class="search-bar ms-auto my-1" action=https://www.qinxiandiqi.sbs/search/ novalidate><div class="input-group input-group-sm align-items-center"><span class="btn btn-search disabled position-absolute left-0 border-0"><i class="fas fa-fw fa-search fa-lg"></i></span>
+<input class="py-2 form-control rounded search-input" name=q type=search aria-label=Search required></div></form><hr class=d-lg-none><ul class="navbar-nav flex-row flex-wrap align-items-center ms-md-auto"><li class="nav-item py-2 py-lg-1 col-12 col-lg-auto"><nav class="social-links nav justify-content-center flex-row"><a class="nav-link social-link col-6 col-lg-auto p-1" target=_blank href=https://github.com/qinxiandiqi title=GitHub rel="noopener noreferrer"><i class="fa-fw fab fa-github"></i>
+<span class="ms-1 d-lg-none">GitHub</span></a>
+<a class="nav-link social-link col-6 col-lg-auto p-1" target=_blank href=https://www.qinxiandiqi.sbs/index.xml title=RSS rel="noopener noreferrer"><i class="fas fa-fw fa-rss"></i>
+<span class="ms-1 d-lg-none">RSS</span></a></nav></li><li class="nav-item py-2 py-lg-1 col-12 col-lg-auto"><div class="vr d-none d-lg-flex h-100 mx-lg-2 text-white"></div><hr class="d-lg-none my-2"></li><li class="nav-item dropdown py-1 py-lg-1 col-6 col-lg-auto"><a class="nav-link px-0 px-lg-1" href=# id=languageDropdown role=button data-bs-toggle=dropdown aria-expanded=false><i class="fas fa-fw fa-globe"></i>
+<span class=d-lg-none>语言</span></a><ul class="dropdown-menu dropdown-menu-end" aria-labelledby=languageDropdown><li><a class="dropdown-item active" href=https://www.qinxiandiqi.sbs/>简体中文</a></li><li><a class=dropdown-item href=https://www.qinxiandiqi.sbs/en/>English</a></li></ul></li><li class="nav-item py-1 col-12 col-lg-auto"><div class="vr d-none d-lg-flex h-100 mx-lg-2 text-white"></div><hr class="d-lg-none my-2"></li><li class="nav-item dropdown col-6 col-lg-auto"><a class="nav-link px-0 py-2 px-lg-1" href=# id=fontSizeDropdown role=button data-bs-toggle=dropdown aria-expanded=false><i class="fas fa-fw fa-font"></i>
+<span class=d-lg-none>字体大小</span></a><ul class="dropdown-menu dropdown-menu-end" aria-labelledby=fontSizeDropdown><li><button class="font-size-item dropdown-item" data-size=xs>
+特小号</button></li><li><button class="font-size-item dropdown-item" data-size=sm>
+小号</button></li><li><button class="font-size-item dropdown-item active" data-size=md>
+中等</button></li><li><button class="font-size-item dropdown-item" data-size=lg>
+大号</button></li><li><button class="font-size-item dropdown-item" data-size=xl>
+特大号</button></li></ul></li><li class="nav-item dropdown col-6 col-lg-auto"><a class="nav-link px-0 py-2 px-lg-1" href=# id=paletteDropdown role=button data-bs-toggle=dropdown aria-expanded=false><i class="fas fa-fw fa-palette"></i>
+<span class=d-lg-none>配色</span></a><ul class="dropdown-menu dropdown-menu-end px-2" aria-labelledby=paletteDropdown><div class=row><li class="col-4 my-1"><a role=button id=palette-blue aria-label=蓝色 class="btn btn-sm w-100 palette text-bg-blue" data-palette=blue></a></li><li class="col-4 my-1"><a role=button id=palette-blue-gray aria-label=蓝灰色 class="btn btn-sm w-100 palette text-bg-blue-gray" data-palette=blue-gray></a></li><li class="col-4 my-1"><a role=button id=palette-brown aria-label=棕色 class="btn btn-sm w-100 palette text-bg-brown" data-palette=brown></a></li><li class="col-4 my-1"><a role=button id=palette-cyan aria-label=青色 class="btn btn-sm w-100 palette text-bg-cyan" data-palette=cyan></a></li><li class="col-4 my-1"><a role=button id=palette-green aria-label=绿色 class="btn btn-sm w-100 palette text-bg-green" data-palette=green></a></li><li class="col-4 my-1"><a role=button id=palette-indigo aria-label=靛青色 class="btn btn-sm w-100 palette text-bg-indigo" data-palette=indigo></a></li><li class="col-4 my-1"><a role=button id=palette-orange aria-label=橙色 class="btn btn-sm w-100 palette text-bg-orange" data-palette=orange></a></li><li class="col-4 my-1"><a role=button id=palette-pink aria-label=粉色 class="btn btn-sm w-100 palette text-bg-pink" data-palette=pink></a></li><li class="col-4 my-1"><a role=button id=palette-purple aria-label=紫色 class="btn btn-sm w-100 palette text-bg-purple" data-palette=purple></a></li><li class="col-4 my-1"><a role=button id=palette-red aria-label=红色 class="btn btn-sm w-100 palette text-bg-red" data-palette=red></a></li><li class="col-4 my-1"><a role=button id=palette-teal aria-label=蓝绿色 class="btn btn-sm w-100 palette text-bg-teal" data-palette=teal></a></li><li class="col-4 my-1"><a role=button id=palette-yellow aria-label=黄色 class="btn btn-sm w-100 palette text-bg-yellow" data-palette=yellow></a></li></div></ul></li><li class="nav-item dropdown col-6 col-lg-auto"><a class="nav-link px-0 py-2 px-lg-1" href=# id=modeDropdown role=button data-bs-toggle=dropdown aria-expanded=false><i class="mode-icon fas fa-fw fa-adjust" id=modeIcon></i>
+<span class=d-lg-none>模式</span></a><ul class="dropdown-menu dropdown-menu-end" aria-labelledby=modeDropdown><li class=mode-item data-color-mode=light data-icon=sun><button class=dropdown-item>
+<i class="mode-icon fas fa-fw fa-sun"></i> Light</button></li><li class=mode-item data-color-mode=dark data-icon=moon><button class=dropdown-item>
+<i class="mode-icon fas fa-fw fa-moon"></i> Dark</button></li><li class="mode-item active" data-color-mode=auto data-icon=adjust><button class=dropdown-item>
+<i class="mode-icon fas fa-fw fa-adjust"></i> Auto</button></li></ul></li></ul></div></div></div></nav></header><main class=container><div class="row content"><noscript><div class="alert alert-danger" role=alert>你的浏览器不支持 JavaScript。</div></noscript><aside class="col-lg-4 sidebar d-flex order-lg-5"><div class="container d-flex flex-column"><div class="accordion profile"><div class="accordion-item card row text-center component"><div class="accordion-header card-header border-0" id=profile-header><a class="accordion-button d-lg-none mb-2 collapsed shadow-none p-0 bg-transparent text-surface" type=button data-bs-toggle=collapse data-bs-target=#profile aria-expanded=false aria-controls=profile>Profile</a></div><div class="card-body collapse accordion-collapse accordion-body d-lg-block" id=profile aria-labelledby=profile-header><div class="col-12 d-flex align-items-center justify-content-center"><picture><img class="profile-avatar rounded-circle" alt=Jianan src=https://www.qinxiandiqi.sbs/images/profile.png loading=lazy data-viewer-invisible width=500 height=500></picture></div><div class="col-12 profile-meta"><div class="profile-name fw-fold fs-lg">Jianan</div><div class=profile-bio>今天做点什么呢？</div><div class="profile-about text-primary"><i class="fas fa-fw fa-user"></i><a href=https://www.qinxiandiqi.sbs/about/>关于我</a></div><div class="profile-contact text-primary"><i class="fas fa-fw fa-question-circle"></i><a href=https://www.qinxiandiqi.sbs/contact/>联系我</a></div></div><nav class="social-links nav justify-content-center mt-1 justify-content-around"><a class="nav-link social-link" href=mailto:qinxiandiqi@foxmail.com title=Email><i class="fas fa-fw fa-2x fa-envelope"></i></a>
+<a class="nav-link social-link" target=_blank href=https://github.com/qinxiandiqi title=GitHub rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-github"></i></a>
+<a class="nav-link social-link" target=_blank href=https://twitter.com/qinxiandiqi title=Twitter rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-twitter"></i></a>
+<a class="nav-link social-link" target=_blank href=https://weibo.com/qinxiandiqi title=Weibo rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-weibo"></i></a>
+<a class="nav-link social-link" target=_blank href=https://www.zhihu.com/people/qinxiandiqi title=Zhihu rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-zhihu"></i></a></nav></div></div></div><div class="accordion taxonomies-toggle"><section class="row card component accordion-item"><div class="accordion-header card-header border-0"><a class="accordion-button d-lg-none mb-1 collapsed shadow-none p-0 bg-transparent" type=button data-bs-toggle=collapse data-bs-target=#taxonomies-toggle aria-expanded=false aria-controls=taxonomies-toggle>Taxonomies</a></div><div class="card-body collapse accordion-collapse accordion-body d-lg-block" id=taxonomies-toggle><ul class="nav nav-pills nav-fill" id=myTab role=tablist><li class=nav-item role=presentation><button class="nav-link active" id=taxonomySeriesTab data-bs-toggle=tab data-bs-target=#taxonomySeries type=button role=tab aria-controls=专栏 aria-selected=true>
+专栏</button></li><li class=nav-item role=presentation><button class=nav-link id=taxonomyCategoriesTab data-bs-toggle=tab data-bs-target=#taxonomyCategories type=button role=tab aria-controls=分类 aria-selected=true>
+分类</button></li><li class=nav-item role=presentation><button class=nav-link id=taxonomyTagsTab data-bs-toggle=tab data-bs-target=#taxonomyTags type=button role=tab aria-controls=标签 aria-selected=true>
+标签</button></li><li class=nav-item role=presentation><button class=nav-link id=taxonomyAuthorsTab data-bs-toggle=tab data-bs-target=#taxonomyAuthors type=button role=tab aria-controls=作者 aria-selected=true>
+作者</button></li><li class=nav-item role=presentation><button class=nav-link id=taxonomyArchivesTab data-bs-toggle=tab data-bs-target=#taxonomyArchive type=button role=tab aria-controls=taxonomyArchives aria-selected=true>
+归档</button></li></ul><div class="tab-content mt-3"><div class="tab-pane active" id=taxonomySeries role=tabpanel aria-labelledby=taxonomySeriesTab tabindex=0><a href=https://www.qinxiandiqi.sbs/series/raspberry/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title=RaspBerry>RaspBerry
+<span class="badge badge-sm text-secondary bg-white ms-1">27</span></a>
+<a href=https://www.qinxiandiqi.sbs/series/android/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title=Android>Android
+<span class="badge badge-sm text-secondary bg-white ms-1">20</span></a>
+<a href=https://www.qinxiandiqi.sbs/series/java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title=Java学习笔记>Java学习笔记
+<span class="badge badge-sm text-secondary bg-white ms-1">17</span></a>
+<a href=https://www.qinxiandiqi.sbs/series/javaweb%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title=JavaWeb学习笔记>JavaWeb学习笔记
+<span class="badge badge-sm text-secondary bg-white ms-1">12</span></a>
+<a href=https://www.qinxiandiqi.sbs/series/android-wear/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title="Android Wear">Android Wear
+<span class="badge badge-sm text-secondary bg-white ms-1">11</span></a>
+<a href=https://www.qinxiandiqi.sbs/series/libgdx/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title=libGDX>libGDX
+<span class="badge badge-sm text-secondary bg-white ms-1">8</span></a>
+<a href=https://www.qinxiandiqi.sbs/series/libgdx%E6%89%8B%E5%86%8C/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title=libGDX手册>libGDX手册
+<span class="badge badge-sm text-secondary bg-white ms-1">7</span></a>
+<a href=https://www.qinxiandiqi.sbs/series/android-gradle/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title="Android Gradle">Android Gradle
+<span class="badge badge-sm text-secondary bg-white ms-1">6</span></a>
+<a href=https://www.qinxiandiqi.sbs/series/javascript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title=JavaScript学习笔记>JavaScript学习笔记
+<span class="badge badge-sm text-secondary bg-white ms-1">6</span></a>
+<a href=https://www.qinxiandiqi.sbs/series/ide/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title=IDE>IDE
+<span class="badge badge-sm text-secondary bg-white ms-1">5</span></a>
+<a href=https://www.qinxiandiqi.sbs/series class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title=全部>全部
+<span class="badge badge-sm text-secondary bg-white ms-1">26</span></a></div><div class=tab-pane id=taxonomyCategories role=tabpanel aria-labelledby=taxonomyCategoriesTab tabindex=0><a href=https://www.qinxiandiqi.sbs/categories/%E7%BF%BB%E8%AF%91/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title=翻译>翻译
+<span class="badge badge-sm text-secondary bg-white ms-1">67</span></a>
+<a href=https://www.qinxiandiqi.sbs/categories/raspberry/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title=RaspBerry>RaspBerry
+<span class="badge badge-sm text-secondary bg-white ms-1">27</span></a>
+<a href=https://www.qinxiandiqi.sbs/categories/android/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title=Android>Android
+<span class="badge badge-sm text-secondary bg-white ms-1">21</span></a>
+<a href=https://www.qinxiandiqi.sbs/categories/javaweb%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title=JavaWeb学习笔记>JavaWeb学习笔记
+<span class="badge badge-sm text-secondary bg-white ms-1">12</span></a>
+<a href=https://www.qinxiandiqi.sbs/categories/android-wear/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title="Android Wear">Android Wear
+<span class="badge badge-sm text-secondary bg-white ms-1">11</span></a>
+<a href=https://www.qinxiandiqi.sbs/categories/libgdx/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title=libGDX>libGDX
+<span class="badge badge-sm text-secondary bg-white ms-1">8</span></a>
+<a href=https://www.qinxiandiqi.sbs/categories/libgdx%E6%89%8B%E5%86%8C/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title=libGDX手册>libGDX手册
+<span class="badge badge-sm text-secondary bg-white ms-1">7</span></a>
+<a href=https://www.qinxiandiqi.sbs/categories/android-gradle/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title="Android Gradle">Android Gradle
+<span class="badge badge-sm text-secondary bg-white ms-1">6</span></a>
+<a href=https://www.qinxiandiqi.sbs/categories/javascript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title=JavaScript学习笔记>JavaScript学习笔记
+<span class="badge badge-sm text-secondary bg-white ms-1">6</span></a>
+<a href=https://www.qinxiandiqi.sbs/categories/ide/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title=IDE>IDE
+<span class="badge badge-sm text-secondary bg-white ms-1">5</span></a>
+<a href=https://www.qinxiandiqi.sbs/categories class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title=全部>全部
+<span class="badge badge-sm text-secondary bg-white ms-1">28</span></a></div><div class=tab-pane id=taxonomyTags role=tabpanel aria-labelledby=taxonomyTagsTab tabindex=0><a href=https://www.qinxiandiqi.sbs/tags/android/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title=android>android
+<span class="badge badge-sm text-secondary bg-white ms-1">30</span></a>
+<a href=https://www.qinxiandiqi.sbs/tags/java/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title=java>java
+<span class="badge badge-sm text-secondary bg-white ms-1">30</span></a>
+<a href=https://www.qinxiandiqi.sbs/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title=树莓派>树莓派
+<span class="badge badge-sm text-secondary bg-white ms-1">28</span></a>
+<a href=https://www.qinxiandiqi.sbs/tags/raspberry/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title=RaspBerry>RaspBerry
+<span class="badge badge-sm text-secondary bg-white ms-1">27</span></a>
+<a href=https://www.qinxiandiqi.sbs/tags/android-wear/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title="Android Wear">Android Wear
+<span class="badge badge-sm text-secondary bg-white ms-1">11</span></a>
+<a href=https://www.qinxiandiqi.sbs/tags/javaweb/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title=javaweb>javaweb
+<span class="badge badge-sm text-secondary bg-white ms-1">11</span></a>
+<a href=https://www.qinxiandiqi.sbs/tags/%E5%8F%AF%E7%A9%BF%E6%88%B4%E8%AE%BE%E5%A4%87/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title=可穿戴设备>可穿戴设备
+<span class="badge badge-sm text-secondary bg-white ms-1">9</span></a>
+<a href=https://www.qinxiandiqi.sbs/tags/libgdx/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title=libgdx>libgdx
+<span class="badge badge-sm text-secondary bg-white ms-1">8</span></a>
+<a href=https://www.qinxiandiqi.sbs/tags/javascript/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title=javascript>javascript
+<span class="badge badge-sm text-secondary bg-white ms-1">7</span></a>
+<a href=https://www.qinxiandiqi.sbs/tags/xml/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title=xml>xml
+<span class="badge badge-sm text-secondary bg-white ms-1">7</span></a>
+<a href=https://www.qinxiandiqi.sbs/tags class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title=全部>全部
+<span class="badge badge-sm text-secondary bg-white ms-1">306</span></a></div><div class=tab-pane id=taxonomyAuthors role=tabpanel aria-labelledby=taxonomyAuthorsTab tabindex=0><a href=https://www.qinxiandiqi.sbs/authors/jianan/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-author me-2 mb-2" title=Jianan>Jianan
+<span class="badge badge-sm text-secondary bg-white ms-1">142</span></a></div><div class=tab-pane id=taxonomyArchive role=tabpanel aria-labelledby=taxonomyArchiveTab tabindex=0><a href=https://www.qinxiandiqi.sbs/archives/2022/ class="btn btn-sm btn-secondary post-taxonomy ps-3 me-2 mb-2" title=2022>2022 <span class="badge badge-sm text-secondary bg-white ms-1">3</span></a>
+<a href=https://www.qinxiandiqi.sbs/archives/2021/ class="btn btn-sm btn-secondary post-taxonomy ps-3 me-2 mb-2" title=2021>2021 <span class="badge badge-sm text-secondary bg-white ms-1">1</span></a>
+<a href=https://www.qinxiandiqi.sbs/archives/2020/ class="btn btn-sm btn-secondary post-taxonomy ps-3 me-2 mb-2" title=2020>2020 <span class="badge badge-sm text-secondary bg-white ms-1">2</span></a>
+<a href=https://www.qinxiandiqi.sbs/archives/2018/ class="btn btn-sm btn-secondary post-taxonomy ps-3 me-2 mb-2" title=2018>2018 <span class="badge badge-sm text-secondary bg-white ms-1">7</span></a>
+<a href=https://www.qinxiandiqi.sbs/archives/2017/ class="btn btn-sm btn-secondary post-taxonomy ps-3 me-2 mb-2" title=2017>2017 <span class="badge badge-sm text-secondary bg-white ms-1">2</span></a>
+<a href=https://www.qinxiandiqi.sbs/archives/2016/ class="btn btn-sm btn-secondary post-taxonomy ps-3 me-2 mb-2" title=2016>2016 <span class="badge badge-sm text-secondary bg-white ms-1">7</span></a>
+<a href=https://www.qinxiandiqi.sbs/archives/2015/ class="btn btn-sm btn-secondary post-taxonomy ps-3 me-2 mb-2" title=2015>2015 <span class="badge badge-sm text-secondary bg-white ms-1">21</span></a>
+<a href=https://www.qinxiandiqi.sbs/archives/2014/ class="btn btn-sm btn-secondary post-taxonomy ps-3 me-2 mb-2" title=2014>2014 <span class="badge badge-sm text-secondary bg-white ms-1">93</span></a>
+<a href=https://www.qinxiandiqi.sbs/archives/2012/ class="btn btn-sm btn-secondary post-taxonomy ps-3 me-2 mb-2" title=2012>2012 <span class="badge badge-sm text-secondary bg-white ms-1">6</span></a></div></div></div></section></div><div class="accordion posts-toggle"><section class="row card component accordion-item"><div class="accordion-header card-header border-0"><a class="accordion-button d-lg-none mb-1 collapsed shadow-none p-0 bg-transparent" type=button data-bs-toggle=collapse data-bs-target=#posts-toggle aria-expanded=false aria-controls=posts-toggle>文章</a></div><div class="card-body collapse accordion-collapse accordion-body d-lg-block" id=posts-toggle><ul class="nav nav-pills nav-fill" id=myTab role=tablist><li class=nav-item role=presentation><button class="nav-link active" id=recent-posts-tab data-bs-toggle=tab data-bs-target=#recent-posts type=button role=tab aria-controls=recent-posts aria-selected=true>
+最近文章</button></li></ul><div class="tab-content mt-3"><div class="tab-pane active" id=recent-posts role=tabpanel aria-labelledby=recent-posts-tab tabindex=0><ul class="post-list list-unstyled ms-1"><li class=mb-2><div class=d-flex><div class="flex-grow-1 d-flex flex-column h-auto justify-content-center"><a class=post-title href=https://www.qinxiandiqi.sbs/posts/opengl/glsl/glsl%E7%9A%84uniform%E5%8F%98%E9%87%8F%E8%87%AA%E5%8A%A8%E4%BC%98%E5%8C%96/>GLSL的uniform变量自动优化</a><div class="post-meta mt-2"><span class=post-date>2022-09-26</span></div></div></div></li><li class=mb-2><div class=d-flex><div class="flex-grow-1 d-flex flex-column h-auto justify-content-center"><a class=post-title href=https://www.qinxiandiqi.sbs/posts/git/filenametoolongbygitofwindows/>Windows平台下git报错Filename Too Long</a><div class="post-meta mt-2"><span class=post-date>2022-09-18</span></div></div></div></li><li class=mb-2><div class=d-flex><div class="flex-grow-1 d-flex flex-column h-auto justify-content-center"><a class=post-title href=https://www.qinxiandiqi.sbs/posts/system/%E7%94%9F%E6%88%90%E6%96%B0ssh%E5%AF%86%E9%92%A5%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%88%B0ssh-agent/>生成新SSH密钥并添加到ssh-Agent</a><div class="post-meta mt-2"><span class=post-date>2022-09-11</span></div></div></div></li><li class=mb-2><div class=d-flex><div class="flex-grow-1 d-flex flex-column h-auto justify-content-center"><a class=post-title href=https://www.qinxiandiqi.sbs/posts/kotlin/kotlin%E7%9A%84%E5%B1%9E%E6%80%A7%E5%88%9D%E5%A7%8B%E5%99%A8%E4%B8%8E%E5%B1%9E%E6%80%A7setter/>Kotlin的属性初始器与属性Setter</a><div class="post-meta mt-2"><span class=post-date>2021-07-18</span></div></div></div></li><li class=mb-2><div class=d-flex><div class="flex-grow-1 d-flex flex-column h-auto justify-content-center"><a class=post-title href=https://www.qinxiandiqi.sbs/posts/system/linux/%E8%AE%BE%E7%BD%AElinux%E5%9C%A8%E6%9C%AA%E7%99%BB%E5%BD%95%E8%B4%A6%E5%8F%B7%E6%83%85%E5%86%B5%E4%B8%8B%E8%87%AA%E5%8A%A8%E8%BF%9E%E6%8E%A5wifi/>设置Linux在未登录账号情况下自动连接wifi</a><div class="post-meta mt-2"><span class=post-date>2020-12-29</span></div></div></div></li></ul></div></div></div></section></div><div class="accordion post-toc"><div class="accordion-item row mb-4 card component" id=postTOC><div class="card-header accordion-header"><h2 class="card-title fs-4 my-2 text-surface d-none d-lg-block">目录</h2><a class="accordion-button d-lg-none mb-1 collapsed shadow-none p-0 bg-transparent" type=button data-bs-toggle=collapse data-bs-target=#post-toc aria-expanded=false aria-controls=post-toc>目录</a></div><div class="card-body collapse accordion-collapse accordion-body d-lg-block" id=post-toc aria-labelledby=post-toc-header><nav id=TableOfContents><ul><li><a href=#31-初始设置>3.1 初始设置</a></li><li><a href=#32-搜索对等网络设备>3.2 搜索对等网络（设备）</a></li><li><a href=#33-连接对等设备>3.3 连接对等设备</a></li><li><a href=#heading></a></li><li><a href=#34-传输数据>3.4 传输数据</a></li></ul></nav></div></div></div></div></aside><div class=col-lg-8><div class=container><nav class="row card component" aria-label=breadcrumb><div class="card-body pb-0"><ol class=breadcrumb><li class="breadcrumb-item text-surface"><a href=https://www.qinxiandiqi.sbs/>主页</a></li><li class="breadcrumb-item text-surface"><a href=https://www.qinxiandiqi.sbs/posts/>Posts</a></li><li class="breadcrumb-item active">Android Wi-Fi Peer-to-Peer（Android的Wi-Fi P2P对等网络）</li></ol></div></nav><div class="post-panel-wrapper position-sticky"><div class="d-flex flex-column component rounded post-panel position-absolute border"><a class="action action-panel-toggler" role=button title="Panel toggler"><i class="fas fa-fw fa-chevron-circle-down"></i></a>
+<a id=sidebarToggler class="action d-none d-lg-block" role=button title="Sidebar toggler"><i class="fas fa-fw fa-expand-alt" data-fa-transform=rotate-45></i></a>
+<a class="action btn-reward" role=button data-bs-toggle=modal data-bs-target=#rewardModal title=打赏><i class="fas fa-fw fa-coffee"></i></a>
+<a class=action href=#post-copyright role=button aria-label=Copyright title=Copyright><i class="fas fa-fw fa-copyright"></i></a>
+<a class=action href=#post-comments role=button aria-label=Comments title=Comments><i class="fas fa-fw fa-comments"></i></a>
+<a class=action href=#postTOC aria-controls="Table of contents" role=button title="Table of contents"><i class="fas fa-fw fa-list-alt"></i></a></div></div><article class="row card component mb-4 post"><div class=card-header><h1 class="card-title post-title my-2">Android Wi-Fi Peer-to-Peer（Android的Wi-Fi P2P对等网络）</h1></div><div class=card-body><div class="post-meta mb-3"><span class="post-date me-1 mb-1" title="创建于 2014-11-17 10:51:14 +0000 UTC。">2014-11-17</span><span class="post-reading-time me-1 mb-1">11 分钟阅读</span><a href=https://www.qinxiandiqi.sbs/authors/jianan/ class="btn btn-sm btn-secondary mb-1 me-2 py-0 pe-1 post-taxonomy post-author">
+<i class="fas fa-fw fa-user me-1"></i>Jianan</a><a href=https://www.qinxiandiqi.sbs/categories/android/ class="btn btn-sm btn-secondary mb-1 me-2 py-0 pe-1 post-taxonomy post-category">
+<i class="fas fa-fw fa-folder me-1"></i>Android</a><a href=https://www.qinxiandiqi.sbs/categories/%E7%BF%BB%E8%AF%91/ class="btn btn-sm btn-secondary mb-1 me-2 py-0 pe-1 post-taxonomy post-category">
+<i class="fas fa-fw fa-folder me-1"></i>翻译</a><a href=https://www.qinxiandiqi.sbs/series/android/ class="btn btn-sm btn-secondary mb-1 me-2 py-0 pe-1 post-taxonomy post-series">
+<i class="fas fa-fw fa-columns me-1"></i>Android</a><a href=https://www.qinxiandiqi.sbs/tags/android/ class="btn btn-sm btn-secondary mb-1 me-2 py-0 pe-1 post-taxonomy post-tag">Android</a><a href=https://www.qinxiandiqi.sbs/tags/p2p/ class="btn btn-sm btn-secondary mb-1 me-2 py-0 pe-1 post-taxonomy post-tag">P2p</a><a href=https://www.qinxiandiqi.sbs/tags/wi-fi/ class="btn btn-sm btn-secondary mb-1 me-2 py-0 pe-1 post-taxonomy post-tag">Wi-Fi</a><a href=https://www.qinxiandiqi.sbs/tags/%E5%AF%B9%E7%AD%89%E7%BD%91%E7%BB%9C/ class="btn btn-sm btn-secondary mb-1 me-2 py-0 pe-1 post-taxonomy post-tag">对等网络</a></div><div class="post-content mb-3" data-bs-spy=scroll data-bs-target=#TableOfContents tabindex=0><p>Wi-Fi peer-to-peer（P2P，对等网络），它允许具备相应硬件的Android 4.0（API level
+14）或者更高版本的设备可以直接通过wifi而不需要其它中间中转节点就能直接通信（Android的Wi-Fi P2P框架符合Wi-Fi联盟的Wi-Fi
+Direct™直连认证标志）。使用这些API，你可以搜索并连接其它同样支持Wi-Fi
+P2P的设备，然后再通过一个高速的连接进行互相通信，并且这个连接的有效距离要比蓝牙连接的有效距离要长的多。这对于需要在用户之间共享数据的应用程序非常有用，例如多玩家游戏或者照片分享之类应用。</p><p>Android的Wi-Fi P2P API主要包含以下几个部分：</p><hr><p>使用<a href=http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.html target=_blank rel="noopener noreferrer">WifiP2pManager<i class="fas fa-external-link-square-alt ms-1"></i></a>类定义的方法搜索、请求并连接到其它对等设备。</p><hr><p>监听WiFiP2pManager的方法调用是否成功或者失败的Listener（监听器）。当调用WiFiP2pManager的方法时，每一个方法都可以接收一个指定的监听器作为参数。</p><p>***** 由Wi-Fi P2P框架识别并发送的指定事件类型的Intent，例如撤销一个连接或者新发现了一个对等设备。</p><p>通常你需要一起使用这三个主要部分的API。例如，你可以在调用discoverPeers()方法的时候提供<a href=http://developer.android.com/reference/android/net/wifi/p2p/WifiP2pManager.ActionListener.html target=_blank rel="noopener noreferrer">WifiP2pManager.ActionListener<i class="fas fa-external-link-square-alt ms-1"></i></a>监听器对象，这样你就能得到ActionListener.onSuccess()和ActionListener.onFailure()方法的通知。如果discoverPeers()方法发现对等设备列表有更新，同样也会发送
+<strong>WIFI_P2P_PEERS_CHANGE_ACTION</strong> 类型的Intent广播。</p><h1 id=1api概览 data-numberify>1、API概览<a class="anchor ms-1 d-none" href=#1api概览>#</a></h1><p>WifiP2pManager类提供了与设备上的Wi-Fi硬件进行交互的方法，例如搜索和连接对等设备。以下是可用的操作：</p><p><strong>表一：Wi-Fi P2P方法</strong></p><table><thead><tr><th>方法</th><th>描述</th></tr></thead><tbody><tr><td>initialize()</td><td>在Wi-Fi框架上注册应用程序。这个方法必须在调用其它Wi-Fi P2P方法之前调用。</td></tr><tr><td>connect()</td><td>使用指定配置与一台设备开始一个P2P对等连接。</td></tr><tr><td>cancelConnect()</td><td>取消正在进行中的P2P对等网络组的交互。</td></tr><tr><td>requestConnectInfo()</td><td>请求一台设备连接信息。</td></tr><tr><td>createGroup()</td><td>创建一个对等网络组，并将当前设备作为群组的拥有者。</td></tr><tr><td>removeGroup()</td><td>移除当前的P2P对等网络组。</td></tr><tr><td>requestGroupInof()</td><td>请求P2P对等网络组信息。</td></tr><tr><td>discoverPeers()</td><td>开始搜索对等网络（设备）。</td></tr><tr><td>requestPeers()</td><td>请求当前已发现的对等网络（设备）。</td></tr></tbody></table><p>WifiP2pManager的方法允许你传递一个listener监听器，这样Wi-Fi
+P2P框架才能通知你的activity所调用方法的状态。可使用的listener监听器接口和相应调用这些监听器的WifiP2pManager方法如下表：</p><p><strong>表二：Wi-Fi P2P监听器</strong></p><table><thead><tr><th>监听器接口</th><th>可被使用的操作</th></tr></thead><tbody><tr><td>WifiP2pManager.ActionListener</td><td></td></tr><tr><td>connect(),cancelConnect(),createGroup(),removeGroup(),discoverPeers()</td><td></td></tr><tr><td>WifiP2pManager.ChannelListener</td><td>initialize()</td></tr><tr><td>WifiP2pManager.ConnectionInfoListener</td><td>requestConnectInfo()</td></tr><tr><td>WifiP2pManager.GroupInfoListener</td><td>requestGroupInfo()</td></tr><tr><td>WifiP2pManager.PeerListListener</td><td>requestPeers()</td></tr></tbody></table><p>Wi-Fi P2P的API定义某些Wi-Fi P2P事件发生时要广播的Intent，例如发现了一个新的对等网络（设备）或者一台设备的Wi-
+Fi状态改变的事件。你可以在你的应用程序中创建并注册一个广播接受者来处理下面这些Intent：</p><p>**<br>表三：Wi-Fi P2P Intents**</p><table><thead><tr><th>Intent</th><th>描述</th></tr></thead><tbody><tr><td>WIFI_P2P_CONNECTION_CHANGED_ACTION</td><td>当设备的Wi-Fi连接状态改变时会发送这个广播。</td></tr><tr><td>WIFI_P2P_PEERS_CHANGED_ACTION</td><td></td></tr><tr><td>当你调用discoverPeers()方法就会收到这个广播。如果你在你的应用程序中处理这个intent，你同样需要调用requestPeers()来获取一个最新的对等网络（设备）列表。</td><td></td></tr><tr><td>WIFI_P2P_STATE_CHANGED_ACTION</td><td>当设备的Wi-Fi P2P启用或者禁用时会发送这个广播。当设备的Wi-Fi</td></tr><tr><td>P2P启用或者禁用时会发送这个广播。</td><td></td></tr><tr><td>WIFI_P2P_THIS_DEVICE_CHANGED_ACTION</td><td>当设备的细节被修改时会发送这个广播，例如设备的名字。</td></tr></tbody></table><h1 id=2为wi-fi-p2p的intent创建一个广播接收器 data-numberify>2、为Wi-Fi P2P的Intent创建一个广播接收器<a class="anchor ms-1 d-none" href=#2为wi-fi-p2p的intent创建一个广播接收器>#</a></h1><p>广播接收器（broadcase
+receiver）允许你接收Android系统广播出来的Intent，这样你的应用程序才能响应你所感兴趣的时间。创建一个广播接收器来处理Wi-Fi P2P
+intent的基本步骤如下：</p><p>2.1
+创建一个继承BroadcaseReceiver的类。在这个类的构造方法中，你最好将WifiP2pManager、WifiP2pManager.Channel，还有注册了这个广播接收器的activity作为参数传递进来。这样才能让广播接收器向activity发送更新的同时，还能在需要的时候访问Wi-
+Fi硬件和通信的信道。</p><p>2.2
+在广播接收器中，检查onReceive()方法中你所感兴趣的intent。基于接收到的intent完成一些必要的操作。例如，如果广播接收器接收到一个WIFI_P2P_PEERS_CHANGE_ACTION类型的Intent，你可以调用requestPeers()方法来获取当前已发现的对等网络（设备）。</p><p>下面的代码展示如何创建一个典型的广播接收器。这个广播接收器携带一个WifiP2pManager对象和一个activity最为参数，并在广播接收器接到一个intent的时候，使用这两个对象来适当完成所需要的操作：</p><pre><code>/**
+ * 一个接收Wi-Fi P2P重要事件的广播接收器
+ */
+public class WiFiDirectBroadcastReceiver extends BroadcastReceiver {
+
+    private WifiP2pManager mManager;
+    private Channel mChannel;
+    private MyWiFiActivity mActivity;
+
+    public WiFiDirectBroadcastReceiver(WifiP2pManager manager, Channel channel,
+            MyWifiActivity activity) {
+        super();
+        this.mManager = manager;
+        this.mChannel = channel;
+        this.mActivity = activity;
+    }
+
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        String action = intent.getAction();
+
+        if (WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION.equals(action)) {
+            // 检查Wi-fi是否已经启用，并通知适当的activity
+        } else if (WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION.equals(action)) {
+            // 调用WifiP2pManager.requestPeers()来获取当前的对等网络（设备）列表
+        } else if (WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION.equals(action)) {
+            // 响应新的连接或者断开连接
+        } else if (WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION.equals(action)) {
+            // 响应本台设备wifi状态的改变
+        }
+    }
+}
+</code></pre><h1 id=3创建一个wi-fi-p2p应用程序 data-numberify>3、创建一个Wi-Fi P2P应用程序<a class="anchor ms-1 d-none" href=#3创建一个wi-fi-p2p应用程序>#</a></h1><p>创建一个Wi-Fi
+P2P应用程序涉及到为应用程序创建并注册一个广播接收器，搜索对等网络（设备），连接一台对等设备，还有向一台对等设备传输数据。下面的章节描述如何完成这些操作。</p><h2 id=31-初始设置 data-numberify>3.1 初始设置<a class="anchor ms-1 d-none" href=#31-初始设置>#</a></h2><p>在使用Wi-Fi P2P的API之前，你必须确认你的应用程序能够访问对应的硬件并且设备支持Wi-Fi P2P协议。如果支持Wi-Fi
+P2P，你就可以获取一个WifiP2pManager实例，创建并注册你的广播接收器，然后开始使用Wi-Fi P2P的API。</p><p>3.1.1 在Android的manifest文件中请求使用设备上Wi-Fi硬件的权限，并为你的应用程序声明正确的最小SDK版本号：</p><pre><code>&lt;uses-sdk android:minSdkVersion=&quot;14&quot; /&gt;
+&lt;uses-permission android:name=&quot;android.permission.ACCESS_WIFI_STATE&quot; /&gt;
+&lt;uses-permission android:name=&quot;android.permission.CHANGE_WIFI_STATE&quot; /&gt;
+&lt;uses-permission android:name=&quot;android.permission.CHANGE_NETWORK_STATE&quot; /&gt;
+&lt;uses-permission android:name=&quot;android.permission.INTERNET&quot; /&gt;
+&lt;uses-permission android:name=&quot;android.permission.ACCESS_NETWORK_STATE&quot; /&gt;
+</code></pre><p>3.1.2 检查Wi-Fi P2P能够支持并且已经启用。进行这项检查的一个较好的地方是在你的广播接收器中，当广播接收器接收到
+<strong>WIFI_P2P_STATE_CHANGED_ACTION</strong> 的时候。从而通知你的activity关于Wi-Fi P2P的状态并做出相应的应对。</p><pre><code>@Override
+public void onReceive(Context context, Intent intent) {
+    ...
+    String action = intent.getAction();
+    if (WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION.equals(action)) {
+        int state = intent.getIntExtra(WifiP2pManager.EXTRA_WIFI_STATE, -1);
+        if (state == WifiP2pManager.WIFI_P2P_STATE_ENABLED) {
+            // Wifi P2P已经启用
+        } else {
+            // Wi-Fi P2P没有启用
+        }
+    }
+    ...
+}
+</code></pre><p>3.1.3
+在你的activity的onCreate()方法中获取一个WifiP2pManager实例，并通过调用initialize()方法将你的应用程序注册到Wi-
+Fi P2P框架中。这个方法会返回一个WifiP2pManager.Channel对象，这个对象被用于连接你的应用程序和Wi-Fi
+P2P框架。你同样需要使用这个WifiP2pManager和WifiP2pManager.Channel对象，还有你的activity引用创建一个你的广播接收器实例。这样才能允许你的广播接收器通知你的activity所感兴趣的事件并进行更新。它同样能让你在需要的时候操作设备的Wi-
+Fi状态。</p><pre><code>WifiP2pManager mManager;
+Channel mChannel;
+BroadcastReceiver mReceiver;
+...
+@Override
+protected void onCreate(Bundle savedInstanceState){
+    ...
+    mManager = (WifiP2pManager) getSystemService(Context.WIFI_P2P_SERVICE);
+    mChannel = mManager.initialize(this, getMainLooper(), null);
+    mReceiver = new WiFiDirectBroadcastReceiver(mManager, mChannel, this);
+    ...
+}
+</code></pre><p>3.1.4 创建一个intent过滤器，并在你的广播接收器中添加相同的Intent以进行检查：</p><pre><code>IntentFilter mIntentFilter;
+...
+@Override
+protected void onCreate(Bundle savedInstanceState){
+    ...
+    mIntentFilter = new IntentFilter();
+    mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_STATE_CHANGED_ACTION);
+    mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION);
+    mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_CONNECTION_CHANGED_ACTION);
+    mIntentFilter.addAction(WifiP2pManager.WIFI_P2P_THIS_DEVICE_CHANGED_ACTION);
+    ...
+}
+</code></pre><p>3.1.5 在activity的onResume()方法中注册你的广播接收器，并在onPause()方法中注销：</p><pre><code>/* 使用需要匹配的intent值注册广播接收器 */
+@Override
+protected void onResume() {
+    super.onResume();
+    registerReceiver(mReceiver, mIntentFilter);
+}
+/* 注销广播接收器 */
+@Override
+protected void onPause() {
+    super.onPause();
+    unregisterReceiver(mReceiver);
+}
+</code></pre><p>当你已经获取到WifiP2pManager.Channel对象并且设置好广播接收器，你的应用程序就可以调用Wi-Fi P2P的方法和接收Wi-Fi
+P2P的intent。</p><p>你现在可以实现你的应用程序并且通过调用WifiP2pManager中的方法来使用Wi-Fi
+P2P的功能。下面的章节将阐述如何执行常见的操作，比如搜索和连接对等设备。</p><h2 id=32-搜索对等网络设备 data-numberify>3.2 搜索对等网络（设备）<a class="anchor ms-1 d-none" href=#32-搜索对等网络设备>#</a></h2><p>搜索允许被连接的对等设备，可以调用discoverPeers()方法来检测附近范围中允许被发现的对等网络（设备）。这个方法的执行过程是异步的，如果你有创建并传递一个WifiP2pManager.ActionListener对象作为参数，你可以在这个对象中的onSuccess()和onFailure()方法中接收到操作执行的结果。其中onSuccess()方法只是通知你搜索程序已经成功执行，但是不会提供任何实际搜索到的对等设备信息；</p><pre><code>mManager.discoverPeers(channel, new WifiP2pManager.ActionListener() {
+    @Override
+    public void onSuccess() {
+        ...
+    }
+
+    @Override
+    public void onFailure(int reasonCode) {
+        ...
+    }
+});
+</code></pre><p>如果搜索程序成功执行并且检测到对等网络和设备，系统将会发送 <strong>WIFI_P2P_PEERS_CHANGED_ACTION</strong>
+类型的intent广播，你可以在广播接收器中监听这个广播以获取对等网络设备列表。当你的应用程序接收到
+<strong>WIFI_P2P_PEERS_CHANGED_ACTION</strong>
+类型的intent，你就可以使用requestPeers()方法来请求已被发现的对等网络设备列表。下面的代码展示了如何设置这些步骤：</p><pre><code>PeerListListener myPeerListListener;
+...
+if (WifiP2pManager.WIFI_P2P_PEERS_CHANGED_ACTION.equals(action)) {
+
+    // 从wifi p2p manager请求可使用的对等设备。这是一个异步调用的方法，
+    // 调用的activity将会在PeerListListener.onPeersAvailable()的回调方法中得到列表结果。
+    if (mManager != null) {
+        mManager.requestPeers(mChannel, myPeerListListener);
+    }
+}
+</code></pre><p>这个requestPeers()方法同样是异步执行的方法，当对等设备列表可用时，它会在WifiP2pManager.PeerListListener接口定义的onPeersAvailable()方法中将结果返回给你的activity。onPeersAvailable()方法会提供一个WifiP2pDeviceList对象，你可以通过这个对象找到你想要连接的对等设备。</p><h2 id=33-连接对等设备 data-numberify>3.3 连接对等设备<a class="anchor ms-1 d-none" href=#33-连接对等设备>#</a></h2><p>当你从获取到的可连接对等设备列表中找出你想要连接的对等设备之后，你就可以调用connect()方法链接这个设备。这个方法的调用需要一个WifiP2pConfig对象，这个对象包含了想要连接的设备信息。你可以通过WifiP2pManager.ActionListener得到连接成功或者失败的结果。下面的代码展示了如何连接目标设备：</p><pre><code>//从WifiP2pDeviceList中获取一个对等设备
+WifiP2pDevice device;
+WifiP2pConfig config = new WifiP2pConfig();
+config.deviceAddress = device.deviceAddress;
+mManager.connect(mChannel, config, new ActionListener() {
+
+    @Override
+    public void onSuccess() {
+        //连接成功的逻辑处理操作
+    }
+
+    @Override
+    public void onFailure(int reason) {
+        //连接失败的逻辑处理操作
+    }
+});
+</code></pre><h2 id=heading data-numberify><a class="anchor ms-1 d-none" href=#heading>#</a></h2><h2 id=34-传输数据 data-numberify>3.4 传输数据<a class="anchor ms-1 d-none" href=#34-传输数据>#</a></h2><p>一旦连接建立成功，你就可以在设备之间通过socket传输数据。传入数据的基本步骤如下：</p><p>3.4.1 创建一个SeverSocket。这个socket会在一个端口上等待客户端的连接，并且会一直阻塞直到连接请求出现，因此这个方法需要在后台线程执行。</p><p>3.4.2 创建一个客户端的Socket。这个客户端使用服务端ServerSocket的IP地址和端口来连接服务端设备。</p><p>3.4.3 从客户端发送数据到服务端。当客户端的socket成功连接上服务端的socket之后，你就可以通过字节流将数据从客户端发送到服务端。</p><p>3.4.4
+服务端的ServerSocket等待着客户端的连接（通过accept()方法）。这个方法会一直阻塞直到客户端连接上，因此要在其它线程中调用这个方法。当连接上之后，服务端设备就能够接收到客户端发送过来的数据。完成对这些数据的一些操作，例如保存为一个文件或者显示给用户。</p><p>下面的例子修改于Wi-Fi P2P Demo（可以在Android
+SDK中找到），它展示了如何创建客户端和服务端之间的socket通信，并从通过一个service从客户端向服务端发送了一个JPEG图片。完整的代码，可以直接查看Wi-
+Fi P2P Demo。</p><pre><code>public static class FileServerAsyncTask extends AsyncTask {
+
+    private Context context;
+    private TextView statusText;
+
+    public FileServerAsyncTask(Context context, View statusText) {
+        this.context = context;
+        this.statusText = (TextView) statusText;
+    }
+
+    @Override
+    protected String doInBackground(Void... params) {
+        try {
+
+            /**
+             * 创建一个ServerSocket并等待客户端的连接.这个方法会一直阻塞直到接受了一个客户端连接
+             */
+            ServerSocket serverSocket = new ServerSocket(8888);
+            Socket client = serverSocket.accept();
+
+            /**
+             * 如果代码能够执行到这里，说明已经连接上一个客户端并且开始传输数据
+             * 将来自客户端的数据流保存为一个JPEG文件
+             */
+            final File f = new File(Environment.getExternalStorageDirectory() + &quot;/&quot;
+                    + context.getPackageName() + &quot;/wifip2pshared-&quot; + System.currentTimeMillis()
+                    + &quot;.jpg&quot;);
+
+            File dirs = new File(f.getParent());
+            if (!dirs.exists())
+                dirs.mkdirs();
+            f.createNewFile();
+            InputStream inputstream = client.getInputStream();
+            copyFile(inputstream, new FileOutputStream(f));
+            serverSocket.close();
+            return f.getAbsolutePath();
+        } catch (IOException e) {
+            Log.e(WiFiDirectActivity.TAG, e.getMessage());
+            return null;
+        }
+    }
+
+    /**
+     * 启动能够处理JPEG图片的activity
+     */
+    @Override
+    protected void onPostExecute(String result) {
+        if (result != null) {
+            statusText.setText(&quot;File copied - &quot; + result);
+            Intent intent = new Intent();
+            intent.setAction(android.content.Intent.ACTION_VIEW);
+            intent.setDataAndType(Uri.parse(&quot;file://&quot; + result), &quot;image/*&quot;);
+            context.startActivity(intent);
+        }
+    }
+}
+</code></pre><p>在客户端上，通过一个客户端的socket连接服务端的socket并传输数据。这个例子传输了一个客户端设备文件系统的上的JPEG文件。</p><pre><code>Context context = this.getApplicationContext();
+String host;
+int port;
+int len;
+Socket socket = new Socket();
+byte buf[]  = new byte[1024];
+...
+try {
+    /**
+     * 使用服务端IP和端口还有连接超时时间创建一个客户端socket
+     */
+    socket.bind(null);
+    socket.connect((new InetSocketAddress(host, port)), 500);
+
+    /**
+     * 从一个JPEG文件创建一个字节流，并且传输到socket的输出流上。这些数据将会在服务端设备上接收到。
+     */
+    OutputStream outputStream = socket.getOutputStream();
+    ContentResolver cr = context.getContentResolver();
+    InputStream inputStream = null;
+    inputStream = cr.openInputStream(Uri.parse(&quot;path/to/picture.jpg&quot;));
+    while ((len = inputStream.read(buf)) != -1) {
+        outputStream.write(buf, 0, len);
+    }
+    outputStream.close();
+    inputStream.close();
+} catch (FileNotFoundException e) {
+    //catch logic
+} catch (IOException e) {
+    //catch logic
+}
+
+/**
+ * 当数据传输完成或者发生异常时关闭已经打开的socket。
+ */
+finally {
+    if (socket != null) {
+        if (socket.isConnected()) {
+            try {
+                socket.close();
+            } catch (IOException e) {
+                //catch logic
+            }
+        }
+    }
+}
+</code></pre><p>原文地址：<a href=http://developer.android.com/guide/topics/connectivity/wifip2p.html target=_blank rel="noopener noreferrer">http://developer.android.com/guide/topics/connectivity/wifip2p.html<i class="fas fa-external-link-square-alt ms-1"></i></a></p></div><div class="modal fade" id=rewardModal tabindex=-1 aria-labelledby=rewardModalLabel aria-hidden=true><div class=modal-dialog><div class="modal-content surface"><div class=modal-header><h5 class="modal-title text-surface" id=rewardModalLabel><i class="fas fa-fw fa-coffee me-1"></i>打赏</h5><a href=# data-bs-dismiss=modal class=btn-close aria-label=Close></a></div><div class=modal-body><ul class="nav nav-tabs mb-3" role=tablist><li class="nav-item text-nowrap" role=presentation><a class="nav-link active" id=reward-alipay-tab data-bs-toggle=tab href=#reward-alipay role=tab aria-controls=reward-alipay aria-selected=true><i class="fab fa-fw fa-alipay me-1"></i>支付宝</a></li><li class="nav-item text-nowrap" role=presentation><a class=nav-link id=reward-wechat-tab data-bs-toggle=tab href=#reward-wechat role=tab aria-controls=reward-wechat aria-selected=true><i class="fab fa-fw fa-weixin me-1"></i>微信</a></li></ul><div class=tab-content id=rewardTabContent><div class="tab-pane fade post-reward-content text-center show active" id=reward-alipay role=tabpanel aria-labelledby=reward-alipay-tab><img class="img-fluid post-reward-img" src=https://www.qinxiandiqi.sbs/images/reward/alipay.jpg loading=lazy data-viewer-invisible></div><div class="tab-pane fade post-reward-content text-center show" id=reward-wechat role=tabpanel aria-labelledby=reward-wechat-tab><img class="img-fluid post-reward-img" src=https://www.qinxiandiqi.sbs/images/reward/wechat.png loading=lazy data-viewer-invisible></div></div></div></div></div></div></div><div class=card-footer><div class="post-navs d-flex justify-content-evenly"><div class="post-nav post-prev"><i class="fas fa-fw fa-chevron-down post-prev-icon me-1" data-fa-transform=rotate-90></i>
+<a href=https://www.qinxiandiqi.sbs/posts/android/android%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%AE%89%E8%A3%85%E4%BD%8D%E7%BD%AEappinstalllocation/>Android应用程序安装位置（App Install Location）</a></div><div class="post-nav post-next"><a href=https://www.qinxiandiqi.sbs/posts/bash/bash%E8%84%9A%E6%9C%AC%E7%9A%84%E7%A9%BA%E6%A0%BC%E5%92%8C%E6%9C%9F%E5%BE%85%E4%B8%80%E5%85%83%E8%A1%A8%E8%BE%BE%E5%BC%8F%E9%94%99%E8%AF%AF/>Bash脚本的空格和“期待一元表达式”错误</a>
+<i class="fas fa-fw fa-chevron-down post-next-icon ms-1" data-fa-transform=rotate-270></i></div></div></div></article><div class="post-copyright mb-3 row card component" id=post-copyright><div class=card-header><h2 class="card-title fs-4 my-2 text-surface">版权</h2></div><div class=card-body><a class="d-flex align-items-center flex-column" target=_blank rel="license noopener noreferrer" href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh><span><i class="fab fa-fw fa-2x fa-creative-commons"></i><i class="fab fa-fw fa-2x fa-creative-commons-by"></i><i class="fab fa-fw fa-2x fa-creative-commons-nc"></i><i class="fab fa-fw fa-2x fa-creative-commons-nd"></i></span>
+CC BY-NC-ND 4.0</a></div></div><section class="related-posts row card component"><div class=card-header><h2 class="card-title fs-4 my-2 text-surface">相关文章</h2></div><div class=card-body><ul class="post-list list-unstyled"><li class="mb-3 border-bottom"><a class=post-title href=https://www.qinxiandiqi.sbs/posts/android/android%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%AE%89%E8%A3%85%E4%BD%8D%E7%BD%AEappinstalllocation/>Android应用程序安装位置（App Install Location）</a>
+<span class="post-meta post-date float-end">2014-11-13</span><div class="post-summary my-3"><p>从API Level 8（Android 2.2）开始，你可以将你的应用程序安装到外部存储上（例如，设备的SD卡）。你可以在应用程序的manifest文件中声明android:installLocation属性来使用这个可选的功能。如果你没有声明这个属性，你的应用程序只能被安装在内部存储中，并且不能移动到外部存储上。
+允许系统将你的应用程序安装到外部存储上，你需要修改你的manifest文件</p><div><a class="btn btn-sm btn-outline-primary btn-read-more" href=https://www.qinxiandiqi.sbs/posts/android/android%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%AE%89%E8%A3%85%E4%BD%8D%E7%BD%AEappinstalllocation/>阅读更多</a></div></div></li><li class="mb-3 border-bottom"><a class=post-title href=https://www.qinxiandiqi.sbs/posts/android/androidbluetoothlowenergyandroid%E4%BD%8E%E5%8A%9F%E8%80%97%E8%93%9D%E7%89%99/>Android Bluetooth Low Energy（Android低功耗蓝牙）</a>
+<span class="post-meta post-date float-end">2014-11-03</span><div class="post-summary my-3"><p>Android 4.3（API Level 18）开始引入Bluetooth Low Energy（BLE，低功耗蓝牙）的核心功能并提供了相应的API，应用程序通过这些api可以扫描设备、查询services，读写设备的characteristics（属性特征）。对比传统的蓝牙，BLE的设计能够显著减低功耗。这让Android应用程序与BLE设备之间的低功耗通讯成为可能，例如距离传感器、心率监视器</p><div><a class="btn btn-sm btn-outline-primary btn-read-more" href=https://www.qinxiandiqi.sbs/posts/android/androidbluetoothlowenergyandroid%E4%BD%8E%E5%8A%9F%E8%80%97%E8%93%9D%E7%89%99/>阅读更多</a></div></div></li><li class="mb-3 border-bottom"><a class=post-title href=https://www.qinxiandiqi.sbs/posts/android/android%E8%93%9D%E7%89%99/>Android蓝牙</a>
+<span class="post-meta post-date float-end">2014-10-27</span><div class="post-summary my-3"><p>Android平台提供了对蓝牙网络协议栈的支持，它允许设备通过无线的方式与其它设备进行数据交换。应用程序框架通过Android Bluetooth APIs提供了对蓝牙功能的访问。这些API允许应用以无线的方式连接其它蓝牙设备，启用点对点或者多点对多点的无线功能。使用蓝牙的API，Android应用程序可以执行以下工作：
+* 扫描其它蓝牙设备 * 查询本地蓝牙适配器以配对蓝牙设备 * 建</p><div><a class="btn btn-sm btn-outline-primary btn-read-more" href=https://www.qinxiandiqi.sbs/posts/android/android%E8%93%9D%E7%89%99/>阅读更多</a></div></div></li><li class="mb-3 border-bottom"><a class=post-title href=https://www.qinxiandiqi.sbs/posts/android/androidgradleplugin/androidgradleplugin%E6%8C%87%E5%8D%97%E4%B8%80%E7%AE%80%E4%BB%8B/>Android Gradle Plugin指南（一）——简介</a>
+<span class="post-meta post-date float-end">2014-07-14</span><div class="post-summary my-3"><p>原文地址：http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Introduction
+译者：google推出了全新的Android Studio集成开发环境，其中Android项目的结构与Eclipse的Android项目结构有很大的区别，原因就在于两开发环境使用的构建工具不同。Android Studi</p><div><a class="btn btn-sm btn-outline-primary btn-read-more" href=https://www.qinxiandiqi.sbs/posts/android/androidgradleplugin/androidgradleplugin%E6%8C%87%E5%8D%97%E4%B8%80%E7%AE%80%E4%BB%8B/>阅读更多</a></div></div></li><li class="mb-3 border-bottom"><a class=post-title href=https://www.qinxiandiqi.sbs/posts/raspberry/%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%AE%BE%E7%BD%AE%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84wifi%E7%BD%91%E7%BB%9C/>使用命令行设置树莓派的wifi网络</a>
+<span class="post-meta post-date float-end">2014-10-02</span><div class="post-summary my-3"><p>如果你没有登录到常用的图形用户界面，这种方法就适合用来设置树莓派的wifi。尤其是在你没有屏幕或者有线网络，仅使用串口控制线的时候。另外，这种方法也不需要额外的软件，所有需要的东西都已经包含进了树莓派。
+GETTING WIFI NETWORK DETAILS（获取wifi网络详情）
+为了扫描wifi网络，可以使用sudo iwlist wlan0 scan命令。这个命令会列出所有</p><div><a class="btn btn-sm btn-outline-primary btn-read-more" href=https://www.qinxiandiqi.sbs/posts/raspberry/%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%AE%BE%E7%BD%AE%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84wifi%E7%BD%91%E7%BB%9C/>阅读更多</a></div></div></li></ul></div></section><div class="card component row post-comments" id=post-comments><div class=card-header><h2 class="card-title my-2 fs-4 text-surface">评论</h2></div><div class=card-body><script src=https://utteranc.es/client.js repo=qinxiandiqi/qinxiandiqi.github.io issue-term=pathname label=comment theme=github-light crossorigin=anonymous async></script></div></div></div></div></div></main><footer class="footer mt-auto py-3 text-center container"><div class="offcanvas offcanvas-bottom h-auto" tabindex=-1 id=offcanvasActionsPanel aria-labelledby=offcanvasActionsPanelLabel><div class=offcanvas-header><h5 class="offcanvas-title fs-4" id=offcanvasActionsPanelLabel><i class="fas fa-fw fa-th-large me-1"></i>
+操作</h5><button type=button class="btn-close ms-auto" data-bs-dismiss=offcanvas data-bs-target=offcanvasActionsPanel aria-label=Close></button></div><div class="offcanvas-body mt-2"><div class="social-share mb-4 d-flex overflow-auto"><a class="btn-social-share d-flex flex-column align-items-center me-3" rel="noopener noreferrer" aria-label="Twitter Share Button" target=_blank href="https://twitter.com/intent/tweet?title=Android%20Wi-Fi%20Peer-to-Peer%ef%bc%88Android%e7%9a%84Wi-Fi%20P2P%e5%af%b9%e7%ad%89%e7%bd%91%e7%bb%9c%ef%bc%89&url=https%3a%2f%2fwww.qinxiandiqi.sbs%2fposts%2fandroid%2fandroidwi-fipeer-to-peerandroid%25E7%259A%2584wi-fip2p%25E5%25AF%25B9%25E7%25AD%2589%25E7%25BD%2591%25E7%25BB%259C%2f"><i class="fab fa-2x fa-fw fa-twitter mb-2"></i> Twitter</a>
+<a class="btn-social-share d-flex flex-column align-items-center me-3" rel="noopener noreferrer" aria-label="Facebook Share Button" target=_blank href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fwww.qinxiandiqi.sbs%2fposts%2fandroid%2fandroidwi-fipeer-to-peerandroid%25E7%259A%2584wi-fip2p%25E5%25AF%25B9%25E7%25AD%2589%25E7%25BD%2591%25E7%25BB%259C%2f"><i class="fab fa-2x fa-fw fa-facebook-f mb-2"></i> Facebook</a></div><hr class=mb-4><div class="actions d-flex overflow-auto align-items-center"><a role=button class="action action-go-back d-flex flex-column align-items-center me-3" href="javascript: window.history.back();"><span class="action-icon mb-2"><i class="fas fa-2x fa-chevron-circle-down" data-fa-transform=rotate-90></i></span> 返回</a>
+<a role=button class="action action-reload-page d-flex flex-column align-items-center me-3"><span class="action-icon mb-2"><i class="fas fa-2x fa-redo-alt"></i></span> 刷新</a>
+<a role=button class="action action-copy-url d-flex flex-column align-items-center me-3"><span class="action-icon mb-2"><i class="fas fa-2x fa-link"></i></span> 复制链接</a></div></div></div><ul class="nav justify-content-between footer-memu mb-3"><li class=nav-item><ul class="nav flex-column align-items-start"><li class=nav-item><a class="nav-link fw-bold fs-lg" href="javascript: void(0);">support</a></li><li class=nav-item><a class=nav-link href=/contact/><i class="fas fa-fw fa-info-circle"></i>联系我</a></li></ul></li></ul><nav class="social-links nav justify-content-center mb-2"><a class="nav-link social-link" target=_blank href=https://space.bilibili.com/438403014 title=bilibili rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-bilibili"></i></a>
+<a class="nav-link social-link" href=mailto:qinxiandiqi@foxmail.com title=Email><i class="fas fa-fw fa-2x fa-envelope"></i></a>
+<a class="nav-link social-link" target=_blank href=https://facebook.com/qinxiandiqi title=Facebook rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-facebook-f"></i></a>
+<a class="nav-link social-link" target=_blank href=https://github.com/qinxiandiqi title=GitHub rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-github"></i></a>
+<a class="nav-link social-link" target=_blank href="http://wpa.qq.com/msgrd?v=3&uin=493059154&site=qq&menu=yes" title=QQ rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-qq"></i></a>
+<a class="nav-link social-link" target=_blank href=https://twitter.com/qinxiandiqi title=Twitter rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-twitter"></i></a>
+<a class="nav-link social-link" target=_blank href=https://weibo.com/qinxiandiqi title=Weibo rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-weibo"></i></a>
+<a class="nav-link social-link" target=_blank href=https://www.zhihu.com/people/qinxiandiqi title=Zhihu rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-zhihu"></i></a>
+<a class="nav-link social-link" target=_blank href=https://www.qinxiandiqi.sbs/index.xml title=RSS rel="noopener noreferrer"><i class="fas fa-fw fa-2x fa-rss"></i></a></nav><div class="copyright mb-2">Copyright © 2012-2022 Jianan. All Rights Reserved.</div><div class="powered-by mb-2">Powered by <a class=text-primary href=https://gohugo.io target=_blank rel="noopener noreferrer">Hugo</a> and the <a class=text-primary href=https://github.com/razonyang/hugo-theme-bootstrap target=_blank rel="noopener noreferrer">HBS</a> theme.</div></footer><script data-precache src=https://www.qinxiandiqi.sbs/assets/main/bundle.min.6d6041952a17e1bf66466a0f64cb4314a10db145ad16ec1882d7a787599f41ff.js integrity="sha256-bWBBlSoX4b9mRmoPZMtDFKENsUWtFuwYgtenh1mfQf8=" crossorigin=anonymous defer></script><script data-precache src=https://www.qinxiandiqi.sbs/assets/icons/bundle.min.9b65a1892e3a9ee67ad669fdde6abd4963c890151073f181b3e730bce85680a6.js integrity="sha256-m2WhiS46nuZ61mn93mq9SWPIkBUQc/GBs+cwvOhWgKY=" crossorigin=anonymous defer></script>
+<script data-precache src=https://www.qinxiandiqi.sbs/assets/viewer/bundle.min.9f713149f059d05fcb65e7f7c27308e61c384500e80ab1c333c2510a36a5d70c.js integrity="sha256-n3ExSfBZ0F/LZef3wnMI5hw4RQDoCrHDM8JRCjal1ww=" crossorigin=anonymous defer></script><script>"serviceWorker"in navigator&&window.addEventListener("load",()=>{navigator.serviceWorker.register("https://www.qinxiandiqi.sbs/service-worker.min.js").then(function(e){console.log("Successfully registered service worker",e)}).catch(function(e){console.warn("Error whilst registering service worker",e)})})</script></body></html>

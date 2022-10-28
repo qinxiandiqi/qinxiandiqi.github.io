@@ -1,0 +1,322 @@
+<!doctype html><html class=position-relative itemscope itemtype=http://schema.org/WebPage lang=zh-cn data-theme=auto data-bs-theme=auto data-palette=purple><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Android Gradle Plugin指南（二）——基本项目 - 琴弦第七</title><link rel=icon href=https://www.qinxiandiqi.sbs/favicon_huc1d2ba7c7d6d5aa3e01f2f328b911c53_11507_16x16_resize_box_3.png sizes=16x16 type=image/png><link rel=icon href=https://www.qinxiandiqi.sbs/favicon_huc1d2ba7c7d6d5aa3e01f2f328b911c53_11507_32x32_resize_box_3.png sizes=32x32 type=image/png><link rel=apple-touch-icon href=https://www.qinxiandiqi.sbs/favicon_huc1d2ba7c7d6d5aa3e01f2f328b911c53_11507_180x180_resize_box_3.png sizes=180x180 type=image/png><link rel=icon href=https://www.qinxiandiqi.sbs/favicon_huc1d2ba7c7d6d5aa3e01f2f328b911c53_11507_150x150_resize_box_3.png sizes=150x150 type=image/png><link rel=icon href=https://www.qinxiandiqi.sbs/favicon_huc1d2ba7c7d6d5aa3e01f2f328b911c53_11507_192x192_resize_box_3.png sizes=192x192 type=image/png><link rel=mask-icon href=https://www.qinxiandiqi.sbs/safari-pinned-tab.svg color=#6f42c1><link rel=icon href="https://www.qinxiandiqi.sbs/images/icons/favicon.ico?version=2a4098caa2eb82a1f873269b3ff57965"><meta name=keywords content><meta name=description content="原文地址：http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Basic-Project
+3、Basic Project（基本项目）
+一个Gradle项目的构建过程定义在build.gradle文件中，位于项目的根目录下。
+3.1 Simple build files（简单的构建文件）
+"><meta name=robots content="index, follow"><meta name=twitter:card content="summary"><meta name=twitter:title content="Android Gradle Plugin指南（二）——基本项目"><meta name=twitter:description content="原文地址：http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Basic-Project
+3、Basic Project（基本项目）
+一个Gradle项目的构建过程定义在build.gradle文件中，位于项目的根目录下。
+3.1 Simple build files（简单的构建文件）
+"><meta name=twitter:site content="@qinxiandiqi"><meta property="og:title" content="Android Gradle Plugin指南（二）——基本项目"><meta property="og:description" content="原文地址：http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Basic-Project
+3、Basic Project（基本项目）
+一个Gradle项目的构建过程定义在build.gradle文件中，位于项目的根目录下。
+3.1 Simple build files（简单的构建文件）
+"><meta property="og:type" content="article"><meta property="og:url" content="https://www.qinxiandiqi.sbs/posts/android/androidgradleplugin/androidgradleplugin%E6%8C%87%E5%8D%97%E4%BA%8C%E5%9F%BA%E6%9C%AC%E9%A1%B9%E7%9B%AE/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2014-07-14T12:00:56+08:00"><meta property="article:modified_time" content="2014-07-14T12:00:56+08:00"><meta property="og:see_also" content="https://www.qinxiandiqi.sbs/posts/android/androidgradleplugin/androidgradleplugin%E6%8C%87%E5%8D%97%E5%85%AD%E9%AB%98%E7%BA%A7%E6%9E%84%E5%BB%BA%E5%AE%9A%E5%88%B6/"><meta property="og:see_also" content="https://www.qinxiandiqi.sbs/posts/android/androidgradleplugin/androidgradleplugin%E6%8C%87%E5%8D%97%E4%BA%94buildvariants%E6%9E%84%E5%BB%BA%E5%8F%98%E7%A7%8D%E7%89%88%E6%9C%AC/"><meta property="og:see_also" content="https://www.qinxiandiqi.sbs/posts/android/androidgradleplugin/androidgradleplugin%E6%8C%87%E5%8D%97%E5%9B%9B%E6%B5%8B%E8%AF%95/"><meta property="og:see_also" content="https://www.qinxiandiqi.sbs/posts/android/androidgradleplugin/androidgradleplugin%E6%8C%87%E5%8D%97%E4%B8%89%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BBandroid%E5%BA%93%E5%92%8C%E5%A4%9A%E9%A1%B9%E7%9B%AE%E9%85%8D%E7%BD%AE/"><meta property="og:see_also" content="https://www.qinxiandiqi.sbs/posts/android/androidgradleplugin/androidgradleplugin%E6%8C%87%E5%8D%97%E4%B8%80%E7%AE%80%E4%BB%8B/"><meta itemprop=name content="Android Gradle Plugin指南（二）——基本项目"><meta itemprop=description content="原文地址：http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Basic-Project
+3、Basic Project（基本项目）
+一个Gradle项目的构建过程定义在build.gradle文件中，位于项目的根目录下。
+3.1 Simple build files（简单的构建文件）
+"><meta itemprop=datePublished content="2014-07-14T12:00:56+08:00"><meta itemprop=dateModified content="2014-07-14T12:00:56+08:00"><meta itemprop=wordCount content="7077"><meta itemprop=keywords content="Android Gradle,项目结构,Build Task,Build Type,签名配置,"><meta property="og:image" content="https://www.qinxiandiqi.sbs/images/logo.png"><meta name=twitter:image content="https://www.qinxiandiqi.sbs/images/logo.png"><link rel=manifest href=https://www.qinxiandiqi.sbs/manifest.json><link data-precache rel=stylesheet href="https://www.qinxiandiqi.sbs/assets/main/bundle.min.4d0a628e427af2df862b411feced006985e5e7f4abf1d52b690dcf44facac475.css" integrity="sha256-TQpijkJ68t+GK0Ef7O0AaYXl5/Sr8dUraQ3PRPrKxHU=" crossorigin=anonymous><link data-precache rel=stylesheet href=https://www.qinxiandiqi.sbs/assets/viewer/bundle.min.6d0fc65b8b058ac563091dc5c36f61afba5dd705058680aa24f1d5a3bcf0064d.css integrity="sha256-bQ/GW4sFisVjCR3Fw29hr7pd1wUFhoCqJPHVo7zwBk0=" crossorigin=anonymous></head><body><script>const items=["theme","palette"];items.forEach(function(e){const t=localStorage.getItem("hbs:"+e);t&&document.body.parentElement.setAttribute("data-"+e,t)})</script><header><nav class="top-app-bar shadow navbar navbar-expand-lg fixed-top"><div class=container><a class="navbar-brand d-flex align-items-center flex-grow-1 flex-lg-grow-0 text-lg-start ms-2 ms-lg-0 mx-auto me-lg-2" href=https://www.qinxiandiqi.sbs/><picture><img class=logo alt=Logo src=https://www.qinxiandiqi.sbs/images/logo.png loading=lazy width=500 height=500>
+</picture>琴弦第七</a>
+<button class="navbar-toggler order-5" type=button data-bs-toggle=offcanvas data-bs-target=#navbarMenus aria-controls=navbarMenus aria-expanded=false aria-label="Toggle navigation">
+<i class="fas fa-ellipsis-h"></i></button><div class="offcanvas-lg offcanvas-end flex-grow-1" data-bs-scroll=true tabindex=-1 id=navbarMenus aria-labelledby=navbarMenusLabel><div class="offcanvas-header px-4 pb-0"><h5 class=offcanvas-title id=navbarMenusLabel>琴弦第七</h5><button type=button class="btn-close btn-close-white" data-bs-dismiss=offcanvas data-bs-target=#navbarMenus aria-label=Close></button></div><div class="offcanvas-body p-4 pt-0 p-lg-0"><hr class=d-lg-none><ul class="navbar-nav flex-row flex-wrap align-items-center me-auto"><li class="nav-item col-6 col-lg-auto"><a class="nav-link py-2 px-0 px-lg-2" href=https://www.qinxiandiqi.sbs/archives/><i class="fas fa-fw fa-file-archive"></i>归档</a></li><li class="nav-item col-6 col-lg-auto"><a class="nav-link py-2 px-0 px-lg-2" href=https://www.qinxiandiqi.sbs/series/><i class="fas fa-fw fa-columns"></i>专栏</a></li><li class="nav-item col-6 col-lg-auto"><a class="nav-link py-2 px-0 px-lg-2" href=https://www.qinxiandiqi.sbs/categories/><i class="fas fa-fw fa-folder"></i>分类</a></li><li class="nav-item col-6 col-lg-auto"><a class="nav-link py-2 px-0 px-lg-2" href=https://www.qinxiandiqi.sbs/tags/><i class="fas fa-fw fa-tags"></i>标签</a></li></ul><hr class=d-lg-none><form class="search-bar ms-auto my-1" action=https://www.qinxiandiqi.sbs/search/ novalidate><div class="input-group input-group-sm align-items-center"><span class="btn btn-search disabled position-absolute left-0 border-0"><i class="fas fa-fw fa-search fa-lg"></i></span>
+<input class="py-2 form-control rounded search-input" name=q type=search aria-label=Search required></div></form><hr class=d-lg-none><ul class="navbar-nav flex-row flex-wrap align-items-center ms-md-auto"><li class="nav-item py-2 py-lg-1 col-12 col-lg-auto"><nav class="social-links nav justify-content-center flex-row"><a class="nav-link social-link col-6 col-lg-auto p-1" target=_blank href=https://github.com/qinxiandiqi title=GitHub rel="noopener noreferrer"><i class="fa-fw fab fa-github"></i>
+<span class="ms-1 d-lg-none">GitHub</span></a>
+<a class="nav-link social-link col-6 col-lg-auto p-1" target=_blank href=https://www.qinxiandiqi.sbs/index.xml title=RSS rel="noopener noreferrer"><i class="fas fa-fw fa-rss"></i>
+<span class="ms-1 d-lg-none">RSS</span></a></nav></li><li class="nav-item py-2 py-lg-1 col-12 col-lg-auto"><div class="vr d-none d-lg-flex h-100 mx-lg-2 text-white"></div><hr class="d-lg-none my-2"></li><li class="nav-item dropdown py-1 py-lg-1 col-6 col-lg-auto"><a class="nav-link px-0 px-lg-1" href=# id=languageDropdown role=button data-bs-toggle=dropdown aria-expanded=false><i class="fas fa-fw fa-globe"></i>
+<span class=d-lg-none>语言</span></a><ul class="dropdown-menu dropdown-menu-end" aria-labelledby=languageDropdown><li><a class="dropdown-item active" href=https://www.qinxiandiqi.sbs/>简体中文</a></li><li><a class=dropdown-item href=https://www.qinxiandiqi.sbs/en/>English</a></li></ul></li><li class="nav-item py-1 col-12 col-lg-auto"><div class="vr d-none d-lg-flex h-100 mx-lg-2 text-white"></div><hr class="d-lg-none my-2"></li><li class="nav-item dropdown col-6 col-lg-auto"><a class="nav-link px-0 py-2 px-lg-1" href=# id=fontSizeDropdown role=button data-bs-toggle=dropdown aria-expanded=false><i class="fas fa-fw fa-font"></i>
+<span class=d-lg-none>字体大小</span></a><ul class="dropdown-menu dropdown-menu-end" aria-labelledby=fontSizeDropdown><li><button class="font-size-item dropdown-item" data-size=xs>
+特小号</button></li><li><button class="font-size-item dropdown-item" data-size=sm>
+小号</button></li><li><button class="font-size-item dropdown-item active" data-size=md>
+中等</button></li><li><button class="font-size-item dropdown-item" data-size=lg>
+大号</button></li><li><button class="font-size-item dropdown-item" data-size=xl>
+特大号</button></li></ul></li><li class="nav-item dropdown col-6 col-lg-auto"><a class="nav-link px-0 py-2 px-lg-1" href=# id=paletteDropdown role=button data-bs-toggle=dropdown aria-expanded=false><i class="fas fa-fw fa-palette"></i>
+<span class=d-lg-none>配色</span></a><ul class="dropdown-menu dropdown-menu-end px-2" aria-labelledby=paletteDropdown><div class=row><li class="col-4 my-1"><a role=button id=palette-blue aria-label=蓝色 class="btn btn-sm w-100 palette text-bg-blue" data-palette=blue></a></li><li class="col-4 my-1"><a role=button id=palette-blue-gray aria-label=蓝灰色 class="btn btn-sm w-100 palette text-bg-blue-gray" data-palette=blue-gray></a></li><li class="col-4 my-1"><a role=button id=palette-brown aria-label=棕色 class="btn btn-sm w-100 palette text-bg-brown" data-palette=brown></a></li><li class="col-4 my-1"><a role=button id=palette-cyan aria-label=青色 class="btn btn-sm w-100 palette text-bg-cyan" data-palette=cyan></a></li><li class="col-4 my-1"><a role=button id=palette-green aria-label=绿色 class="btn btn-sm w-100 palette text-bg-green" data-palette=green></a></li><li class="col-4 my-1"><a role=button id=palette-indigo aria-label=靛青色 class="btn btn-sm w-100 palette text-bg-indigo" data-palette=indigo></a></li><li class="col-4 my-1"><a role=button id=palette-orange aria-label=橙色 class="btn btn-sm w-100 palette text-bg-orange" data-palette=orange></a></li><li class="col-4 my-1"><a role=button id=palette-pink aria-label=粉色 class="btn btn-sm w-100 palette text-bg-pink" data-palette=pink></a></li><li class="col-4 my-1"><a role=button id=palette-purple aria-label=紫色 class="btn btn-sm w-100 palette text-bg-purple" data-palette=purple></a></li><li class="col-4 my-1"><a role=button id=palette-red aria-label=红色 class="btn btn-sm w-100 palette text-bg-red" data-palette=red></a></li><li class="col-4 my-1"><a role=button id=palette-teal aria-label=蓝绿色 class="btn btn-sm w-100 palette text-bg-teal" data-palette=teal></a></li><li class="col-4 my-1"><a role=button id=palette-yellow aria-label=黄色 class="btn btn-sm w-100 palette text-bg-yellow" data-palette=yellow></a></li></div></ul></li><li class="nav-item dropdown col-6 col-lg-auto"><a class="nav-link px-0 py-2 px-lg-1" href=# id=modeDropdown role=button data-bs-toggle=dropdown aria-expanded=false><i class="mode-icon fas fa-fw fa-adjust" id=modeIcon></i>
+<span class=d-lg-none>模式</span></a><ul class="dropdown-menu dropdown-menu-end" aria-labelledby=modeDropdown><li class=mode-item data-color-mode=light data-icon=sun><button class=dropdown-item>
+<i class="mode-icon fas fa-fw fa-sun"></i> Light</button></li><li class=mode-item data-color-mode=dark data-icon=moon><button class=dropdown-item>
+<i class="mode-icon fas fa-fw fa-moon"></i> Dark</button></li><li class="mode-item active" data-color-mode=auto data-icon=adjust><button class=dropdown-item>
+<i class="mode-icon fas fa-fw fa-adjust"></i> Auto</button></li></ul></li></ul></div></div></div></nav></header><main class=container><div class="row content"><noscript><div class="alert alert-danger" role=alert>你的浏览器不支持 JavaScript。</div></noscript><aside class="col-lg-4 sidebar d-flex order-lg-5"><div class="container d-flex flex-column"><div class="accordion profile"><div class="accordion-item card row text-center component"><div class="accordion-header card-header border-0" id=profile-header><a class="accordion-button d-lg-none mb-2 collapsed shadow-none p-0 bg-transparent text-surface" type=button data-bs-toggle=collapse data-bs-target=#profile aria-expanded=false aria-controls=profile>Profile</a></div><div class="card-body collapse accordion-collapse accordion-body d-lg-block" id=profile aria-labelledby=profile-header><div class="col-12 d-flex align-items-center justify-content-center"><picture><img class="profile-avatar rounded-circle" alt=Jianan src=https://www.qinxiandiqi.sbs/images/profile.png loading=lazy data-viewer-invisible width=500 height=500></picture></div><div class="col-12 profile-meta"><div class="profile-name fw-fold fs-lg">Jianan</div><div class=profile-bio>今天做点什么呢？</div><div class="profile-about text-primary"><i class="fas fa-fw fa-user"></i><a href=https://www.qinxiandiqi.sbs/about/>关于我</a></div><div class="profile-contact text-primary"><i class="fas fa-fw fa-question-circle"></i><a href=https://www.qinxiandiqi.sbs/contact/>联系我</a></div></div><nav class="social-links nav justify-content-center mt-1 justify-content-around"><a class="nav-link social-link" href=mailto:qinxiandiqi@foxmail.com title=Email><i class="fas fa-fw fa-2x fa-envelope"></i></a>
+<a class="nav-link social-link" target=_blank href=https://github.com/qinxiandiqi title=GitHub rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-github"></i></a>
+<a class="nav-link social-link" target=_blank href=https://twitter.com/qinxiandiqi title=Twitter rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-twitter"></i></a>
+<a class="nav-link social-link" target=_blank href=https://weibo.com/qinxiandiqi title=Weibo rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-weibo"></i></a>
+<a class="nav-link social-link" target=_blank href=https://www.zhihu.com/people/qinxiandiqi title=Zhihu rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-zhihu"></i></a></nav></div></div></div><div class="accordion taxonomies-toggle"><section class="row card component accordion-item"><div class="accordion-header card-header border-0"><a class="accordion-button d-lg-none mb-1 collapsed shadow-none p-0 bg-transparent" type=button data-bs-toggle=collapse data-bs-target=#taxonomies-toggle aria-expanded=false aria-controls=taxonomies-toggle>Taxonomies</a></div><div class="card-body collapse accordion-collapse accordion-body d-lg-block" id=taxonomies-toggle><ul class="nav nav-pills nav-fill" id=myTab role=tablist><li class=nav-item role=presentation><button class="nav-link active" id=taxonomySeriesTab data-bs-toggle=tab data-bs-target=#taxonomySeries type=button role=tab aria-controls=专栏 aria-selected=true>
+专栏</button></li><li class=nav-item role=presentation><button class=nav-link id=taxonomyCategoriesTab data-bs-toggle=tab data-bs-target=#taxonomyCategories type=button role=tab aria-controls=分类 aria-selected=true>
+分类</button></li><li class=nav-item role=presentation><button class=nav-link id=taxonomyTagsTab data-bs-toggle=tab data-bs-target=#taxonomyTags type=button role=tab aria-controls=标签 aria-selected=true>
+标签</button></li><li class=nav-item role=presentation><button class=nav-link id=taxonomyAuthorsTab data-bs-toggle=tab data-bs-target=#taxonomyAuthors type=button role=tab aria-controls=作者 aria-selected=true>
+作者</button></li><li class=nav-item role=presentation><button class=nav-link id=taxonomyArchivesTab data-bs-toggle=tab data-bs-target=#taxonomyArchive type=button role=tab aria-controls=taxonomyArchives aria-selected=true>
+归档</button></li></ul><div class="tab-content mt-3"><div class="tab-pane active" id=taxonomySeries role=tabpanel aria-labelledby=taxonomySeriesTab tabindex=0><a href=https://www.qinxiandiqi.sbs/series/raspberry/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title=RaspBerry>RaspBerry
+<span class="badge badge-sm text-secondary bg-white ms-1">27</span></a>
+<a href=https://www.qinxiandiqi.sbs/series/android/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title=Android>Android
+<span class="badge badge-sm text-secondary bg-white ms-1">20</span></a>
+<a href=https://www.qinxiandiqi.sbs/series/java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title=Java学习笔记>Java学习笔记
+<span class="badge badge-sm text-secondary bg-white ms-1">17</span></a>
+<a href=https://www.qinxiandiqi.sbs/series/javaweb%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title=JavaWeb学习笔记>JavaWeb学习笔记
+<span class="badge badge-sm text-secondary bg-white ms-1">12</span></a>
+<a href=https://www.qinxiandiqi.sbs/series/android-wear/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title="Android Wear">Android Wear
+<span class="badge badge-sm text-secondary bg-white ms-1">11</span></a>
+<a href=https://www.qinxiandiqi.sbs/series/libgdx/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title=libGDX>libGDX
+<span class="badge badge-sm text-secondary bg-white ms-1">8</span></a>
+<a href=https://www.qinxiandiqi.sbs/series/libgdx%E6%89%8B%E5%86%8C/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title=libGDX手册>libGDX手册
+<span class="badge badge-sm text-secondary bg-white ms-1">7</span></a>
+<a href=https://www.qinxiandiqi.sbs/series/android-gradle/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title="Android Gradle">Android Gradle
+<span class="badge badge-sm text-secondary bg-white ms-1">6</span></a>
+<a href=https://www.qinxiandiqi.sbs/series/javascript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title=JavaScript学习笔记>JavaScript学习笔记
+<span class="badge badge-sm text-secondary bg-white ms-1">6</span></a>
+<a href=https://www.qinxiandiqi.sbs/series/ide/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title=IDE>IDE
+<span class="badge badge-sm text-secondary bg-white ms-1">5</span></a>
+<a href=https://www.qinxiandiqi.sbs/series class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title=全部>全部
+<span class="badge badge-sm text-secondary bg-white ms-1">26</span></a></div><div class=tab-pane id=taxonomyCategories role=tabpanel aria-labelledby=taxonomyCategoriesTab tabindex=0><a href=https://www.qinxiandiqi.sbs/categories/%E7%BF%BB%E8%AF%91/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title=翻译>翻译
+<span class="badge badge-sm text-secondary bg-white ms-1">67</span></a>
+<a href=https://www.qinxiandiqi.sbs/categories/raspberry/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title=RaspBerry>RaspBerry
+<span class="badge badge-sm text-secondary bg-white ms-1">27</span></a>
+<a href=https://www.qinxiandiqi.sbs/categories/android/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title=Android>Android
+<span class="badge badge-sm text-secondary bg-white ms-1">21</span></a>
+<a href=https://www.qinxiandiqi.sbs/categories/javaweb%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title=JavaWeb学习笔记>JavaWeb学习笔记
+<span class="badge badge-sm text-secondary bg-white ms-1">12</span></a>
+<a href=https://www.qinxiandiqi.sbs/categories/android-wear/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title="Android Wear">Android Wear
+<span class="badge badge-sm text-secondary bg-white ms-1">11</span></a>
+<a href=https://www.qinxiandiqi.sbs/categories/libgdx/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title=libGDX>libGDX
+<span class="badge badge-sm text-secondary bg-white ms-1">8</span></a>
+<a href=https://www.qinxiandiqi.sbs/categories/libgdx%E6%89%8B%E5%86%8C/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title=libGDX手册>libGDX手册
+<span class="badge badge-sm text-secondary bg-white ms-1">7</span></a>
+<a href=https://www.qinxiandiqi.sbs/categories/android-gradle/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title="Android Gradle">Android Gradle
+<span class="badge badge-sm text-secondary bg-white ms-1">6</span></a>
+<a href=https://www.qinxiandiqi.sbs/categories/javascript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title=JavaScript学习笔记>JavaScript学习笔记
+<span class="badge badge-sm text-secondary bg-white ms-1">6</span></a>
+<a href=https://www.qinxiandiqi.sbs/categories/ide/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title=IDE>IDE
+<span class="badge badge-sm text-secondary bg-white ms-1">5</span></a>
+<a href=https://www.qinxiandiqi.sbs/categories class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title=全部>全部
+<span class="badge badge-sm text-secondary bg-white ms-1">28</span></a></div><div class=tab-pane id=taxonomyTags role=tabpanel aria-labelledby=taxonomyTagsTab tabindex=0><a href=https://www.qinxiandiqi.sbs/tags/android/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title=android>android
+<span class="badge badge-sm text-secondary bg-white ms-1">30</span></a>
+<a href=https://www.qinxiandiqi.sbs/tags/java/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title=java>java
+<span class="badge badge-sm text-secondary bg-white ms-1">30</span></a>
+<a href=https://www.qinxiandiqi.sbs/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title=树莓派>树莓派
+<span class="badge badge-sm text-secondary bg-white ms-1">28</span></a>
+<a href=https://www.qinxiandiqi.sbs/tags/raspberry/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title=RaspBerry>RaspBerry
+<span class="badge badge-sm text-secondary bg-white ms-1">27</span></a>
+<a href=https://www.qinxiandiqi.sbs/tags/android-wear/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title="Android Wear">Android Wear
+<span class="badge badge-sm text-secondary bg-white ms-1">11</span></a>
+<a href=https://www.qinxiandiqi.sbs/tags/javaweb/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title=javaweb>javaweb
+<span class="badge badge-sm text-secondary bg-white ms-1">11</span></a>
+<a href=https://www.qinxiandiqi.sbs/tags/%E5%8F%AF%E7%A9%BF%E6%88%B4%E8%AE%BE%E5%A4%87/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title=可穿戴设备>可穿戴设备
+<span class="badge badge-sm text-secondary bg-white ms-1">9</span></a>
+<a href=https://www.qinxiandiqi.sbs/tags/libgdx/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title=libgdx>libgdx
+<span class="badge badge-sm text-secondary bg-white ms-1">8</span></a>
+<a href=https://www.qinxiandiqi.sbs/tags/javascript/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title=javascript>javascript
+<span class="badge badge-sm text-secondary bg-white ms-1">7</span></a>
+<a href=https://www.qinxiandiqi.sbs/tags/xml/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title=xml>xml
+<span class="badge badge-sm text-secondary bg-white ms-1">7</span></a>
+<a href=https://www.qinxiandiqi.sbs/tags class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title=全部>全部
+<span class="badge badge-sm text-secondary bg-white ms-1">306</span></a></div><div class=tab-pane id=taxonomyAuthors role=tabpanel aria-labelledby=taxonomyAuthorsTab tabindex=0><a href=https://www.qinxiandiqi.sbs/authors/jianan/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-author me-2 mb-2" title=Jianan>Jianan
+<span class="badge badge-sm text-secondary bg-white ms-1">142</span></a></div><div class=tab-pane id=taxonomyArchive role=tabpanel aria-labelledby=taxonomyArchiveTab tabindex=0><a href=https://www.qinxiandiqi.sbs/archives/2022/ class="btn btn-sm btn-secondary post-taxonomy ps-3 me-2 mb-2" title=2022>2022 <span class="badge badge-sm text-secondary bg-white ms-1">3</span></a>
+<a href=https://www.qinxiandiqi.sbs/archives/2021/ class="btn btn-sm btn-secondary post-taxonomy ps-3 me-2 mb-2" title=2021>2021 <span class="badge badge-sm text-secondary bg-white ms-1">1</span></a>
+<a href=https://www.qinxiandiqi.sbs/archives/2020/ class="btn btn-sm btn-secondary post-taxonomy ps-3 me-2 mb-2" title=2020>2020 <span class="badge badge-sm text-secondary bg-white ms-1">2</span></a>
+<a href=https://www.qinxiandiqi.sbs/archives/2018/ class="btn btn-sm btn-secondary post-taxonomy ps-3 me-2 mb-2" title=2018>2018 <span class="badge badge-sm text-secondary bg-white ms-1">7</span></a>
+<a href=https://www.qinxiandiqi.sbs/archives/2017/ class="btn btn-sm btn-secondary post-taxonomy ps-3 me-2 mb-2" title=2017>2017 <span class="badge badge-sm text-secondary bg-white ms-1">2</span></a>
+<a href=https://www.qinxiandiqi.sbs/archives/2016/ class="btn btn-sm btn-secondary post-taxonomy ps-3 me-2 mb-2" title=2016>2016 <span class="badge badge-sm text-secondary bg-white ms-1">7</span></a>
+<a href=https://www.qinxiandiqi.sbs/archives/2015/ class="btn btn-sm btn-secondary post-taxonomy ps-3 me-2 mb-2" title=2015>2015 <span class="badge badge-sm text-secondary bg-white ms-1">21</span></a>
+<a href=https://www.qinxiandiqi.sbs/archives/2014/ class="btn btn-sm btn-secondary post-taxonomy ps-3 me-2 mb-2" title=2014>2014 <span class="badge badge-sm text-secondary bg-white ms-1">93</span></a>
+<a href=https://www.qinxiandiqi.sbs/archives/2012/ class="btn btn-sm btn-secondary post-taxonomy ps-3 me-2 mb-2" title=2012>2012 <span class="badge badge-sm text-secondary bg-white ms-1">6</span></a></div></div></div></section></div><div class="accordion posts-toggle"><section class="row card component accordion-item"><div class="accordion-header card-header border-0"><a class="accordion-button d-lg-none mb-1 collapsed shadow-none p-0 bg-transparent" type=button data-bs-toggle=collapse data-bs-target=#posts-toggle aria-expanded=false aria-controls=posts-toggle>文章</a></div><div class="card-body collapse accordion-collapse accordion-body d-lg-block" id=posts-toggle><ul class="nav nav-pills nav-fill" id=myTab role=tablist><li class=nav-item role=presentation><button class="nav-link active" id=recent-posts-tab data-bs-toggle=tab data-bs-target=#recent-posts type=button role=tab aria-controls=recent-posts aria-selected=true>
+最近文章</button></li></ul><div class="tab-content mt-3"><div class="tab-pane active" id=recent-posts role=tabpanel aria-labelledby=recent-posts-tab tabindex=0><ul class="post-list list-unstyled ms-1"><li class=mb-2><div class=d-flex><div class="flex-grow-1 d-flex flex-column h-auto justify-content-center"><a class=post-title href=https://www.qinxiandiqi.sbs/posts/opengl/glsl/glsl%E7%9A%84uniform%E5%8F%98%E9%87%8F%E8%87%AA%E5%8A%A8%E4%BC%98%E5%8C%96/>GLSL的uniform变量自动优化</a><div class="post-meta mt-2"><span class=post-date>2022-09-26</span></div></div></div></li><li class=mb-2><div class=d-flex><div class="flex-grow-1 d-flex flex-column h-auto justify-content-center"><a class=post-title href=https://www.qinxiandiqi.sbs/posts/git/filenametoolongbygitofwindows/>Windows平台下git报错Filename Too Long</a><div class="post-meta mt-2"><span class=post-date>2022-09-18</span></div></div></div></li><li class=mb-2><div class=d-flex><div class="flex-grow-1 d-flex flex-column h-auto justify-content-center"><a class=post-title href=https://www.qinxiandiqi.sbs/posts/system/%E7%94%9F%E6%88%90%E6%96%B0ssh%E5%AF%86%E9%92%A5%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%88%B0ssh-agent/>生成新SSH密钥并添加到ssh-Agent</a><div class="post-meta mt-2"><span class=post-date>2022-09-11</span></div></div></div></li><li class=mb-2><div class=d-flex><div class="flex-grow-1 d-flex flex-column h-auto justify-content-center"><a class=post-title href=https://www.qinxiandiqi.sbs/posts/kotlin/kotlin%E7%9A%84%E5%B1%9E%E6%80%A7%E5%88%9D%E5%A7%8B%E5%99%A8%E4%B8%8E%E5%B1%9E%E6%80%A7setter/>Kotlin的属性初始器与属性Setter</a><div class="post-meta mt-2"><span class=post-date>2021-07-18</span></div></div></div></li><li class=mb-2><div class=d-flex><div class="flex-grow-1 d-flex flex-column h-auto justify-content-center"><a class=post-title href=https://www.qinxiandiqi.sbs/posts/system/linux/%E8%AE%BE%E7%BD%AElinux%E5%9C%A8%E6%9C%AA%E7%99%BB%E5%BD%95%E8%B4%A6%E5%8F%B7%E6%83%85%E5%86%B5%E4%B8%8B%E8%87%AA%E5%8A%A8%E8%BF%9E%E6%8E%A5wifi/>设置Linux在未登录账号情况下自动连接wifi</a><div class="post-meta mt-2"><span class=post-date>2020-12-29</span></div></div></div></li></ul></div></div></div></section></div><div class="accordion post-toc"><div class="accordion-item row mb-4 card component" id=postTOC><div class="card-header accordion-header"><h2 class="card-title fs-4 my-2 text-surface d-none d-lg-block">目录</h2><a class="accordion-button d-lg-none mb-1 collapsed shadow-none p-0 bg-transparent" type=button data-bs-toggle=collapse data-bs-target=#post-toc aria-expanded=false aria-controls=post-toc>目录</a></div><div class="card-body collapse accordion-collapse accordion-body d-lg-block" id=post-toc aria-labelledby=post-toc-header><nav id=TableOfContents><ul><li><a href=#31-simple-build-files简单的构建文件>3.1 Simple build files（简单的构建文件）</a></li><li><a href=#32-project-structure项目结构>3.2 Project Structure（项目结构）</a></li><li><a href=#33-build-tasks构建任务>3.3 Build Tasks（构建任务）</a><ul><li><a href=#331-general-tasks通用任务>3.3.1 General Tasks（通用任务）</a></li><li><a href=#332-java-project-tasksjava项目的task>3.3.2 Java project tasks（Java项目的Task）</a></li><li><a href=#333-android-tasks>3.3.3 Android tasks</a></li></ul></li><li><a href=#34-basic-build-customization基本的构建定制>3.4 Basic Build Customization（基本的构建定制）</a><ul><li><a href=#341-manifest-entries-manifest属性>3.4.1 Manifest entries （Manifest属性）</a></li><li><a href=#342-build-types构建类型>3.4.2 Build Types（构建类型）</a></li><li><a href=#343-signing-configurations签名配置>3.4.3 signing configurations（签名配置）</a></li><li><a href=#344-running-proguard运行-proguard>3.4.4 Running Proguard（运行 Proguard）</a></li></ul></li></ul></nav></div></div></div></div></aside><div class=col-lg-8><div class=container><nav class="row card component" aria-label=breadcrumb><div class="card-body pb-0"><ol class=breadcrumb><li class="breadcrumb-item text-surface"><a href=https://www.qinxiandiqi.sbs/>主页</a></li><li class="breadcrumb-item text-surface"><a href=https://www.qinxiandiqi.sbs/posts/>Posts</a></li><li class="breadcrumb-item active">Android Gradle Plugin指南（二）——基本项目</li></ol></div></nav><div class="post-panel-wrapper position-sticky"><div class="d-flex flex-column component rounded post-panel position-absolute border"><a class="action action-panel-toggler" role=button title="Panel toggler"><i class="fas fa-fw fa-chevron-circle-down"></i></a>
+<a id=sidebarToggler class="action d-none d-lg-block" role=button title="Sidebar toggler"><i class="fas fa-fw fa-expand-alt" data-fa-transform=rotate-45></i></a>
+<a class="action btn-reward" role=button data-bs-toggle=modal data-bs-target=#rewardModal title=打赏><i class="fas fa-fw fa-coffee"></i></a>
+<a class=action href=#post-copyright role=button aria-label=Copyright title=Copyright><i class="fas fa-fw fa-copyright"></i></a>
+<a class=action href=#post-comments role=button aria-label=Comments title=Comments><i class="fas fa-fw fa-comments"></i></a>
+<a class=action href=#postTOC aria-controls="Table of contents" role=button title="Table of contents"><i class="fas fa-fw fa-list-alt"></i></a></div></div><article class="row card component mb-4 post"><div class=card-header><h1 class="card-title post-title my-2">Android Gradle Plugin指南（二）——基本项目</h1></div><div class=card-body><div class="post-meta mb-3"><span class="post-date me-1 mb-1" title="创建于 2014-07-14 04:00:56 +0000 UTC。">2014-07-14</span><span class="post-reading-time me-1 mb-1">15 分钟阅读</span><a href=https://www.qinxiandiqi.sbs/authors/jianan/ class="btn btn-sm btn-secondary mb-1 me-2 py-0 pe-1 post-taxonomy post-author">
+<i class="fas fa-fw fa-user me-1"></i>Jianan</a><a href=https://www.qinxiandiqi.sbs/categories/android-gradle/ class="btn btn-sm btn-secondary mb-1 me-2 py-0 pe-1 post-taxonomy post-category">
+<i class="fas fa-fw fa-folder me-1"></i>Android Gradle</a><a href=https://www.qinxiandiqi.sbs/categories/%E7%BF%BB%E8%AF%91/ class="btn btn-sm btn-secondary mb-1 me-2 py-0 pe-1 post-taxonomy post-category">
+<i class="fas fa-fw fa-folder me-1"></i>翻译</a><a href=https://www.qinxiandiqi.sbs/series/android-gradle/ class="btn btn-sm btn-secondary mb-1 me-2 py-0 pe-1 post-taxonomy post-series">
+<i class="fas fa-fw fa-columns me-1"></i>Android Gradle</a><a href=https://www.qinxiandiqi.sbs/tags/android-gradle/ class="btn btn-sm btn-secondary mb-1 me-2 py-0 pe-1 post-taxonomy post-tag">Android Gradle</a><a href=https://www.qinxiandiqi.sbs/tags/build-task/ class="btn btn-sm btn-secondary mb-1 me-2 py-0 pe-1 post-taxonomy post-tag">Build Task</a><a href=https://www.qinxiandiqi.sbs/tags/build-type/ class="btn btn-sm btn-secondary mb-1 me-2 py-0 pe-1 post-taxonomy post-tag">Build Type</a><a href=https://www.qinxiandiqi.sbs/tags/%E7%AD%BE%E5%90%8D%E9%85%8D%E7%BD%AE/ class="btn btn-sm btn-secondary mb-1 me-2 py-0 pe-1 post-taxonomy post-tag">签名配置</a><a href=https://www.qinxiandiqi.sbs/tags/%E9%A1%B9%E7%9B%AE%E7%BB%93%E6%9E%84/ class="btn btn-sm btn-secondary mb-1 me-2 py-0 pe-1 post-taxonomy post-tag">项目结构</a></div><div class="post-content mb-3" data-bs-spy=scroll data-bs-target=#TableOfContents tabindex=0><p>原文地址：&lt;http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-
+Basic-Project></p><h1 id=3basic-project基本项目 data-numberify>3、Basic Project（基本项目）<a class="anchor ms-1 d-none" href=#3basic-project基本项目>#</a></h1><p>一个Gradle项目的构建过程定义在build.gradle文件中，位于项目的根目录下。</p><h2 id=31-simple-build-files简单的构建文件 data-numberify>3.1 Simple build files（简单的构建文件）<a class="anchor ms-1 d-none" href=#31-simple-build-files简单的构建文件>#</a></h2><p>一个最简单的Gradle纯Java项目的build.gradle文件包含以下内容：</p><pre><code>    apply plugin: 'java'
+</code></pre><p>这里引入了Gradle的Java插件。这个插件提供了所有构建和测试Java应用程序所需要的东西。</p><p>最简单的Android项目的build.gradle文件包含以下内容：</p><pre><code>    buildscript {
+        repositories {
+            mavenCentral()
+        }
+
+        dependencies {
+            classpath 'com.android.tools.build:gradle:0.11.1'
+        }
+    }
+
+    apply plugin: 'android'
+
+    android {
+        compileSdkVersion 19
+
+        buildToolsVersion &quot;19.0.0&quot;
+
+    }
+</code></pre><p>这里包括了Android build file的3个主要部分：</p><p>buildscrip{&mldr;}这里配置了驱动构建过程的代码。<br>在这个部分，它声明了使用Maven仓库，并且声明了一个maven文件的依赖路径。这个文件就是包含了0.11.1版本android gradle插件的库。<br>注意：这里的配置只影响控制构建过程的代码，不影响项目源代码。项目本身需要声明自己的仓库和依赖关系，稍后将会提到这部分。</p><p>接下来，跟前面提到的Java Plugin一样添加了android plugin。</p><p>最后，andorid{&mldr;}配置了所有android构建过程需要的参数。这里也是Android DSL的入口点。<br>默认情况下，只需要配置目标编译SDK版本和编译工具版本，即compileSdkVersion和buildToolsVersion属性。<br>这个complieSdkVersion属性相当于旧构建系统中project.properites文件中的target属性。这个新的属性可以跟旧的target属性一样指定一个int或者String类型的值。</p><p>重要：你只能添加android plugin。同时添加java plugin会导致构建错误。</p><p>注意：你同样需要在相同路径下添加一个local.properties文件，并使用sdk.dir属性来设置SDK路径。<br>另外，你也可以通过设置ANDROID_HOME环境变量，这两种方式没有什么不同，根据你自己的喜好选择其中一种设置。</p><h2 id=32-project-structure项目结构 data-numberify>3.2 Project Structure（项目结构）<a class="anchor ms-1 d-none" href=#32-project-structure项目结构>#</a></h2><p>上面提到的基本的构建文件需要一个默认的文件夹结构。Gradle遵循约定优先于配置的概念，在可能的情况尽可能提供合理的默认配置参数。</p><p>基本的项目开始于两个名为“source sets”的组件，即main source code和test code。它们分别位于：<br>** * src/main/<br>* src/androidTest/**<br>里面每一个存在的文件夹对应相应的源组件。<br>对于Java plugin和Android plugin来说，它们的Java源代码和资源文件路径如下：<br>*** java/<br>* resources/**<br>但对于Android plugin来说，它还拥有以下特有的文件和文件夹结构：<br>** * AndroidManifest.xml<br>* res/<br>* assets/<br>* aidl/<br>* rs/<br>* jni/**<br>注意：src/androidTest/AndroidManifest.xml是不需要的，它会自动被创建。</p><p>3.2.1 Configuring the Structure（配置项目结构）</p><p>当默认的项目结构不适用的时候，你可能需要去配置它。根据Gradle文档，重新为Java项目配置sourceSets可以使用以下方法：</p><pre><code>    sourceSets {
+        main {
+            java {
+                srcDir 'src/java'
+
+            }
+
+            resources {
+
+                srcDir 'src/resources'
+
+            }
+
+        }
+    }
+</code></pre><p>注意：srcDir将会被添加到指定的已存在的源文件夹中（这在Gradle文档中没有提到，但是实际上确实会这样执行）。</p><p>替换默认的源代码文件夹，你可能想要使用能够传入一个路径数组的srcDirs来替换单一的srcDir。以下是使用调用对象的另一种不同方法：</p><pre><code>    sourceSets {
+        main.java.srcDirs = ['src/java']
+        main.resources.srcDirs = ['src/resources']
+    }
+</code></pre><p>想要获取更多信息，可以参考Gradle文档中关于<a href=http://gradle.org/docs/current/userguide/java_plugin.html target=_blank rel="noopener noreferrer">Java
+Pluign<i class="fas fa-external-link-square-alt ms-1"></i></a>的部分。</p><p>Android Plugin使用的是类似的语法。但是由于它使用的是自己的sourceSets，这些配置将会被添加在android对象中。<br>以下是一个示例，它使用了旧项目结构中的main源码，并且将androidTest sourceSet组件重新映射到tests文件夹。</p><pre><code>    android {
+        sourceSets {
+            main {
+                manifest.srcFile 'AndroidManifest.xml'
+                java.srcDirs = ['src']
+
+                resources.srcDirs = ['src']
+                aidl.srcDirs = ['src']
+
+                renderscript.srcDirs = ['src']
+
+                res.srcDirs = ['res']
+                assets.srcDirs = ['assets']
+
+            }
+
+
+            androidTest.setRoot('tests')
+        }
+    }
+</code></pre><p>注意：由于旧的项目结构将所有的源文件（java,aidl,renderscripthe和java资源文件）都放在同一个目录里面，所以我们需要将这些sourceSet组件重新映射到src目录下。<br>注意：setRoot()方法将移动整个组件（包括它的子文件夹）到一个新的文件夹。示例中将会移动scr/androidTest/*到tests/*下。<br>以上这些是Android特有的，如果配置在Java的sourceSets里面将不会有作用。</p><p>以上也是将旧构建系统项目迁移到新构建系统需要做的迁移工作。</p><h2 id=33-build-tasks构建任务 data-numberify>3.3 Build Tasks（构建任务）<a class="anchor ms-1 d-none" href=#33-build-tasks构建任务>#</a></h2><h3 id=331-general-tasks通用任务 data-numberify>3.3.1 General Tasks（通用任务）<a class="anchor ms-1 d-none" href=#331-general-tasks通用任务>#</a></h3><p>添加一个插件到构建文件中将会自动创建一系列构建任务( <strong>build tasks</strong>
+)去执行（注：gradle属于任务驱动型构建工具，它的构建过程是基于Task的）。Java plugin和Android plugin都会创建以下task：<br>** * assemble：<strong>这个task将会组合项目的所有输出。<br>** * check：<strong>这个task将会执行所有检查。<br>*** build：</strong> 这个task将会执行assemble和check两个task的所有工作<br>*** clean：</strong> 这个task将会清空项目的输出。<br>实际上assemble，check，build这三个task不做任何事情。它们只是一个Task标志，用来告诉android
+plugin添加实际需要执行的task去完成这些工作。</p><p>这就允许你去调用相同的task，而不需要考虑当前是什么类型的项目，或者当前项目添加了什么plugin。<br>例如，添加了findbugs plugin将会创建一个新的task并且让check task依赖于这个新的task。当check
+task被调用的时候，这个新的task将会先被调用。</p><p>在命令行环境中，你可以执行以下命令来获取更多高级别的task：</p><pre><code>    gradle tasks
+</code></pre><p>查看所有task列表和它们之间的依赖关系可以执行以下命令：</p><pre><code>    gradle tasks --all
+</code></pre><p>注意：Gradle会自动监视一个task声明的所有输入和输出。<br>两次执行build task并且期间项目没有任何改动，gradle将会使用UP-TO-
+DATE通知所有task。这意味着第二次build执行的时候不会请求任何task执行。这允许task之间互相依赖，而不会导致不需要的构建请求被执行。</p><h3 id=332-java-project-tasksjava项目的task data-numberify>3.3.2 Java project tasks（Java项目的Task）<a class="anchor ms-1 d-none" href=#332-java-project-tasksjava项目的task>#</a></h3><p>Java plugin主要创建了两个task，依赖于main task（一个标识性的task）：<br>*** assemble<br>* jar：**这个task创建所有输出<br>** * check<br>* test：**这个task执行所有的测试。<br>jar task自身直接或者间接依赖于其他task：classes task将会被调用于编译java源码。<br>testClasses task用于编译测试，但是它很少被调用，因为test task依赖于它（类似于classes task）。</p><p>通常情况下，你只需要调用到assemble和check，不需要其他task。</p><p>你可以在Gradle文档中查看<a href=http://gradle.org/docs/current/userguide/java_plugin.html target=_blank rel="noopener noreferrer">java
+plugin<i class="fas fa-external-link-square-alt ms-1"></i></a>的全部task。</p><h3 id=333-android-tasks data-numberify>3.3.3 Android tasks<a class="anchor ms-1 d-none" href=#333-android-tasks>#</a></h3><p>Android plugin使用相同的约定以兼容其他插件，并且附加了自己的标识性task，包括：<br>*** assemble：** 这个task用于组合项目中的所有输出。<br>** * check：**这个task用于执行所有检查。<br>** * connectedCheck：**这个task将会在一个指定的设备或者模拟器上执行检查，它们可以同时在所有连接的设备上执行。<br>** * deviceCheck：**通过APIs连接远程设备来执行检查，这是在CL服务器上使用的。<br>** * build：**这个task执行assemble和check的所有工作。<br>** * clean：**这个task清空项目的所有输出。<br>这些新的标识性task是必须的，以保证能够在没有设备连接的情况下执行定期检查。<br>注意build task不依赖于deviceCheck或者connectedCheck。</p><p>一个Android项目至少拥有两个输出：debug APK（调试版APK)和release
+APK（发布版APK）。每一个输出都拥有自己的标识性task以便能够单独构建它们。<br>** * assemble：<br>* assembleDebug<br>* assembleRelease**<br>它们都依赖于其它一些tasks以完成构建一个APK需要多个步骤。其中assemble
+task依赖于这两个task，所以执行assemble将会同时构建出两个APK。</p><p>小提示：gradle在命令行终端上支持骆驼命名法的task简称，例如，执行gradle aR命令等同于执行gradle assembleRelease。</p><p>check task也拥有自己的依赖：<br>** * check：<br>* lint<br>* connectedCheck：<br>* connectedAndroidTest<br>* connectedUiAutomatorTest(目前还没有应用到）<br>* deviceCheck: **这个test依赖于test创建时，其它实现测试扩展点的插件。</p><p>最后，只要task能够被安装（那些要求签名的task），android plugin就会为所有构建类型（debug，release，test）安装或者卸载。</p><h2 id=34-basic-build-customization基本的构建定制 data-numberify>3.4 Basic Build Customization（基本的构建定制）<a class="anchor ms-1 d-none" href=#34-basic-build-customization基本的构建定制>#</a></h2><p>Android plugin提供了大量DSL用于直接从构建系统定制大部分事情。</p><h3 id=341-manifest-entries-manifest属性 data-numberify>3.4.1 Manifest entries （Manifest属性）<a class="anchor ms-1 d-none" href=#341-manifest-entries-manifest属性>#</a></h3><p>通过SDL可以配置一下manifest选项：<br>** * minSdkVersion<br>* targetSdkVersion<br>* versionName<br>* packageName<br>* package Name for the test application<br>* Instrumentation test runner**<br>例如：</p><pre><code>    android {
+        compileSdkVersion 19
+
+        buildToolsVersion &quot;19.0.0&quot;
+
+
+        defaultConfig {
+            versionCode 12
+
+            versionName &quot;2.0&quot;
+
+            minSdkVersion 16
+            targetSdkVersion 16
+        }
+    }
+</code></pre><p>在android元素中的defaultConfig元素中定义所有配置。</p><p>之前的Android
+Plugin版本使用packageName来配置manifest文件中的packageName属性。从0.11.0版本开始，你需要在build.gradle文件中使用applicationId来配置manifest文件中的packageName属性。<br>这是为了消除应用程序的packageName（也是程序的ID）和java包名所引起的混乱。</p><p>在构建文件中定义的强大之处在于它是动态的。<br>例如，可以从一个文件中或者其它自定义的逻辑代码中读取版本信息：</p><pre><code>    def computeVersionName() {
+        ...
+    }
+
+    android {
+        compileSdkVersion 19
+        buildToolsVersion &quot;19.0.0&quot;
+
+        defaultConfig {
+            versionCode 12
+            versionName computeVersionName()
+            minSdkVersion 16
+            targetSdkVersion 16
+        }
+    }
+</code></pre><p>注意：不要使用与在给定范围内的getter方法可能引起冲突的方法名。例如，在defaultConfig{&mldr;}中调用getVersionName()将会自动调用defaultConfig.getVersionName()方法，你自定义的getVersionName()方法就被取代掉了。</p><p>如果一个属性没有使用DSL进行设置，一些默认的属性值将会被使用。以下表格是可能使用到的值：</p><table><thead><tr><th>Property Name</th><th>Default value in DSL object</th><th>Default value</th></tr></thead><tbody><tr><td>versionCode</td><td>-1</td><td>value from manifest if present</td></tr><tr><td>versionName</td><td>null</td><td>value from manifest if present</td></tr><tr><td>minSdkVersion</td><td>-1</td><td>value from manifest if present</td></tr><tr><td>targetSdkVersion</td><td>-1</td><td>value from manifest if present</td></tr><tr><td>packageName</td><td>packageName</td><td>value from manifest if present</td></tr><tr><td>testPackageName</td><td>null</td><td>app package name + “.test”</td></tr><tr><td>testInstrumentationRunner</td><td>null</td><td>android.test.InstrumentationTestRunner</td></tr><tr><td>signingConfig</td><td>null</td><td>null</td></tr><tr><td>proguardFile</td><td>N/A (set only)</td><td>N/A (set only)</td></tr><tr><td>proguardFiles</td><td>N/A (set only)</td><td>N/A (set only)</td></tr></tbody></table><p>如果你在构建脚本中使用自定义代码逻辑请求这些属性，那么第二列的值将非常重要。例如，你可能会写：</p><pre><code>    if (android.defaultConfig.testInstrumentationRunner == null) {
+        // assign a better default...
+    }
+</code></pre><p>如果这个值一直保持null，那么在构建执行期间将会实际替换成第三列的默认值。但是在DSL元素中并没有包含这个默认值，所以，你无法查询到这个值。<br>除非是真的需要，这是为了预防解析应用的manifest文件。</p><h3 id=342-build-types构建类型 data-numberify>3.4.2 Build Types（构建类型）<a class="anchor ms-1 d-none" href=#342-build-types构建类型>#</a></h3><p>默认情况下，Android Plugin会自动给项目设置同时构建应用程序的debug和release版本。<br>两个版本之间的不同主要围绕着能否在一个安全设备上调试，以及APK如何签名。</p><p>Debug版本采用使用通用的name/password键值对自动创建的数字证书进行签名，以防止构建过程中出现请求信息。Release版本在构建过程中没有签名，需要稍后再签名。</p><p>这些配置通过一个BuildType对象来配置。默认情况下，这两个实例都会被创建，分别是一个debug版本和一个release版本。</p><p>Android plugin允许像创建其他构建类型一样定制debug和release实例。这需要在buildTypes的DSL容器中配置：</p><pre><code>    android {
+        buildTypes {
+            debug {
+                applicationIdSuffix &quot;.debug&quot;
+
+            }
+
+            jnidebug.initWith(buildTypes.debug)
+            jnidebug {
+                packageNameSuffix &quot;.jnidebug&quot;
+                jnidebugBuild true
+            }
+        }
+    }
+</code></pre><p>以上代码片段实现了以下功能：<br>* 配置默认的debug构建类型：将debug版本的包名设置为.debug以便能够同时在一台设备上安装debug和release版本的apk。<br>* 创建了一个名为“jnidebug”的新构建类型，并且这个构建类型是debug构建类型的一个副本。<br>* 继续配置jnidebug构建类型，允许使用JNI组件，并且也添加了不一样的包名后缀。</p><p>创建一个新的构建类型就是简单的在buildType标签下添加一个新的元素，并且可以使用initWith()或者直接使用闭包来配置它。</p><p>以下是一些可能使用到的属性和默认值：</p><table><thead><tr><th>Property name</th><th>Default values for debug</th><th>Default values for release / other</th></tr></thead><tbody><tr><td>debuggable</td><td>debuggable</td><td>false</td></tr><tr><td>jniDebugBuild</td><td>false</td><td>false</td></tr><tr><td>renderscriptDebugBuild</td><td>false</td><td>false</td></tr><tr><td>renderscriptOptimLevel</td><td>3</td><td>3</td></tr><tr><td>packageNameSuffix</td><td>null</td><td>null</td></tr><tr><td>versionNameSuffix</td><td>null</td><td>null</td></tr><tr><td>signingConfig</td><td>android.signingConfigs.debug</td><td>null</td></tr><tr><td>zipAlign</td><td>false</td><td>true</td></tr><tr><td>runProguard</td><td>false</td><td>false</td></tr><tr><td>proguardFile</td><td>N/A (set only)</td><td>N/A (set only)</td></tr><tr><td>proguardFiles</td><td>N/A (set only)</td><td>N/A (set only)</td></tr></tbody></table><p>除了以上属性之外，Build Type还会受项目源码和资源影响：<br>对于每一个Build Type都会自动创建一个匹配的sourceSet。默认的路径为：</p><pre><code>    src/&lt;buildtypename&gt;/
+</code></pre><p>这意味着BuildType名称不能是main或者androidTest（因为这两个是由plugin强制实现的），并且他们互相之间都必须是唯一的。</p><p>跟其他sourceSet设置一样，Build Type的source set路径可以重新被定向：</p><pre><code>    android {
+        sourceSets.jnidebug.setRoot('foo/jnidebug')
+    }
+</code></pre><p>另外，每一个Build Type都会创建一个新的assemble任务。</p><p>assembleDebug和assembleRelease两个Task在上面已经提到过，这里要讲这两个Task从哪里被创建。当debug和release构建类型被预创建的时候，它们的tasks就会自动创建对应的这个两个Task。</p><p>上面提到的build.gradle代码片段中也会实现assembleJnidebug
+task，并且assemble会像依赖于assembleDebug和assembleRelease一样依赖于assembleJnidebug。</p><p>提示：你可以在终端下输入gradle aJ去运行assembleJnidebug task。</p><p>可能会使用到的情况：<br>** * release模式不需要，只有debug模式下才使用到的权限<br>* 自定义的debug实现<br>* 为debug模式使用不同的资源（例如当资源的值由绑定的证书决定）**<br>BuildType的代码和资源通过以下方式被使用：<br>** * manifest将被混合进app的manifest<br>* 代码行为只是另一个资源文件夹<br>* 资源将叠加到main的资源中，并替换已存在的资源。**</p><h3 id=343-signing-configurations签名配置 data-numberify>3.4.3 signing configurations（签名配置）<a class="anchor ms-1 d-none" href=#343-signing-configurations签名配置>#</a></h3><p>对一个应用程序签名需要以下：<br>** * 一个Keystory<br>* 一个keystory密码<br>* 一个key的别名<br>* 一个key的密码<br>* 存储类型**<br>位置，键名，两个密码，还有存储类型一起形成了签名配置。</p><p>默认情况下，debug被配置成使用一个debug keystory。debug keystory使用了默认的密码和默认key及默认的key密码。<br>debug keystory的位置在$HOME/.android/debug.keystroe，如果对应位置不存在这个文件将会自动创建一个。</p><p>debug构建类型会自动使用debug签名配置。</p><p>可以创建其他配置或者自定义内建的默认配置。通过signingConfigs这个DSL容器来配置：</p><pre><code>    android {
+        signingConfigs {
+            debug {
+                storeFile file(&quot;debug.keystore&quot;)
+            }
+
+            myConfig {
+                storeFile file(&quot;other.keystore&quot;)
+                storePassword &quot;android&quot;
+                keyAlias &quot;androiddebugkey&quot;
+                keyPassword &quot;android&quot;
+            }
+        }
+
+        buildTypes {
+            foo {
+                debuggable true
+                jniDebugBuild true
+                signingConfig signingConfigs.myConfig
+            }
+        }
+    }
+</code></pre><p>以上代码片段修改debug keystory的路径到项目的根目录下。在这个例子中，这将自动影响其他使用到debug构建类型的构建类型。</p><p>这里也创建了一个新的Single Config（签名配置）和一个使用这个新签名配置的新的Build Type（构建类型）。</p><p>注意：只有默认路径下的debug keystory不存在时会被自动创建。更改debug keystory的路径并不会自动在新路径下创建debug
+keystory。如果创建一个新的不同名字的SignConfig，但是使用默认的debug
+keystore路径来创建一个非默认的名字的SigningConing，那么还是会在默认路径下创建debug
+keystory。换句话说，会不会自动创建是根据keystory的路径来判断，而不是配置的名称。</p><p>注意：虽然经常使用项目根目录的相对路径作为keystore的路径，但是也可以使用绝对路径，尽管这并不推荐（除了自动创建出来的debug keystore）。</p><p>注意：如果你将这些文件添加到版本控制工具中，你可能不希望将密码直接写到这些文件中。下面Stack
+Overflow链接提供从控制台或者环境变量中获取密码的方法：<br>&lt;http://stackoverflow.com/questions/18328730/how-to-create-a-release-signed-
+apk-file-using-gradle><br>我们以后还会在这个指南中添加更多的详细信息。</p><h3 id=344-running-proguard运行-proguard data-numberify>3.4.4 Running Proguard（运行 Proguard）<a class="anchor ms-1 d-none" href=#344-running-proguard运行-proguard>#</a></h3><p>从Gradle Plugin for ProGuard version
+4.10之后就开始支持ProGuard。ProGuard插件是自动添加进来的。如果Build
+Type的runProguard属性被设置为true，对应的task将会自动创建。</p><pre><code>android {
+    buildTypes {
+        release {
+            runProguard true
+            proguardFile getDefaultProguardFile('proguard-android.txt')
+        }
+    }
+
+    productFlavors {
+        flavor1 {
+        }
+        flavor2 {
+            proguardFile 'some-other-rules.txt'
+        }
+
+    }
+}
+</code></pre><p>发布版本将会使用它的Build Type中声明的规则文件，product flavor（定制的产品版本）将会使用对应flavor中声明的规则文件。</p><p>这里有两个默认的规则文件：<br>** * proguard-android.txt<br>* proguard-android-optimize.txt**<br>这两个文件都在SDK的路径下。使用getDefaultProguardFile()可以获取这些文件的完整路径。它们除了是否要进行优化之外，其它都是相同的。<br>[](<a href=http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Basic- target=_blank rel="noopener noreferrer">http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Basic-<i class="fas fa-external-link-square-alt ms-1"></i></a>
+Project)</p></div><div class="modal fade" id=rewardModal tabindex=-1 aria-labelledby=rewardModalLabel aria-hidden=true><div class=modal-dialog><div class="modal-content surface"><div class=modal-header><h5 class="modal-title text-surface" id=rewardModalLabel><i class="fas fa-fw fa-coffee me-1"></i>打赏</h5><a href=# data-bs-dismiss=modal class=btn-close aria-label=Close></a></div><div class=modal-body><ul class="nav nav-tabs mb-3" role=tablist><li class="nav-item text-nowrap" role=presentation><a class="nav-link active" id=reward-alipay-tab data-bs-toggle=tab href=#reward-alipay role=tab aria-controls=reward-alipay aria-selected=true><i class="fab fa-fw fa-alipay me-1"></i>支付宝</a></li><li class="nav-item text-nowrap" role=presentation><a class=nav-link id=reward-wechat-tab data-bs-toggle=tab href=#reward-wechat role=tab aria-controls=reward-wechat aria-selected=true><i class="fab fa-fw fa-weixin me-1"></i>微信</a></li></ul><div class=tab-content id=rewardTabContent><div class="tab-pane fade post-reward-content text-center show active" id=reward-alipay role=tabpanel aria-labelledby=reward-alipay-tab><img class="img-fluid post-reward-img" src=https://www.qinxiandiqi.sbs/images/reward/alipay.jpg loading=lazy data-viewer-invisible></div><div class="tab-pane fade post-reward-content text-center show" id=reward-wechat role=tabpanel aria-labelledby=reward-wechat-tab><img class="img-fluid post-reward-img" src=https://www.qinxiandiqi.sbs/images/reward/wechat.png loading=lazy data-viewer-invisible></div></div></div></div></div></div></div><div class=card-footer><div class="post-navs d-flex justify-content-evenly"><div class="post-nav post-prev"><i class="fas fa-fw fa-chevron-down post-prev-icon me-1" data-fa-transform=rotate-90></i>
+<a href=https://www.qinxiandiqi.sbs/posts/android/androidgradleplugin/androidgradleplugin%E6%8C%87%E5%8D%97%E4%B8%80%E7%AE%80%E4%BB%8B/>Android Gradle Plugin指南（一）——简介</a></div><div class="post-nav post-next"><a href=https://www.qinxiandiqi.sbs/posts/android/androidgradleplugin/androidgradleplugin%E6%8C%87%E5%8D%97%E4%B8%89%E4%BE%9D%E8%B5%96%E5%85%B3%E7%B3%BBandroid%E5%BA%93%E5%92%8C%E5%A4%9A%E9%A1%B9%E7%9B%AE%E9%85%8D%E7%BD%AE/>Android Gradle Plugin指南（三）——依赖关系、android库和多项目配置</a>
+<i class="fas fa-fw fa-chevron-down post-next-icon ms-1" data-fa-transform=rotate-270></i></div></div></div></article><div class="post-copyright mb-3 row card component" id=post-copyright><div class=card-header><h2 class="card-title fs-4 my-2 text-surface">版权</h2></div><div class=card-body><a class="d-flex align-items-center flex-column" target=_blank rel="license noopener noreferrer" href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh><span><i class="fab fa-fw fa-2x fa-creative-commons"></i><i class="fab fa-fw fa-2x fa-creative-commons-by"></i><i class="fab fa-fw fa-2x fa-creative-commons-nc"></i><i class="fab fa-fw fa-2x fa-creative-commons-nd"></i></span>
+CC BY-NC-ND 4.0</a></div></div><section class="related-posts row card component"><div class=card-header><h2 class="card-title fs-4 my-2 text-surface">相关文章</h2></div><div class=card-body><ul class="post-list list-unstyled"><li class="mb-3 border-bottom"><a class=post-title href=https://www.qinxiandiqi.sbs/posts/android/androidgradleplugin/androidgradleplugin%E6%8C%87%E5%8D%97%E4%B8%80%E7%AE%80%E4%BB%8B/>Android Gradle Plugin指南（一）——简介</a>
+<span class="post-meta post-date float-end">2014-07-14</span><div class="post-summary my-3"><p>原文地址：http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Introduction
+译者：google推出了全新的Android Studio集成开发环境，其中Android项目的结构与Eclipse的Android项目结构有很大的区别，原因就在于两开发环境使用的构建工具不同。Android Studi</p><div><a class="btn btn-sm btn-outline-primary btn-read-more" href=https://www.qinxiandiqi.sbs/posts/android/androidgradleplugin/androidgradleplugin%E6%8C%87%E5%8D%97%E4%B8%80%E7%AE%80%E4%BB%8B/>阅读更多</a></div></div></li><li class="mb-3 border-bottom"><a class=post-title href=https://www.qinxiandiqi.sbs/posts/ant%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/>Ant学习笔记</a>
+<span class="post-meta post-date float-end">2014-07-11</span><div class="post-summary my-3"><p>1、Ant（another neat tool）是一个基于Java的生成工具，其作用类似于命令的批处理，通过设置一个xml文件后，Ant将会执行xml文件中指定的系列命令。这对于随着应用程序的生成过程变得更加复杂，又需要确保在每次生成期间都使用精确相同的生成步骤，同时实现尽可能多的自动化，以便于及时产生一致的生成版本非常重要。
+2、Ant是基于命令行操作的。单纯使用ant命令时，Ant将会在</p><div><a class="btn btn-sm btn-outline-primary btn-read-more" href=https://www.qinxiandiqi.sbs/posts/ant%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/>阅读更多</a></div></div></li><li class="mb-3 border-bottom"><a class=post-title href=https://www.qinxiandiqi.sbs/posts/javascript/javascript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/javascript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%85%AD%E8%AE%B0/>JavaScript学习笔记 第六记</a>
+<span class="post-meta post-date float-end">2014-07-11</span><div class="post-summary my-3"><p>1、浏览器的事件机制：冒泡事件机制，IE浏览器的冒泡机制是内容元素的事件处理后逐层抛出给外层元素进行事件处理，其它浏览器基本沿用这个方向，但也有相反的。
+2、浏览器自动生成的事件对象even方法.stopPropagation()可以阻断事件继续冒泡到下一层，而.perventDeafult()可以阻止这个对象的默认行为，如表单对象的action事件默认行为是提交表单。而在事件处理方法中使用</p><div><a class="btn btn-sm btn-outline-primary btn-read-more" href=https://www.qinxiandiqi.sbs/posts/javascript/javascript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/javascript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%85%AD%E8%AE%B0/>阅读更多</a></div></div></li><li class="mb-3 border-bottom"><a class=post-title href=https://www.qinxiandiqi.sbs/posts/javascript/javascript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/javascript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%BA%94%E8%AE%B0/>JavaScript学习笔记 第五记</a>
+<span class="post-meta post-date float-end">2014-07-11</span><div class="post-summary my-3"><p>1、jquery对象的两个方法.html()返回的是标签对象包含的html内容（包括包含的其它标签元素一并输出），而.text()返回的是标签对象最终显示的文本格式（包含的其它格式标签作用在文本后输出最终的文本格式）。
+2、jquery过滤选择器的表单对象属性过滤选择器：     1）:enabled选择器：$("#form1 :enabled")，选取id为form1的表单内所有可用的元</p><div><a class="btn btn-sm btn-outline-primary btn-read-more" href=https://www.qinxiandiqi.sbs/posts/javascript/javascript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/javascript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E4%BA%94%E8%AE%B0/>阅读更多</a></div></div></li><li class="mb-3 border-bottom"><a class=post-title href=https://www.qinxiandiqi.sbs/posts/javascript/javascript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/javascript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%9B%9B%E8%AE%B0/>JavaScript学习笔记 第四记</a>
+<span class="post-meta post-date float-end">2014-07-11</span><div class="post-summary my-3"><p>1、选择器的目的是为了获取页面中的标签元素，jquery提供了四类选择器：基本选择器、层次选择器、过滤选择器、表单选择器。
+2、jquery的基本选择器：     1）ID选择器：$("#idvalue")，选取id为idvalue的元素。返回的数组中只有一个元素，即使页面中存在多个相同id的元素也只获得最前面的元素，因为ID本来就不提倡同个页面中出现多个。     2）类选择器：$("</p><div><a class="btn btn-sm btn-outline-primary btn-read-more" href=https://www.qinxiandiqi.sbs/posts/javascript/javascript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/javascript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%9B%9B%E8%AE%B0/>阅读更多</a></div></div></li></ul></div></section><div class="card component row post-comments" id=post-comments><div class=card-header><h2 class="card-title my-2 fs-4 text-surface">评论</h2></div><div class=card-body><script src=https://utteranc.es/client.js repo=qinxiandiqi/qinxiandiqi.github.io issue-term=pathname label=comment theme=github-light crossorigin=anonymous async></script></div></div></div></div></div></main><footer class="footer mt-auto py-3 text-center container"><div class="offcanvas offcanvas-bottom h-auto" tabindex=-1 id=offcanvasActionsPanel aria-labelledby=offcanvasActionsPanelLabel><div class=offcanvas-header><h5 class="offcanvas-title fs-4" id=offcanvasActionsPanelLabel><i class="fas fa-fw fa-th-large me-1"></i>
+操作</h5><button type=button class="btn-close ms-auto" data-bs-dismiss=offcanvas data-bs-target=offcanvasActionsPanel aria-label=Close></button></div><div class="offcanvas-body mt-2"><div class="social-share mb-4 d-flex overflow-auto"><a class="btn-social-share d-flex flex-column align-items-center me-3" rel="noopener noreferrer" aria-label="Twitter Share Button" target=_blank href="https://twitter.com/intent/tweet?title=Android%20Gradle%20Plugin%e6%8c%87%e5%8d%97%ef%bc%88%e4%ba%8c%ef%bc%89%e2%80%94%e2%80%94%e5%9f%ba%e6%9c%ac%e9%a1%b9%e7%9b%ae&url=https%3a%2f%2fwww.qinxiandiqi.sbs%2fposts%2fandroid%2fandroidgradleplugin%2fandroidgradleplugin%25E6%258C%2587%25E5%258D%2597%25E4%25BA%258C%25E5%259F%25BA%25E6%259C%25AC%25E9%25A1%25B9%25E7%259B%25AE%2f"><i class="fab fa-2x fa-fw fa-twitter mb-2"></i> Twitter</a>
+<a class="btn-social-share d-flex flex-column align-items-center me-3" rel="noopener noreferrer" aria-label="Facebook Share Button" target=_blank href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fwww.qinxiandiqi.sbs%2fposts%2fandroid%2fandroidgradleplugin%2fandroidgradleplugin%25E6%258C%2587%25E5%258D%2597%25E4%25BA%258C%25E5%259F%25BA%25E6%259C%25AC%25E9%25A1%25B9%25E7%259B%25AE%2f"><i class="fab fa-2x fa-fw fa-facebook-f mb-2"></i> Facebook</a></div><hr class=mb-4><div class="actions d-flex overflow-auto align-items-center"><a role=button class="action action-go-back d-flex flex-column align-items-center me-3" href="javascript: window.history.back();"><span class="action-icon mb-2"><i class="fas fa-2x fa-chevron-circle-down" data-fa-transform=rotate-90></i></span> 返回</a>
+<a role=button class="action action-reload-page d-flex flex-column align-items-center me-3"><span class="action-icon mb-2"><i class="fas fa-2x fa-redo-alt"></i></span> 刷新</a>
+<a role=button class="action action-copy-url d-flex flex-column align-items-center me-3"><span class="action-icon mb-2"><i class="fas fa-2x fa-link"></i></span> 复制链接</a></div></div></div><ul class="nav justify-content-between footer-memu mb-3"><li class=nav-item><ul class="nav flex-column align-items-start"><li class=nav-item><a class="nav-link fw-bold fs-lg" href="javascript: void(0);">support</a></li><li class=nav-item><a class=nav-link href=/contact/><i class="fas fa-fw fa-info-circle"></i>联系我</a></li></ul></li></ul><nav class="social-links nav justify-content-center mb-2"><a class="nav-link social-link" target=_blank href=https://space.bilibili.com/438403014 title=bilibili rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-bilibili"></i></a>
+<a class="nav-link social-link" href=mailto:qinxiandiqi@foxmail.com title=Email><i class="fas fa-fw fa-2x fa-envelope"></i></a>
+<a class="nav-link social-link" target=_blank href=https://facebook.com/qinxiandiqi title=Facebook rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-facebook-f"></i></a>
+<a class="nav-link social-link" target=_blank href=https://github.com/qinxiandiqi title=GitHub rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-github"></i></a>
+<a class="nav-link social-link" target=_blank href="http://wpa.qq.com/msgrd?v=3&uin=493059154&site=qq&menu=yes" title=QQ rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-qq"></i></a>
+<a class="nav-link social-link" target=_blank href=https://twitter.com/qinxiandiqi title=Twitter rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-twitter"></i></a>
+<a class="nav-link social-link" target=_blank href=https://weibo.com/qinxiandiqi title=Weibo rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-weibo"></i></a>
+<a class="nav-link social-link" target=_blank href=https://www.zhihu.com/people/qinxiandiqi title=Zhihu rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-zhihu"></i></a>
+<a class="nav-link social-link" target=_blank href=https://www.qinxiandiqi.sbs/index.xml title=RSS rel="noopener noreferrer"><i class="fas fa-fw fa-2x fa-rss"></i></a></nav><div class="copyright mb-2">Copyright © 2012-2022 Jianan. All Rights Reserved.</div><div class="powered-by mb-2">Powered by <a class=text-primary href=https://gohugo.io target=_blank rel="noopener noreferrer">Hugo</a> and the <a class=text-primary href=https://github.com/razonyang/hugo-theme-bootstrap target=_blank rel="noopener noreferrer">HBS</a> theme.</div></footer><script data-precache src=https://www.qinxiandiqi.sbs/assets/main/bundle.min.6d6041952a17e1bf66466a0f64cb4314a10db145ad16ec1882d7a787599f41ff.js integrity="sha256-bWBBlSoX4b9mRmoPZMtDFKENsUWtFuwYgtenh1mfQf8=" crossorigin=anonymous defer></script><script data-precache src=https://www.qinxiandiqi.sbs/assets/icons/bundle.min.9b65a1892e3a9ee67ad669fdde6abd4963c890151073f181b3e730bce85680a6.js integrity="sha256-m2WhiS46nuZ61mn93mq9SWPIkBUQc/GBs+cwvOhWgKY=" crossorigin=anonymous defer></script>
+<script data-precache src=https://www.qinxiandiqi.sbs/assets/viewer/bundle.min.9f713149f059d05fcb65e7f7c27308e61c384500e80ab1c333c2510a36a5d70c.js integrity="sha256-n3ExSfBZ0F/LZef3wnMI5hw4RQDoCrHDM8JRCjal1ww=" crossorigin=anonymous defer></script><script>"serviceWorker"in navigator&&window.addEventListener("load",()=>{navigator.serviceWorker.register("https://www.qinxiandiqi.sbs/service-worker.min.js").then(function(e){console.log("Successfully registered service worker",e)}).catch(function(e){console.warn("Error whilst registering service worker",e)})})</script></body></html>

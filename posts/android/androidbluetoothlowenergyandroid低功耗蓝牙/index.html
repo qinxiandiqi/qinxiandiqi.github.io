@@ -1,0 +1,441 @@
+<!doctype html><html class=position-relative itemscope itemtype=http://schema.org/WebPage lang=zh-cn data-theme=auto data-bs-theme=auto data-palette=purple><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Android Bluetooth Low Energy（Android低功耗蓝牙） - 琴弦第七</title><link rel=icon href=https://www.qinxiandiqi.sbs/favicon_huc1d2ba7c7d6d5aa3e01f2f328b911c53_11507_16x16_resize_box_3.png sizes=16x16 type=image/png><link rel=icon href=https://www.qinxiandiqi.sbs/favicon_huc1d2ba7c7d6d5aa3e01f2f328b911c53_11507_32x32_resize_box_3.png sizes=32x32 type=image/png><link rel=apple-touch-icon href=https://www.qinxiandiqi.sbs/favicon_huc1d2ba7c7d6d5aa3e01f2f328b911c53_11507_180x180_resize_box_3.png sizes=180x180 type=image/png><link rel=icon href=https://www.qinxiandiqi.sbs/favicon_huc1d2ba7c7d6d5aa3e01f2f328b911c53_11507_150x150_resize_box_3.png sizes=150x150 type=image/png><link rel=icon href=https://www.qinxiandiqi.sbs/favicon_huc1d2ba7c7d6d5aa3e01f2f328b911c53_11507_192x192_resize_box_3.png sizes=192x192 type=image/png><link rel=mask-icon href=https://www.qinxiandiqi.sbs/safari-pinned-tab.svg color=#6f42c1><link rel=icon href="https://www.qinxiandiqi.sbs/images/icons/favicon.ico?version=2a4098caa2eb82a1f873269b3ff57965"><meta name=keywords content><meta name=description content="Android 4.3（API Level 18）开始引入Bluetooth Low Energy（BLE，低功耗蓝牙）的核心功能并提供了相应的API，应用程序通过这些api可以扫描设备、查询services，读写设备的characteristics（属性特征）。对比传统的蓝牙，BLE的设计能够显著减低功耗。这让Android应用程序与BLE设备之间的低功耗通讯成为可能，例如距离传感器、心率监视器"><meta name=robots content="index, follow"><meta name=twitter:card content="summary"><meta name=twitter:title content="Android Bluetooth Low Energy（Android低功耗蓝牙）"><meta name=twitter:description content="Android 4.3（API Level 18）开始引入Bluetooth Low Energy（BLE，低功耗蓝牙）的核心功能并提供了相应的API，应用程序通过这些api可以扫描设备、查询services，读写设备的characteristics（属性特征）。对比传统的蓝牙，BLE的设计能够显著减低功耗。这让Android应用程序与BLE设备之间的低功耗通讯成为可能，例如距离传感器、心率监视器"><meta name=twitter:site content="@qinxiandiqi"><meta property="og:title" content="Android Bluetooth Low Energy（Android低功耗蓝牙）"><meta property="og:description" content="Android 4.3（API Level 18）开始引入Bluetooth Low Energy（BLE，低功耗蓝牙）的核心功能并提供了相应的API，应用程序通过这些api可以扫描设备、查询services，读写设备的characteristics（属性特征）。对比传统的蓝牙，BLE的设计能够显著减低功耗。这让Android应用程序与BLE设备之间的低功耗通讯成为可能，例如距离传感器、心率监视器"><meta property="og:type" content="article"><meta property="og:url" content="https://www.qinxiandiqi.sbs/posts/android/androidbluetoothlowenergyandroid%E4%BD%8E%E5%8A%9F%E8%80%97%E8%93%9D%E7%89%99/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2014-11-03T15:31:51+08:00"><meta property="article:modified_time" content="2014-11-03T15:31:51+08:00"><meta property="og:see_also" content="https://www.qinxiandiqi.sbs/posts/android/android%E7%9A%84%E8%BF%9B%E7%A8%8B%E4%BC%98%E5%85%88%E7%BA%A7/"><meta property="og:see_also" content="https://www.qinxiandiqi.sbs/posts/android/android%E7%9A%84%E5%B1%9E%E6%80%A7%E5%8A%A8%E7%94%BB/"><meta property="og:see_also" content="https://www.qinxiandiqi.sbs/posts/android/android%E7%9A%84%E5%AE%9A%E4%BD%8D%E7%AD%96%E7%95%A5/"><meta property="og:see_also" content="https://www.qinxiandiqi.sbs/posts/android/android%E6%9D%83%E9%99%90%E7%9A%84%E6%9C%80%E4%BD%B3%E8%BF%90%E7%94%A8/"><meta property="og:see_also" content="https://www.qinxiandiqi.sbs/posts/android/app%E5%9C%A8android6.0%E6%88%96%E4%BB%A5%E4%B8%8A%E5%B9%B3%E5%8F%B0%E7%89%88%E6%9C%AC%E8%BF%90%E8%A1%8C%E8%BF%87%E7%A8%8B%E4%B8%AD%E8%AF%B7%E6%B1%82%E6%9D%83%E9%99%90/"><meta property="og:see_also" content="https://www.qinxiandiqi.sbs/posts/android/android%E7%9A%84%E6%9D%83%E9%99%90%E5%A3%B0%E6%98%8E/"><meta itemprop=name content="Android Bluetooth Low Energy（Android低功耗蓝牙）"><meta itemprop=description content="Android 4.3（API Level 18）开始引入Bluetooth Low Energy（BLE，低功耗蓝牙）的核心功能并提供了相应的API，应用程序通过这些api可以扫描设备、查询services，读写设备的characteristics（属性特征）。对比传统的蓝牙，BLE的设计能够显著减低功耗。这让Android应用程序与BLE设备之间的低功耗通讯成为可能，例如距离传感器、心率监视器"><meta itemprop=datePublished content="2014-11-03T15:31:51+08:00"><meta itemprop=dateModified content="2014-11-03T15:31:51+08:00"><meta itemprop=wordCount content="5620"><meta itemprop=keywords content="android,bluetooth,BLE,蓝牙,低功耗,"><meta property="og:image" content="https://www.qinxiandiqi.sbs/images/logo.png"><meta name=twitter:image content="https://www.qinxiandiqi.sbs/images/logo.png"><link rel=manifest href=https://www.qinxiandiqi.sbs/manifest.json><link data-precache rel=stylesheet href="https://www.qinxiandiqi.sbs/assets/main/bundle.min.4d0a628e427af2df862b411feced006985e5e7f4abf1d52b690dcf44facac475.css" integrity="sha256-TQpijkJ68t+GK0Ef7O0AaYXl5/Sr8dUraQ3PRPrKxHU=" crossorigin=anonymous><link data-precache rel=stylesheet href=https://www.qinxiandiqi.sbs/assets/viewer/bundle.min.6d0fc65b8b058ac563091dc5c36f61afba5dd705058680aa24f1d5a3bcf0064d.css integrity="sha256-bQ/GW4sFisVjCR3Fw29hr7pd1wUFhoCqJPHVo7zwBk0=" crossorigin=anonymous></head><body><script>const items=["theme","palette"];items.forEach(function(e){const t=localStorage.getItem("hbs:"+e);t&&document.body.parentElement.setAttribute("data-"+e,t)})</script><header><nav class="top-app-bar shadow navbar navbar-expand-lg fixed-top"><div class=container><a class="navbar-brand d-flex align-items-center flex-grow-1 flex-lg-grow-0 text-lg-start ms-2 ms-lg-0 mx-auto me-lg-2" href=https://www.qinxiandiqi.sbs/><picture><img class=logo alt=Logo src=https://www.qinxiandiqi.sbs/images/logo.png loading=lazy width=500 height=500>
+</picture>琴弦第七</a>
+<button class="navbar-toggler order-5" type=button data-bs-toggle=offcanvas data-bs-target=#navbarMenus aria-controls=navbarMenus aria-expanded=false aria-label="Toggle navigation">
+<i class="fas fa-ellipsis-h"></i></button><div class="offcanvas-lg offcanvas-end flex-grow-1" data-bs-scroll=true tabindex=-1 id=navbarMenus aria-labelledby=navbarMenusLabel><div class="offcanvas-header px-4 pb-0"><h5 class=offcanvas-title id=navbarMenusLabel>琴弦第七</h5><button type=button class="btn-close btn-close-white" data-bs-dismiss=offcanvas data-bs-target=#navbarMenus aria-label=Close></button></div><div class="offcanvas-body p-4 pt-0 p-lg-0"><hr class=d-lg-none><ul class="navbar-nav flex-row flex-wrap align-items-center me-auto"><li class="nav-item col-6 col-lg-auto"><a class="nav-link py-2 px-0 px-lg-2" href=https://www.qinxiandiqi.sbs/archives/><i class="fas fa-fw fa-file-archive"></i>归档</a></li><li class="nav-item col-6 col-lg-auto"><a class="nav-link py-2 px-0 px-lg-2" href=https://www.qinxiandiqi.sbs/series/><i class="fas fa-fw fa-columns"></i>专栏</a></li><li class="nav-item col-6 col-lg-auto"><a class="nav-link py-2 px-0 px-lg-2" href=https://www.qinxiandiqi.sbs/categories/><i class="fas fa-fw fa-folder"></i>分类</a></li><li class="nav-item col-6 col-lg-auto"><a class="nav-link py-2 px-0 px-lg-2" href=https://www.qinxiandiqi.sbs/tags/><i class="fas fa-fw fa-tags"></i>标签</a></li></ul><hr class=d-lg-none><form class="search-bar ms-auto my-1" action=https://www.qinxiandiqi.sbs/search/ novalidate><div class="input-group input-group-sm align-items-center"><span class="btn btn-search disabled position-absolute left-0 border-0"><i class="fas fa-fw fa-search fa-lg"></i></span>
+<input class="py-2 form-control rounded search-input" name=q type=search aria-label=Search required></div></form><hr class=d-lg-none><ul class="navbar-nav flex-row flex-wrap align-items-center ms-md-auto"><li class="nav-item py-2 py-lg-1 col-12 col-lg-auto"><nav class="social-links nav justify-content-center flex-row"><a class="nav-link social-link col-6 col-lg-auto p-1" target=_blank href=https://github.com/qinxiandiqi title=GitHub rel="noopener noreferrer"><i class="fa-fw fab fa-github"></i>
+<span class="ms-1 d-lg-none">GitHub</span></a>
+<a class="nav-link social-link col-6 col-lg-auto p-1" target=_blank href=https://www.qinxiandiqi.sbs/index.xml title=RSS rel="noopener noreferrer"><i class="fas fa-fw fa-rss"></i>
+<span class="ms-1 d-lg-none">RSS</span></a></nav></li><li class="nav-item py-2 py-lg-1 col-12 col-lg-auto"><div class="vr d-none d-lg-flex h-100 mx-lg-2 text-white"></div><hr class="d-lg-none my-2"></li><li class="nav-item dropdown py-1 py-lg-1 col-6 col-lg-auto"><a class="nav-link px-0 px-lg-1" href=# id=languageDropdown role=button data-bs-toggle=dropdown aria-expanded=false><i class="fas fa-fw fa-globe"></i>
+<span class=d-lg-none>语言</span></a><ul class="dropdown-menu dropdown-menu-end" aria-labelledby=languageDropdown><li><a class="dropdown-item active" href=https://www.qinxiandiqi.sbs/>简体中文</a></li><li><a class=dropdown-item href=https://www.qinxiandiqi.sbs/en/>English</a></li></ul></li><li class="nav-item py-1 col-12 col-lg-auto"><div class="vr d-none d-lg-flex h-100 mx-lg-2 text-white"></div><hr class="d-lg-none my-2"></li><li class="nav-item dropdown col-6 col-lg-auto"><a class="nav-link px-0 py-2 px-lg-1" href=# id=fontSizeDropdown role=button data-bs-toggle=dropdown aria-expanded=false><i class="fas fa-fw fa-font"></i>
+<span class=d-lg-none>字体大小</span></a><ul class="dropdown-menu dropdown-menu-end" aria-labelledby=fontSizeDropdown><li><button class="font-size-item dropdown-item" data-size=xs>
+特小号</button></li><li><button class="font-size-item dropdown-item" data-size=sm>
+小号</button></li><li><button class="font-size-item dropdown-item active" data-size=md>
+中等</button></li><li><button class="font-size-item dropdown-item" data-size=lg>
+大号</button></li><li><button class="font-size-item dropdown-item" data-size=xl>
+特大号</button></li></ul></li><li class="nav-item dropdown col-6 col-lg-auto"><a class="nav-link px-0 py-2 px-lg-1" href=# id=paletteDropdown role=button data-bs-toggle=dropdown aria-expanded=false><i class="fas fa-fw fa-palette"></i>
+<span class=d-lg-none>配色</span></a><ul class="dropdown-menu dropdown-menu-end px-2" aria-labelledby=paletteDropdown><div class=row><li class="col-4 my-1"><a role=button id=palette-blue aria-label=蓝色 class="btn btn-sm w-100 palette text-bg-blue" data-palette=blue></a></li><li class="col-4 my-1"><a role=button id=palette-blue-gray aria-label=蓝灰色 class="btn btn-sm w-100 palette text-bg-blue-gray" data-palette=blue-gray></a></li><li class="col-4 my-1"><a role=button id=palette-brown aria-label=棕色 class="btn btn-sm w-100 palette text-bg-brown" data-palette=brown></a></li><li class="col-4 my-1"><a role=button id=palette-cyan aria-label=青色 class="btn btn-sm w-100 palette text-bg-cyan" data-palette=cyan></a></li><li class="col-4 my-1"><a role=button id=palette-green aria-label=绿色 class="btn btn-sm w-100 palette text-bg-green" data-palette=green></a></li><li class="col-4 my-1"><a role=button id=palette-indigo aria-label=靛青色 class="btn btn-sm w-100 palette text-bg-indigo" data-palette=indigo></a></li><li class="col-4 my-1"><a role=button id=palette-orange aria-label=橙色 class="btn btn-sm w-100 palette text-bg-orange" data-palette=orange></a></li><li class="col-4 my-1"><a role=button id=palette-pink aria-label=粉色 class="btn btn-sm w-100 palette text-bg-pink" data-palette=pink></a></li><li class="col-4 my-1"><a role=button id=palette-purple aria-label=紫色 class="btn btn-sm w-100 palette text-bg-purple" data-palette=purple></a></li><li class="col-4 my-1"><a role=button id=palette-red aria-label=红色 class="btn btn-sm w-100 palette text-bg-red" data-palette=red></a></li><li class="col-4 my-1"><a role=button id=palette-teal aria-label=蓝绿色 class="btn btn-sm w-100 palette text-bg-teal" data-palette=teal></a></li><li class="col-4 my-1"><a role=button id=palette-yellow aria-label=黄色 class="btn btn-sm w-100 palette text-bg-yellow" data-palette=yellow></a></li></div></ul></li><li class="nav-item dropdown col-6 col-lg-auto"><a class="nav-link px-0 py-2 px-lg-1" href=# id=modeDropdown role=button data-bs-toggle=dropdown aria-expanded=false><i class="mode-icon fas fa-fw fa-adjust" id=modeIcon></i>
+<span class=d-lg-none>模式</span></a><ul class="dropdown-menu dropdown-menu-end" aria-labelledby=modeDropdown><li class=mode-item data-color-mode=light data-icon=sun><button class=dropdown-item>
+<i class="mode-icon fas fa-fw fa-sun"></i> Light</button></li><li class=mode-item data-color-mode=dark data-icon=moon><button class=dropdown-item>
+<i class="mode-icon fas fa-fw fa-moon"></i> Dark</button></li><li class="mode-item active" data-color-mode=auto data-icon=adjust><button class=dropdown-item>
+<i class="mode-icon fas fa-fw fa-adjust"></i> Auto</button></li></ul></li></ul></div></div></div></nav></header><main class=container><div class="row content"><noscript><div class="alert alert-danger" role=alert>你的浏览器不支持 JavaScript。</div></noscript><aside class="col-lg-4 sidebar d-flex order-lg-5"><div class="container d-flex flex-column"><div class="accordion profile"><div class="accordion-item card row text-center component"><div class="accordion-header card-header border-0" id=profile-header><a class="accordion-button d-lg-none mb-2 collapsed shadow-none p-0 bg-transparent text-surface" type=button data-bs-toggle=collapse data-bs-target=#profile aria-expanded=false aria-controls=profile>Profile</a></div><div class="card-body collapse accordion-collapse accordion-body d-lg-block" id=profile aria-labelledby=profile-header><div class="col-12 d-flex align-items-center justify-content-center"><picture><img class="profile-avatar rounded-circle" alt=Jianan src=https://www.qinxiandiqi.sbs/images/profile.png loading=lazy data-viewer-invisible width=500 height=500></picture></div><div class="col-12 profile-meta"><div class="profile-name fw-fold fs-lg">Jianan</div><div class=profile-bio>今天做点什么呢？</div><div class="profile-about text-primary"><i class="fas fa-fw fa-user"></i><a href=https://www.qinxiandiqi.sbs/about/>关于我</a></div><div class="profile-contact text-primary"><i class="fas fa-fw fa-question-circle"></i><a href=https://www.qinxiandiqi.sbs/contact/>联系我</a></div></div><nav class="social-links nav justify-content-center mt-1 justify-content-around"><a class="nav-link social-link" href=mailto:qinxiandiqi@foxmail.com title=Email><i class="fas fa-fw fa-2x fa-envelope"></i></a>
+<a class="nav-link social-link" target=_blank href=https://github.com/qinxiandiqi title=GitHub rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-github"></i></a>
+<a class="nav-link social-link" target=_blank href=https://twitter.com/qinxiandiqi title=Twitter rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-twitter"></i></a>
+<a class="nav-link social-link" target=_blank href=https://weibo.com/qinxiandiqi title=Weibo rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-weibo"></i></a>
+<a class="nav-link social-link" target=_blank href=https://www.zhihu.com/people/qinxiandiqi title=Zhihu rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-zhihu"></i></a></nav></div></div></div><div class="accordion taxonomies-toggle"><section class="row card component accordion-item"><div class="accordion-header card-header border-0"><a class="accordion-button d-lg-none mb-1 collapsed shadow-none p-0 bg-transparent" type=button data-bs-toggle=collapse data-bs-target=#taxonomies-toggle aria-expanded=false aria-controls=taxonomies-toggle>Taxonomies</a></div><div class="card-body collapse accordion-collapse accordion-body d-lg-block" id=taxonomies-toggle><ul class="nav nav-pills nav-fill" id=myTab role=tablist><li class=nav-item role=presentation><button class="nav-link active" id=taxonomySeriesTab data-bs-toggle=tab data-bs-target=#taxonomySeries type=button role=tab aria-controls=专栏 aria-selected=true>
+专栏</button></li><li class=nav-item role=presentation><button class=nav-link id=taxonomyCategoriesTab data-bs-toggle=tab data-bs-target=#taxonomyCategories type=button role=tab aria-controls=分类 aria-selected=true>
+分类</button></li><li class=nav-item role=presentation><button class=nav-link id=taxonomyTagsTab data-bs-toggle=tab data-bs-target=#taxonomyTags type=button role=tab aria-controls=标签 aria-selected=true>
+标签</button></li><li class=nav-item role=presentation><button class=nav-link id=taxonomyAuthorsTab data-bs-toggle=tab data-bs-target=#taxonomyAuthors type=button role=tab aria-controls=作者 aria-selected=true>
+作者</button></li><li class=nav-item role=presentation><button class=nav-link id=taxonomyArchivesTab data-bs-toggle=tab data-bs-target=#taxonomyArchive type=button role=tab aria-controls=taxonomyArchives aria-selected=true>
+归档</button></li></ul><div class="tab-content mt-3"><div class="tab-pane active" id=taxonomySeries role=tabpanel aria-labelledby=taxonomySeriesTab tabindex=0><a href=https://www.qinxiandiqi.sbs/series/raspberry/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title=RaspBerry>RaspBerry
+<span class="badge badge-sm text-secondary bg-white ms-1">27</span></a>
+<a href=https://www.qinxiandiqi.sbs/series/android/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title=Android>Android
+<span class="badge badge-sm text-secondary bg-white ms-1">20</span></a>
+<a href=https://www.qinxiandiqi.sbs/series/java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title=Java学习笔记>Java学习笔记
+<span class="badge badge-sm text-secondary bg-white ms-1">17</span></a>
+<a href=https://www.qinxiandiqi.sbs/series/javaweb%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title=JavaWeb学习笔记>JavaWeb学习笔记
+<span class="badge badge-sm text-secondary bg-white ms-1">12</span></a>
+<a href=https://www.qinxiandiqi.sbs/series/android-wear/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title="Android Wear">Android Wear
+<span class="badge badge-sm text-secondary bg-white ms-1">11</span></a>
+<a href=https://www.qinxiandiqi.sbs/series/libgdx/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title=libGDX>libGDX
+<span class="badge badge-sm text-secondary bg-white ms-1">8</span></a>
+<a href=https://www.qinxiandiqi.sbs/series/libgdx%E6%89%8B%E5%86%8C/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title=libGDX手册>libGDX手册
+<span class="badge badge-sm text-secondary bg-white ms-1">7</span></a>
+<a href=https://www.qinxiandiqi.sbs/series/android-gradle/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title="Android Gradle">Android Gradle
+<span class="badge badge-sm text-secondary bg-white ms-1">6</span></a>
+<a href=https://www.qinxiandiqi.sbs/series/javascript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title=JavaScript学习笔记>JavaScript学习笔记
+<span class="badge badge-sm text-secondary bg-white ms-1">6</span></a>
+<a href=https://www.qinxiandiqi.sbs/series/ide/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title=IDE>IDE
+<span class="badge badge-sm text-secondary bg-white ms-1">5</span></a>
+<a href=https://www.qinxiandiqi.sbs/series class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title=全部>全部
+<span class="badge badge-sm text-secondary bg-white ms-1">26</span></a></div><div class=tab-pane id=taxonomyCategories role=tabpanel aria-labelledby=taxonomyCategoriesTab tabindex=0><a href=https://www.qinxiandiqi.sbs/categories/%E7%BF%BB%E8%AF%91/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title=翻译>翻译
+<span class="badge badge-sm text-secondary bg-white ms-1">67</span></a>
+<a href=https://www.qinxiandiqi.sbs/categories/raspberry/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title=RaspBerry>RaspBerry
+<span class="badge badge-sm text-secondary bg-white ms-1">27</span></a>
+<a href=https://www.qinxiandiqi.sbs/categories/android/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title=Android>Android
+<span class="badge badge-sm text-secondary bg-white ms-1">21</span></a>
+<a href=https://www.qinxiandiqi.sbs/categories/javaweb%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title=JavaWeb学习笔记>JavaWeb学习笔记
+<span class="badge badge-sm text-secondary bg-white ms-1">12</span></a>
+<a href=https://www.qinxiandiqi.sbs/categories/android-wear/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title="Android Wear">Android Wear
+<span class="badge badge-sm text-secondary bg-white ms-1">11</span></a>
+<a href=https://www.qinxiandiqi.sbs/categories/libgdx/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title=libGDX>libGDX
+<span class="badge badge-sm text-secondary bg-white ms-1">8</span></a>
+<a href=https://www.qinxiandiqi.sbs/categories/libgdx%E6%89%8B%E5%86%8C/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title=libGDX手册>libGDX手册
+<span class="badge badge-sm text-secondary bg-white ms-1">7</span></a>
+<a href=https://www.qinxiandiqi.sbs/categories/android-gradle/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title="Android Gradle">Android Gradle
+<span class="badge badge-sm text-secondary bg-white ms-1">6</span></a>
+<a href=https://www.qinxiandiqi.sbs/categories/javascript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title=JavaScript学习笔记>JavaScript学习笔记
+<span class="badge badge-sm text-secondary bg-white ms-1">6</span></a>
+<a href=https://www.qinxiandiqi.sbs/categories/ide/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title=IDE>IDE
+<span class="badge badge-sm text-secondary bg-white ms-1">5</span></a>
+<a href=https://www.qinxiandiqi.sbs/categories class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title=全部>全部
+<span class="badge badge-sm text-secondary bg-white ms-1">28</span></a></div><div class=tab-pane id=taxonomyTags role=tabpanel aria-labelledby=taxonomyTagsTab tabindex=0><a href=https://www.qinxiandiqi.sbs/tags/android/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title=android>android
+<span class="badge badge-sm text-secondary bg-white ms-1">30</span></a>
+<a href=https://www.qinxiandiqi.sbs/tags/java/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title=java>java
+<span class="badge badge-sm text-secondary bg-white ms-1">30</span></a>
+<a href=https://www.qinxiandiqi.sbs/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title=树莓派>树莓派
+<span class="badge badge-sm text-secondary bg-white ms-1">28</span></a>
+<a href=https://www.qinxiandiqi.sbs/tags/raspberry/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title=RaspBerry>RaspBerry
+<span class="badge badge-sm text-secondary bg-white ms-1">27</span></a>
+<a href=https://www.qinxiandiqi.sbs/tags/android-wear/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title="Android Wear">Android Wear
+<span class="badge badge-sm text-secondary bg-white ms-1">11</span></a>
+<a href=https://www.qinxiandiqi.sbs/tags/javaweb/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title=javaweb>javaweb
+<span class="badge badge-sm text-secondary bg-white ms-1">11</span></a>
+<a href=https://www.qinxiandiqi.sbs/tags/%E5%8F%AF%E7%A9%BF%E6%88%B4%E8%AE%BE%E5%A4%87/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title=可穿戴设备>可穿戴设备
+<span class="badge badge-sm text-secondary bg-white ms-1">9</span></a>
+<a href=https://www.qinxiandiqi.sbs/tags/libgdx/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title=libgdx>libgdx
+<span class="badge badge-sm text-secondary bg-white ms-1">8</span></a>
+<a href=https://www.qinxiandiqi.sbs/tags/javascript/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title=javascript>javascript
+<span class="badge badge-sm text-secondary bg-white ms-1">7</span></a>
+<a href=https://www.qinxiandiqi.sbs/tags/xml/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title=xml>xml
+<span class="badge badge-sm text-secondary bg-white ms-1">7</span></a>
+<a href=https://www.qinxiandiqi.sbs/tags class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title=全部>全部
+<span class="badge badge-sm text-secondary bg-white ms-1">306</span></a></div><div class=tab-pane id=taxonomyAuthors role=tabpanel aria-labelledby=taxonomyAuthorsTab tabindex=0><a href=https://www.qinxiandiqi.sbs/authors/jianan/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-author me-2 mb-2" title=Jianan>Jianan
+<span class="badge badge-sm text-secondary bg-white ms-1">142</span></a></div><div class=tab-pane id=taxonomyArchive role=tabpanel aria-labelledby=taxonomyArchiveTab tabindex=0><a href=https://www.qinxiandiqi.sbs/archives/2022/ class="btn btn-sm btn-secondary post-taxonomy ps-3 me-2 mb-2" title=2022>2022 <span class="badge badge-sm text-secondary bg-white ms-1">3</span></a>
+<a href=https://www.qinxiandiqi.sbs/archives/2021/ class="btn btn-sm btn-secondary post-taxonomy ps-3 me-2 mb-2" title=2021>2021 <span class="badge badge-sm text-secondary bg-white ms-1">1</span></a>
+<a href=https://www.qinxiandiqi.sbs/archives/2020/ class="btn btn-sm btn-secondary post-taxonomy ps-3 me-2 mb-2" title=2020>2020 <span class="badge badge-sm text-secondary bg-white ms-1">2</span></a>
+<a href=https://www.qinxiandiqi.sbs/archives/2018/ class="btn btn-sm btn-secondary post-taxonomy ps-3 me-2 mb-2" title=2018>2018 <span class="badge badge-sm text-secondary bg-white ms-1">7</span></a>
+<a href=https://www.qinxiandiqi.sbs/archives/2017/ class="btn btn-sm btn-secondary post-taxonomy ps-3 me-2 mb-2" title=2017>2017 <span class="badge badge-sm text-secondary bg-white ms-1">2</span></a>
+<a href=https://www.qinxiandiqi.sbs/archives/2016/ class="btn btn-sm btn-secondary post-taxonomy ps-3 me-2 mb-2" title=2016>2016 <span class="badge badge-sm text-secondary bg-white ms-1">7</span></a>
+<a href=https://www.qinxiandiqi.sbs/archives/2015/ class="btn btn-sm btn-secondary post-taxonomy ps-3 me-2 mb-2" title=2015>2015 <span class="badge badge-sm text-secondary bg-white ms-1">21</span></a>
+<a href=https://www.qinxiandiqi.sbs/archives/2014/ class="btn btn-sm btn-secondary post-taxonomy ps-3 me-2 mb-2" title=2014>2014 <span class="badge badge-sm text-secondary bg-white ms-1">93</span></a>
+<a href=https://www.qinxiandiqi.sbs/archives/2012/ class="btn btn-sm btn-secondary post-taxonomy ps-3 me-2 mb-2" title=2012>2012 <span class="badge badge-sm text-secondary bg-white ms-1">6</span></a></div></div></div></section></div><div class="accordion posts-toggle"><section class="row card component accordion-item"><div class="accordion-header card-header border-0"><a class="accordion-button d-lg-none mb-1 collapsed shadow-none p-0 bg-transparent" type=button data-bs-toggle=collapse data-bs-target=#posts-toggle aria-expanded=false aria-controls=posts-toggle>文章</a></div><div class="card-body collapse accordion-collapse accordion-body d-lg-block" id=posts-toggle><ul class="nav nav-pills nav-fill" id=myTab role=tablist><li class=nav-item role=presentation><button class="nav-link active" id=recent-posts-tab data-bs-toggle=tab data-bs-target=#recent-posts type=button role=tab aria-controls=recent-posts aria-selected=true>
+最近文章</button></li></ul><div class="tab-content mt-3"><div class="tab-pane active" id=recent-posts role=tabpanel aria-labelledby=recent-posts-tab tabindex=0><ul class="post-list list-unstyled ms-1"><li class=mb-2><div class=d-flex><div class="flex-grow-1 d-flex flex-column h-auto justify-content-center"><a class=post-title href=https://www.qinxiandiqi.sbs/posts/opengl/glsl/glsl%E7%9A%84uniform%E5%8F%98%E9%87%8F%E8%87%AA%E5%8A%A8%E4%BC%98%E5%8C%96/>GLSL的uniform变量自动优化</a><div class="post-meta mt-2"><span class=post-date>2022-09-26</span></div></div></div></li><li class=mb-2><div class=d-flex><div class="flex-grow-1 d-flex flex-column h-auto justify-content-center"><a class=post-title href=https://www.qinxiandiqi.sbs/posts/git/filenametoolongbygitofwindows/>Windows平台下git报错Filename Too Long</a><div class="post-meta mt-2"><span class=post-date>2022-09-18</span></div></div></div></li><li class=mb-2><div class=d-flex><div class="flex-grow-1 d-flex flex-column h-auto justify-content-center"><a class=post-title href=https://www.qinxiandiqi.sbs/posts/system/%E7%94%9F%E6%88%90%E6%96%B0ssh%E5%AF%86%E9%92%A5%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%88%B0ssh-agent/>生成新SSH密钥并添加到ssh-Agent</a><div class="post-meta mt-2"><span class=post-date>2022-09-11</span></div></div></div></li><li class=mb-2><div class=d-flex><div class="flex-grow-1 d-flex flex-column h-auto justify-content-center"><a class=post-title href=https://www.qinxiandiqi.sbs/posts/kotlin/kotlin%E7%9A%84%E5%B1%9E%E6%80%A7%E5%88%9D%E5%A7%8B%E5%99%A8%E4%B8%8E%E5%B1%9E%E6%80%A7setter/>Kotlin的属性初始器与属性Setter</a><div class="post-meta mt-2"><span class=post-date>2021-07-18</span></div></div></div></li><li class=mb-2><div class=d-flex><div class="flex-grow-1 d-flex flex-column h-auto justify-content-center"><a class=post-title href=https://www.qinxiandiqi.sbs/posts/system/linux/%E8%AE%BE%E7%BD%AElinux%E5%9C%A8%E6%9C%AA%E7%99%BB%E5%BD%95%E8%B4%A6%E5%8F%B7%E6%83%85%E5%86%B5%E4%B8%8B%E8%87%AA%E5%8A%A8%E8%BF%9E%E6%8E%A5wifi/>设置Linux在未登录账号情况下自动连接wifi</a><div class="post-meta mt-2"><span class=post-date>2020-12-29</span></div></div></div></li></ul></div></div></div></section></div><div class="accordion post-toc"><div class="accordion-item row mb-4 card component" id=postTOC><div class="card-header accordion-header"><h2 class="card-title fs-4 my-2 text-surface d-none d-lg-block">目录</h2><a class="accordion-button d-lg-none mb-1 collapsed shadow-none p-0 bg-transparent" type=button data-bs-toggle=collapse data-bs-target=#post-toc aria-expanded=false aria-controls=post-toc>目录</a></div><div class="card-body collapse accordion-collapse accordion-body d-lg-block" id=post-toc aria-labelledby=post-toc-header><nav id=TableOfContents><ul><li><a href=#11-下面是一些ble关键术语和概念的摘要>1.1 下面是一些BLE关键术语和概念的摘要：</a></li><li><a href=#12-角色和职能>1.2 角色和职能</a></li></ul><ul><li><a href=#31-获取bluetoothadapter>3.1 获取BluetoothAdapter。</a></li><li><a href=#32-启用蓝牙>3.2 启用蓝牙</a></li></ul></nav></div></div></div></div></aside><div class=col-lg-8><div class=container><nav class="row card component" aria-label=breadcrumb><div class="card-body pb-0"><ol class=breadcrumb><li class="breadcrumb-item text-surface"><a href=https://www.qinxiandiqi.sbs/>主页</a></li><li class="breadcrumb-item text-surface"><a href=https://www.qinxiandiqi.sbs/posts/>Posts</a></li><li class="breadcrumb-item active">Android Bluetooth Low Energy（Android低功耗蓝牙）</li></ol></div></nav><div class="post-panel-wrapper position-sticky"><div class="d-flex flex-column component rounded post-panel position-absolute border"><a class="action action-panel-toggler" role=button title="Panel toggler"><i class="fas fa-fw fa-chevron-circle-down"></i></a>
+<a id=sidebarToggler class="action d-none d-lg-block" role=button title="Sidebar toggler"><i class="fas fa-fw fa-expand-alt" data-fa-transform=rotate-45></i></a>
+<a class="action btn-reward" role=button data-bs-toggle=modal data-bs-target=#rewardModal title=打赏><i class="fas fa-fw fa-coffee"></i></a>
+<a class=action href=#post-copyright role=button aria-label=Copyright title=Copyright><i class="fas fa-fw fa-copyright"></i></a>
+<a class=action href=#post-comments role=button aria-label=Comments title=Comments><i class="fas fa-fw fa-comments"></i></a>
+<a class=action href=#postTOC aria-controls="Table of contents" role=button title="Table of contents"><i class="fas fa-fw fa-list-alt"></i></a></div></div><article class="row card component mb-4 post"><div class=card-header><h1 class="card-title post-title my-2">Android Bluetooth Low Energy（Android低功耗蓝牙）</h1></div><div class=card-body><div class="post-meta mb-3"><span class="post-date me-1 mb-1" title="创建于 2014-11-03 07:31:51 +0000 UTC。">2014-11-03</span><span class="post-reading-time me-1 mb-1">12 分钟阅读</span><a href=https://www.qinxiandiqi.sbs/authors/jianan/ class="btn btn-sm btn-secondary mb-1 me-2 py-0 pe-1 post-taxonomy post-author">
+<i class="fas fa-fw fa-user me-1"></i>Jianan</a><a href=https://www.qinxiandiqi.sbs/categories/android/ class="btn btn-sm btn-secondary mb-1 me-2 py-0 pe-1 post-taxonomy post-category">
+<i class="fas fa-fw fa-folder me-1"></i>Android</a><a href=https://www.qinxiandiqi.sbs/categories/%E7%BF%BB%E8%AF%91/ class="btn btn-sm btn-secondary mb-1 me-2 py-0 pe-1 post-taxonomy post-category">
+<i class="fas fa-fw fa-folder me-1"></i>翻译</a><a href=https://www.qinxiandiqi.sbs/series/android/ class="btn btn-sm btn-secondary mb-1 me-2 py-0 pe-1 post-taxonomy post-series">
+<i class="fas fa-fw fa-columns me-1"></i>Android</a><a href=https://www.qinxiandiqi.sbs/tags/android/ class="btn btn-sm btn-secondary mb-1 me-2 py-0 pe-1 post-taxonomy post-tag">Android</a><a href=https://www.qinxiandiqi.sbs/tags/ble/ class="btn btn-sm btn-secondary mb-1 me-2 py-0 pe-1 post-taxonomy post-tag">BLE</a><a href=https://www.qinxiandiqi.sbs/tags/bluetooth/ class="btn btn-sm btn-secondary mb-1 me-2 py-0 pe-1 post-taxonomy post-tag">Bluetooth</a><a href=https://www.qinxiandiqi.sbs/tags/%E4%BD%8E%E5%8A%9F%E8%80%97/ class="btn btn-sm btn-secondary mb-1 me-2 py-0 pe-1 post-taxonomy post-tag">低功耗</a><a href=https://www.qinxiandiqi.sbs/tags/%E8%93%9D%E7%89%99/ class="btn btn-sm btn-secondary mb-1 me-2 py-0 pe-1 post-taxonomy post-tag">蓝牙</a></div><div class="post-content mb-3" data-bs-spy=scroll data-bs-target=#TableOfContents tabindex=0><p>Android 4.3（API Level 18）开始引入Bluetooth Low
+Energy（BLE，低功耗蓝牙）的核心功能并提供了相应的API，应用程序通过这些api可以扫描设备、查询services，读写设备的characteristics（属性特征）。对比传统的蓝牙，BLE的设计能够显著减低功耗。这让Android应用程序与BLE设备之间的低功耗通讯成为可能，例如距离传感器、心率监视器、健身设备等等。</p><h1 id=1关键术语和概念 data-numberify>1、关键术语和概念<a class="anchor ms-1 d-none" href=#1关键术语和概念>#</a></h1><h2 id=11-下面是一些ble关键术语和概念的摘要 data-numberify>1.1 下面是一些BLE关键术语和概念的摘要：<a class="anchor ms-1 d-none" href=#11-下面是一些ble关键术语和概念的摘要>#</a></h2><p>**<br>**</p><p>*** Generic Attribute Profile（GATT）：** GATT
+profile是一种关于发送和接收简短数据片段的一般规范，这种简短数据片段例如在BLE的连接上众所周知的“attribute（属性）”等。当前所有低功耗应用程序的profile都基于GATT。另外，蓝牙技术联盟（Bluetooth
+SIG）已经为很多BLE设备定义了profile。profile就是一种在指定的应用程序中定义设备如何工作的规范。注意，一台设备可以实现多个profile。例如，一台设备可以包含心率监视器和电池电量探测器。<br>*** Attribute Protocol（ATT，属性协议）：**
+GATT构建在ATT的基础之上，因此也总被成为GATT/ATT。ATT针对BLE设备的运行进行了优化。为此，它会尽可能的使用更少的字节数据。每一个属性都通过UUID来唯一确定。UUID就是一个标准128位格式的字符串ID，用于唯一确定一个信息。属性通过ATT协议格式化为characteristics和services后进行传输。<br>*** Characteristic：**
+一个characteristic中包含一个值，以及0个或多个用于描述characteristic值的descriptor。可以将characteristic认为是一种类型，类似于一个类。<br>*** Descriptor：**
+Descriptor（描述符）中定义的属性用于描述一个characteristic值。例如，一个descriptor可以为一个characteristic的值指定一个在可接受范围内的可读性描述，或者为一个characteristic的值指定一个计量单位。
+**</p><ul><li>Service：** 一个service是一个characteristic的集合。例如，你可以持有一个名为“心率监视器”的service，它包含的characteristic例如“心率测量”。你可以在<a href=https://www.bluetooth.org/en-us/specification/adopted-specifications target=_blank rel="noopener noreferrer">bluetooth.org<i class="fas fa-external-link-square-alt ms-1"></i></a>上找到一系列基于GATT的profile和service。</li></ul><h2 id=12-角色和职能 data-numberify>1.2 角色和职能<a class="anchor ms-1 d-none" href=#12-角色和职能>#</a></h2><p>以下是一台Android设备与BLE设备交互时的一些适用角色和职能：</p><p>*** 中央设备和外围设备。** 这适用于BLE自身的连接。担任中央设备角色的设备负责扫描和搜索广告，担任外围设备的角色负责发送广告。</p><p>*** GATT服务端和GATT客户端。** 这取决于两台设备在建立连接后如何互相通信。</p><p>为了理解这之间的区别，想象你有一台Android手机和一台BLE设备作为活动追踪器。手机将担任中央设备角色；活动追踪器将担任外围设备角色（你需要具备两种角色才能建立一个BLE连接，两者都担任外围设备角色不能互相通信，同样两者都担任中央设备角色也不能互相通信）。</p><p>一旦手机和活动追踪器建立连接，它们就可以互相传输GATT媒体数据。根据它们传输的数据，其中一方需要担任服务端的角色。例如，如果活动追踪器想要发送传感器数据给手机，活动追踪器就需要担任服务端的角色。如果活动追踪器想要接收手机的数据，手机就需要担任服务端的角色。</p><p>在本片文档的例子中，Android应用程序（运行在Android设备上）是GATT客户端。应用程序从GATT服务端获取数据，这个服务端由支持<a href=http://developer.bluetooth.org/TechnologyOverview/Pages/HRP.aspx target=_blank rel="noopener noreferrer">Heart
+Rate
+Profile<i class="fas fa-external-link-square-alt ms-1"></i></a>的BLE心率监视器设备担任。但是你可以交替让你的Android应用程序扮演GATT服务端的角色。具体参考<a href=http://developer.android.com/reference/android/bluetooth/BluetoothGattServer.html target=_blank rel="noopener noreferrer">BluetoothGattService<i class="fas fa-external-link-square-alt ms-1"></i></a>。</p><h1 id=2ble-permissionsble权限 data-numberify>2、BLE Permissions（BLE权限）<a class="anchor ms-1 d-none" href=#2ble-permissionsble权限>#</a></h1><p>为了在你的应用程序中使用Bluetooth的功能，你必须声明 <strong>android.permission.BLUETOOTH</strong>
+权限。你需要这个权限来执行一些蓝牙通信的操作，例如请求链接，接受连接，还有传输数据。</p><p>如果你想让你的应用程序进行设备扫描或者管理蓝牙设置，你必须同时声明 <strong>android.permission.BLUETOOTH_ADMIN</strong>
+权限。注意，如果你使用BLUETOOTH_ADMIN权限，你必须同时声明BLUETOOTH权限。</p><p>在你的应用程序manifest文件中声明蓝牙权限，例如：</p><pre><code>&lt;uses-permission android:name=&quot;android.permission.BLUETOOTH&quot;/&gt;
+&lt;uses-permission android:name=&quot;android.permission.BLUETOOTH_ADMIN&quot;/&gt;
+</code></pre><p>如果你想声明你的应用程序只能在支持BLE的设备上运行，可以将下面声明包含进你的应用程序manifest文件中：</p><pre><code>&lt;uses-feature android:name=&quot;android.hardware.bluetooth_le&quot; android:required=&quot;true&quot;/&gt;
+</code></pre><p>然而，如果你想让你的应用程序也能够在不支持BLE的设备上运行，你就应该将上面标签中的属性设置为required=&ldquo;false&rdquo;。然后在运行的过程中使用PackageManager.hasSystemFeature()方法来判断设备是否支持BLE：</p><pre><code>// 使用下面的方法来确定设备是否支持BLE, 然后你可以选择禁用BLE的功能
+if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
+    Toast.makeText(this, R.string.ble_not_supported, Toast.LENGTH_SHORT).show();
+    finish();
+}
+</code></pre><h1 id=3setting-up-ble设置ble data-numberify>3、Setting Up BLE（设置BLE）<a class="anchor ms-1 d-none" href=#3setting-up-ble设置ble>#</a></h1><p>在你的应用程序通过BLE进行通信之前，你需要确认设备是否支持BLE。如果支持，还要再确认是否已经启用。注意这个检查步骤只有在设置为false的情况下才需要执行。</p><p>如果不支持BLE，你应该优雅的禁止一些使用BLE的功能。如果支持BLE，但是目前禁用了，那么你需要在不离开你的应用程序状态下，请求用户启用蓝牙用能。这个过程需要使用BluetoothAdapter，分两个步骤完成：</p><h2 id=31-获取bluetoothadapter data-numberify>3.1 获取BluetoothAdapter。<a class="anchor ms-1 d-none" href=#31-获取bluetoothadapter>#</a></h2><p>基本上所有使用蓝牙的activity都需要BluetoothAdapter。BluetoothAdapter代表了设备本身的蓝牙适配器（蓝牙发送接收器）。在整个系统中有一个BluetoothAdapter对象，你的应用程序可以使用这个对象进行交互。下面的代码片段展示了如果获取这个适配器。注意下面的这种方法使用getSystemService()方法来获取一个BluetoothManager实例，之后再通过BluetoothManager获取BluetoothAdapter。Android
+4.3（API Level 18）才开始支持BluetoothManager：</p><pre><code>// 初始化蓝牙适配器.
+final BluetoothManager bluetoothManager =
+        (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
+mBluetoothAdapter = bluetoothManager.getAdapter();
+</code></pre><h2 id=32-启用蓝牙 data-numberify>3.2 启用蓝牙<a class="anchor ms-1 d-none" href=#32-启用蓝牙>#</a></h2><p>下一步，你需要确保蓝牙已经启动。调用isEnable()方法来检查蓝牙当前是否已经启用。如果方法返回false，说明蓝牙被禁用了。下面的代码片段中检查蓝牙是否已经启用。如果没有启用，代码片段会显示一个错误提示用户去设置中启用蓝牙：</p><pre><code>private BluetoothAdapter mBluetoothAdapter;
+...
+// 确认设备支持蓝牙并且已经启用. 如果没有,
+// 显示一个对话框要求用户授权启用蓝牙.
+if (mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled()) {
+    Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+    startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+}
+</code></pre><h1 id=4finding-ble-devices搜索ble设备 data-numberify>4、Finding BLE Devices（搜索BLE设备）<a class="anchor ms-1 d-none" href=#4finding-ble-devices搜索ble设备>#</a></h1><p>搜索BLE设备，你可以使用startLeScan()方法。这个方法需要一个BluetoothAdapter.LeScanCallback对象作为参数。你必须实现这个callback接口，因为扫描的结果会通过这个接口返回。由于搜索设备是比较耗电的操作，你应该遵循以下指南使用：</p><p>*** ** 一旦你找到目标设备，应该马上停止搜索。</p><p>*** **不要死循环搜索，并设置搜索的最长时间。一台以前可以访问的设备可能已经移出了可检测范围，继续扫描只会消耗电量。</p><p>下面的代码片段展示了如何开始和停止搜索：</p><pre><code>/**
+ * 扫描和显示可访问BLE设备的Activity.
+ */
+public class DeviceScanActivity extends ListActivity {
+
+    private BluetoothAdapter mBluetoothAdapter;
+    private boolean mScanning;
+    private Handler mHandler;
+
+    // 10秒钟后停止扫描.
+    private static final long SCAN_PERIOD = 10000;
+    ...
+    private void scanLeDevice(final boolean enable) {
+        if (enable) {
+            // 在预定义的扫描时间周期后停止扫描.
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    mScanning = false;
+                    mBluetoothAdapter.stopLeScan(mLeScanCallback);
+                }
+            }, SCAN_PERIOD);
+
+            mScanning = true;
+            mBluetoothAdapter.startLeScan(mLeScanCallback);
+        } else {
+            mScanning = false;
+            mBluetoothAdapter.stopLeScan(mLeScanCallback);
+        }
+        ...
+    }
+...
+}
+</code></pre><p>如果你只想搜索指定类型的外围设备，你可以替换成startLeScan(UUID[],
+BluetoothAdapter.LeScanCallback)方法，并提供一个你的应用程序所支持的GATT服务的UUID对象数组。</p><p>下面是一个BluetoothAdapter.LeScanCallback的实现，它是一个用于接收BLE搜索结果的接口：</p><pre><code>private LeDeviceListAdapter mLeDeviceListAdapter;
+...
+// 设备搜索回调接口.
+private BluetoothAdapter.LeScanCallback mLeScanCallback =
+        new BluetoothAdapter.LeScanCallback() {
+    @Override
+    public void onLeScan(final BluetoothDevice device, int rssi,
+            byte[] scanRecord) {
+        runOnUiThread(new Runnable() {
+           @Override
+           public void run() {
+               mLeDeviceListAdapter.addDevice(device);
+               mLeDeviceListAdapter.notifyDataSetChanged();
+           }
+       });
+   }
+};
+</code></pre><p>注意：正如<a href=http://blog.csdn.net/qinxiandiqi/article/details/40506967 target=_blank rel="noopener noreferrer">Bluetooth<i class="fas fa-external-link-square-alt ms-1"></i></a>文档中所描述的，在同一个时间你只能搜索BLE设备或者搜索传统蓝牙设备。你不能同时搜索BLE设备和传统蓝牙设备。</p><h1 id=5connecting-to-a-gatt-server连接一个gatt服务 data-numberify>5、Connecting to a GATT Server（连接一个GATT服务）<a class="anchor ms-1 d-none" href=#5connecting-to-a-gatt-server连接一个gatt服务>#</a></h1><p>与BLE设备交互的第一步就是要连接上它——更准确的说，是连接设备上的GATT服务。连接BLE设备上的GATT服务，你可以使用connectGatt()方法。这个方法需要三个参数：一个Context对象，autoConnect（一个表示是否当BLE设备可访问时马上自动连接的boolean值），还有一个BluetoothGattCallbackduixiang:</p><pre><code>mBluetoothGatt = device.connectGatt(this, false, mGattCallback);
+</code></pre><p>上面的代码会连接BLE设备管理的GATT服务，并返回一个BluetoothGatt实例，通过这个实例就可以执行GATT客户端的相关操作。这个调用者（Android应用程序）就是GATT客户端。里面的BluetoothGattCallback对象用于交付操作结果给客户端，例如连接状态，还有将来一些GATT客户端操作的结果。</p><p>在这个例子中，BLE应用程序提供了一个activity（DeviceControlActivity）来连接、显示数据，和显示BLE设备所支持的GATT的service以及characteristic。基于用户的输入，这个activity会和一个名为BluetoothLeService的Service通信，这个service通过Android
+BLE的API与BLE设备进行交互。</p><pre><code>// 一个通过Android BLE API与BLE设备进行交互的service.
+public class BluetoothLeService extends Service {
+    private final static String TAG = BluetoothLeService.class.getSimpleName();
+
+    private BluetoothManager mBluetoothManager;
+    private BluetoothAdapter mBluetoothAdapter;
+    private String mBluetoothDeviceAddress;
+    private BluetoothGatt mBluetoothGatt;
+    private int mConnectionState = STATE_DISCONNECTED;
+
+    private static final int STATE_DISCONNECTED = 0;
+    private static final int STATE_CONNECTING = 1;
+    private static final int STATE_CONNECTED = 2;
+
+    public final static String ACTION_GATT_CONNECTED =
+            &quot;com.example.bluetooth.le.ACTION_GATT_CONNECTED&quot;;
+    public final static String ACTION_GATT_DISCONNECTED =
+            &quot;com.example.bluetooth.le.ACTION_GATT_DISCONNECTED&quot;;
+    public final static String ACTION_GATT_SERVICES_DISCOVERED =
+            &quot;com.example.bluetooth.le.ACTION_GATT_SERVICES_DISCOVERED&quot;;
+    public final static String ACTION_DATA_AVAILABLE =
+            &quot;com.example.bluetooth.le.ACTION_DATA_AVAILABLE&quot;;
+    public final static String EXTRA_DATA =
+            &quot;com.example.bluetooth.le.EXTRA_DATA&quot;;
+
+    public final static UUID UUID_HEART_RATE_MEASUREMENT =
+            UUID.fromString(SampleGattAttributes.HEART_RATE_MEASUREMENT);
+
+    // BLE API定义的各个回调方法.
+    private final BluetoothGattCallback mGattCallback =
+            new BluetoothGattCallback() {
+        @Override
+        public void onConnectionStateChange(BluetoothGatt gatt, int status,
+                int newState) {
+            String intentAction;
+            if (newState == BluetoothProfile.STATE_CONNECTED) {
+                intentAction = ACTION_GATT_CONNECTED;
+                mConnectionState = STATE_CONNECTED;
+                broadcastUpdate(intentAction);
+                Log.i(TAG, &quot;连接GATT服务.&quot;);
+                Log.i(TAG, &quot;尝试开始service搜索:&quot; +
+                        mBluetoothGatt.discoverServices());
+
+            } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
+                intentAction = ACTION_GATT_DISCONNECTED;
+                mConnectionState = STATE_DISCONNECTED;
+                Log.i(TAG, &quot;断开GATT server连接.&quot;);
+                broadcastUpdate(intentAction);
+            }
+        }
+
+        @Override
+        // New services discovered
+        public void onServicesDiscovered(BluetoothGatt gatt, int status) {
+            if (status == BluetoothGatt.GATT_SUCCESS) {
+                broadcastUpdate(ACTION_GATT_SERVICES_DISCOVERED);
+            } else {
+                Log.w(TAG, &quot;onServicesDiscovered received: &quot; + status);
+            }
+        }
+
+        @Override
+        // Result of a characteristic read operation
+        public void onCharacteristicRead(BluetoothGatt gatt,
+                BluetoothGattCharacteristic characteristic,
+                int status) {
+            if (status == BluetoothGatt.GATT_SUCCESS) {
+                broadcastUpdate(ACTION_DATA_AVAILABLE, characteristic);
+            }
+        }
+     ...
+    };
+...
+}
+</code></pre><p>当一个特定的的回调方法被调用的时候，它就会适当调用broadcastUpdate()帮助方法并传递一个操作标识。注意本节中的数据是根据蓝牙心率测量的<a href="http://developer.bluetooth.org/gatt/characteristics/Pages/CharacteristicViewer.aspx?u=org.bluetooth.characteristic.heart_rate_measurement.xml" target=_blank rel="noopener noreferrer">profile规范<i class="fas fa-external-link-square-alt ms-1"></i></a>解析的：</p><pre><code>private void broadcastUpdate(final String action) {
+    final Intent intent = new Intent(action);
+    sendBroadcast(intent);
+}
+
+private void broadcastUpdate(final String action,
+                             final BluetoothGattCharacteristic characteristic) {
+    final Intent intent = new Intent(action);
+
+    // 按照心率测量的profile进行的特定处理.
+    // 按照么一个profile规范进行数据解析.
+    if (UUID_HEART_RATE_MEASUREMENT.equals(characteristic.getUuid())) {
+        int flag = characteristic.getProperties();
+        int format = -1;
+        if ((flag &amp; 0x01) != 0) {
+            format = BluetoothGattCharacteristic.FORMAT_UINT16;
+            Log.d(TAG, &quot;Heart rate format UINT16.&quot;);
+        } else {
+            format = BluetoothGattCharacteristic.FORMAT_UINT8;
+            Log.d(TAG, &quot;Heart rate format UINT8.&quot;);
+        }
+        final int heartRate = characteristic.getIntValue(format, 1);
+        Log.d(TAG, String.format(&quot;Received heart rate: %d&quot;, heartRate));
+        intent.putExtra(EXTRA_DATA, String.valueOf(heartRate));
+    } else {
+        // 针对其他profiles, 将数据格式化为16禁止数据.
+        final byte[] data = characteristic.getValue();
+        if (data != null &amp;&amp; data.length &gt; 0) {
+            final StringBuilder stringBuilder = new StringBuilder(data.length);
+            for(byte byteChar : data)
+                stringBuilder.append(String.format(&quot;%02X &quot;, byteChar));
+            intent.putExtra(EXTRA_DATA, new String(data) + &quot;\n&quot; +
+                    stringBuilder.toString());
+        }
+    }
+    sendBroadcast(intent);
+}
+</code></pre><p>回到DeviceControlActivity，下面的事件通过一个BroadcaseReceiver处理：</p><pre><code>// 处理Service发送过来的各种时间.
+// ACTION_GATT_CONNECTED: 连接上了一个GATT服务.
+// ACTION_GATT_DISCONNECTED: 断开了一个GATT服务.
+// ACTION_GATT_SERVICES_DISCOVERED: 发现了GATT服务.
+// ACTION_DATA_AVAILABLE: 从设备接收到数据. 这里可能是一个读取或者通知操作的结果。
+private final BroadcastReceiver mGattUpdateReceiver = new BroadcastReceiver() {
+    @Override
+    public void onReceive(Context context, Intent intent) {
+        final String action = intent.getAction();
+        if (BluetoothLeService.ACTION_GATT_CONNECTED.equals(action)) {
+            mConnected = true;
+            updateConnectionState(R.string.connected);
+            invalidateOptionsMenu();
+        } else if (BluetoothLeService.ACTION_GATT_DISCONNECTED.equals(action)) {
+            mConnected = false;
+            updateConnectionState(R.string.disconnected);
+            invalidateOptionsMenu();
+            clearUI();
+        } else if (BluetoothLeService.
+                ACTION_GATT_SERVICES_DISCOVERED.equals(action)) {
+            // 显示所有支持的service和characteristic。
+            displayGattServices(mBluetoothLeService.getSupportedGattServices());
+        } else if (BluetoothLeService.ACTION_DATA_AVAILABLE.equals(action)) {
+            displayData(intent.getStringExtra(BluetoothLeService.EXTRA_DATA));
+        }
+    }
+};
+</code></pre><h1 id=6reading-ble-attribute读取ble属性 data-numberify>6、Reading BLE Attribute（读取BLE属性）<a class="anchor ms-1 d-none" href=#6reading-ble-attribute读取ble属性>#</a></h1><p>一旦你的Android应用程序连接上了一个GATT服务并且发现了设备上的service，就可以在支持读写的地方读写属性。例如，下面的代码片段通过迭代服务的service和characteristic，并将它们显示在界面上：</p><pre><code>public class DeviceControlActivity extends Activity {
+    ...
+    // 演示如何迭代所支持的GATT Services/Characteristics.
+    // 在这个例子中，我们填充绑定到ExpandableListView的数据结构。
+    private void displayGattServices(List&lt;BluetoothGattService&gt; gattServices) {
+        if (gattServices == null) return;
+        String uuid = null;
+        String unknownServiceString = getResources().
+                getString(R.string.unknown_service);
+        String unknownCharaString = getResources().
+                getString(R.string.unknown_characteristic);
+        ArrayList&lt;HashMap&lt;String, String&gt;&gt; gattServiceData =
+                new ArrayList&lt;HashMap&lt;String, String&gt;&gt;();
+        ArrayList&lt;ArrayList&lt;HashMap&lt;String, String&gt;&gt;&gt; gattCharacteristicData
+                = new ArrayList&lt;ArrayList&lt;HashMap&lt;String, String&gt;&gt;&gt;();
+        mGattCharacteristics =
+                new ArrayList&lt;ArrayList&lt;BluetoothGattCharacteristic&gt;&gt;();
+
+        // 循环迭代可访问的GATT Services.
+        for (BluetoothGattService gattService : gattServices) {
+            HashMap&lt;String, String&gt; currentServiceData =
+                    new HashMap&lt;String, String&gt;();
+            uuid = gattService.getUuid().toString();
+            currentServiceData.put(
+                    LIST_NAME, SampleGattAttributes.
+                            lookup(uuid, unknownServiceString));
+            currentServiceData.put(LIST_UUID, uuid);
+            gattServiceData.add(currentServiceData);
+
+            ArrayList&lt;HashMap&lt;String, String&gt;&gt; gattCharacteristicGroupData =
+                    new ArrayList&lt;HashMap&lt;String, String&gt;&gt;();
+            List&lt;BluetoothGattCharacteristic&gt; gattCharacteristics =
+                    gattService.getCharacteristics();
+            ArrayList&lt;BluetoothGattCharacteristic&gt; charas =
+                    new ArrayList&lt;BluetoothGattCharacteristic&gt;();
+           // 循环迭代可访问的Characteristics.
+            for (BluetoothGattCharacteristic gattCharacteristic :
+                    gattCharacteristics) {
+                charas.add(gattCharacteristic);
+                HashMap&lt;String, String&gt; currentCharaData =
+                        new HashMap&lt;String, String&gt;();
+                uuid = gattCharacteristic.getUuid().toString();
+                currentCharaData.put(
+                        LIST_NAME, SampleGattAttributes.lookup(uuid,
+                                unknownCharaString));
+                currentCharaData.put(LIST_UUID, uuid);
+                gattCharacteristicGroupData.add(currentCharaData);
+            }
+            mGattCharacteristics.add(charas);
+            gattCharacteristicData.add(gattCharacteristicGroupData);
+         }
+    ...
+    }
+...
+}
+</code></pre><h1 id=7receiving-gatt-notification接收gatt通知 data-numberify>7、Receiving GATT Notification（接收GATT通知）<a class="anchor ms-1 d-none" href=#7receiving-gatt-notification接收gatt通知>#</a></h1><p>BLE应用程序要求在设备的某个指定characteristic改变的时候接收到通知是很常见。下面的代码片段展示了如何通过使用setCharacteristicNotification()为一个characteristic设置通知：</p><pre><code>private BluetoothGatt mBluetoothGatt;
+BluetoothGattCharacteristic characteristic;
+boolean enabled;
+...
+mBluetoothGatt.setCharacteristicNotification(characteristic, enabled);
+...
+BluetoothGattDescriptor descriptor = characteristic.getDescriptor(
+        UUID.fromString(SampleGattAttributes.CLIENT_CHARACTERISTIC_CONFIG));
+descriptor.setValue(BluetoothGattDescriptor.ENABLE_NOTIFICATION_VALUE);
+mBluetoothGatt.writeDescriptor(descriptor);
+</code></pre><p>一旦为一个characteristic启用了通知，当远程设备上的characteristic改变的时候就会触发onCharacteristicChanged()方法：</p><pre><code>@Override
+// Characteristic notification
+public void onCharacteristicChanged(BluetoothGatt gatt,
+        BluetoothGattCharacteristic characteristic) {
+    broadcastUpdate(ACTION_DATA_AVAILABLE, characteristic);
+}
+</code></pre><h1 id=8closing-the-client-app关闭客户端应用程序 data-numberify>8、Closing the Client App（关闭客户端应用程序）<a class="anchor ms-1 d-none" href=#8closing-the-client-app关闭客户端应用程序>#</a></h1><p>一旦你的应用程序使用完BLE设备，你应该调用close()方法，这样系统才能适当释放占用的资源：</p><pre><code>public void close() {
+    if (mBluetoothGatt == null) {
+        return;
+    }
+    mBluetoothGatt.close();
+    mBluetoothGatt = null;
+}
+</code></pre><p>原文地址：&lt;http://developer.android.com/guide/topics/connectivity/bluetooth-
+le.html></p></div><div class="modal fade" id=rewardModal tabindex=-1 aria-labelledby=rewardModalLabel aria-hidden=true><div class=modal-dialog><div class="modal-content surface"><div class=modal-header><h5 class="modal-title text-surface" id=rewardModalLabel><i class="fas fa-fw fa-coffee me-1"></i>打赏</h5><a href=# data-bs-dismiss=modal class=btn-close aria-label=Close></a></div><div class=modal-body><ul class="nav nav-tabs mb-3" role=tablist><li class="nav-item text-nowrap" role=presentation><a class="nav-link active" id=reward-alipay-tab data-bs-toggle=tab href=#reward-alipay role=tab aria-controls=reward-alipay aria-selected=true><i class="fab fa-fw fa-alipay me-1"></i>支付宝</a></li><li class="nav-item text-nowrap" role=presentation><a class=nav-link id=reward-wechat-tab data-bs-toggle=tab href=#reward-wechat role=tab aria-controls=reward-wechat aria-selected=true><i class="fab fa-fw fa-weixin me-1"></i>微信</a></li></ul><div class=tab-content id=rewardTabContent><div class="tab-pane fade post-reward-content text-center show active" id=reward-alipay role=tabpanel aria-labelledby=reward-alipay-tab><img class="img-fluid post-reward-img" src=https://www.qinxiandiqi.sbs/images/reward/alipay.jpg loading=lazy data-viewer-invisible></div><div class="tab-pane fade post-reward-content text-center show" id=reward-wechat role=tabpanel aria-labelledby=reward-wechat-tab><img class="img-fluid post-reward-img" src=https://www.qinxiandiqi.sbs/images/reward/wechat.png loading=lazy data-viewer-invisible></div></div></div></div></div></div></div><div class=card-footer><div class="post-navs d-flex justify-content-evenly"><div class="post-nav post-prev"><i class="fas fa-fw fa-chevron-down post-prev-icon me-1" data-fa-transform=rotate-90></i>
+<a href=https://www.qinxiandiqi.sbs/posts/android/android%E8%93%9D%E7%89%99/>Android蓝牙</a></div><div class="post-nav post-next"><a href=https://www.qinxiandiqi.sbs/posts/android/android%E5%BA%94%E7%94%A8%E7%A8%8B%E5%BA%8F%E5%AE%89%E8%A3%85%E4%BD%8D%E7%BD%AEappinstalllocation/>Android应用程序安装位置（App Install Location）</a>
+<i class="fas fa-fw fa-chevron-down post-next-icon ms-1" data-fa-transform=rotate-270></i></div></div></div></article><div class="post-copyright mb-3 row card component" id=post-copyright><div class=card-header><h2 class="card-title fs-4 my-2 text-surface">版权</h2></div><div class=card-body><a class="d-flex align-items-center flex-column" target=_blank rel="license noopener noreferrer" href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh><span><i class="fab fa-fw fa-2x fa-creative-commons"></i><i class="fab fa-fw fa-2x fa-creative-commons-by"></i><i class="fab fa-fw fa-2x fa-creative-commons-nc"></i><i class="fab fa-fw fa-2x fa-creative-commons-nd"></i></span>
+CC BY-NC-ND 4.0</a></div></div><section class="related-posts row card component"><div class=card-header><h2 class="card-title fs-4 my-2 text-surface">相关文章</h2></div><div class=card-body><ul class="post-list list-unstyled"><li class="mb-3 border-bottom"><a class=post-title href=https://www.qinxiandiqi.sbs/posts/android/android%E8%93%9D%E7%89%99/>Android蓝牙</a>
+<span class="post-meta post-date float-end">2014-10-27</span><div class="post-summary my-3"><p>Android平台提供了对蓝牙网络协议栈的支持，它允许设备通过无线的方式与其它设备进行数据交换。应用程序框架通过Android Bluetooth APIs提供了对蓝牙功能的访问。这些API允许应用以无线的方式连接其它蓝牙设备，启用点对点或者多点对多点的无线功能。使用蓝牙的API，Android应用程序可以执行以下工作：
+* 扫描其它蓝牙设备 * 查询本地蓝牙适配器以配对蓝牙设备 * 建</p><div><a class="btn btn-sm btn-outline-primary btn-read-more" href=https://www.qinxiandiqi.sbs/posts/android/android%E8%93%9D%E7%89%99/>阅读更多</a></div></div></li><li class="mb-3 border-bottom"><a class=post-title href=https://www.qinxiandiqi.sbs/posts/hardware/ibeacon%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86howdoibeaconwork/>IBeacon工作原理（How Do IBeacon Work？）</a>
+<span class="post-meta post-date float-end">2014-09-02</span><div class="post-summary my-3"><p>iBeacon是最近非常火的话题。这种技术能够实现室内定位，让你的手机能够知道是否处于一个Beacon的范围内。使用这种技术能够产生很多应用程序：比如帮助你在停车场中找到你的汽车，或者在零售店中根据所处位置提供优惠券或者其它一些位置相关的服务。还有很多我们现在无法想象得到的应用程序。
+现在有很多种关于iBeacon是什么，以及我们可以如何使用它们的解释。然而从技术角度上来说，它们是如何工作的</p><div><a class="btn btn-sm btn-outline-primary btn-read-more" href=https://www.qinxiandiqi.sbs/posts/hardware/ibeacon%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86howdoibeaconwork/>阅读更多</a></div></div></li><li class="mb-3 border-bottom"><a class=post-title href=https://www.qinxiandiqi.sbs/posts/android/androidgradleplugin/androidgradleplugin%E6%8C%87%E5%8D%97%E4%B8%80%E7%AE%80%E4%BB%8B/>Android Gradle Plugin指南（一）——简介</a>
+<span class="post-meta post-date float-end">2014-07-14</span><div class="post-summary my-3"><p>原文地址：http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Introduction
+译者：google推出了全新的Android Studio集成开发环境，其中Android项目的结构与Eclipse的Android项目结构有很大的区别，原因就在于两开发环境使用的构建工具不同。Android Studi</p><div><a class="btn btn-sm btn-outline-primary btn-read-more" href=https://www.qinxiandiqi.sbs/posts/android/androidgradleplugin/androidgradleplugin%E6%8C%87%E5%8D%97%E4%B8%80%E7%AE%80%E4%BB%8B/>阅读更多</a></div></div></li><li class="mb-3 border-bottom"><a class=post-title href=https://www.qinxiandiqi.sbs/posts/raspberry/%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%AE%BE%E7%BD%AE%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84wifi%E7%BD%91%E7%BB%9C/>使用命令行设置树莓派的wifi网络</a>
+<span class="post-meta post-date float-end">2014-10-02</span><div class="post-summary my-3"><p>如果你没有登录到常用的图形用户界面，这种方法就适合用来设置树莓派的wifi。尤其是在你没有屏幕或者有线网络，仅使用串口控制线的时候。另外，这种方法也不需要额外的软件，所有需要的东西都已经包含进了树莓派。
+GETTING WIFI NETWORK DETAILS（获取wifi网络详情）
+为了扫描wifi网络，可以使用sudo iwlist wlan0 scan命令。这个命令会列出所有</p><div><a class="btn btn-sm btn-outline-primary btn-read-more" href=https://www.qinxiandiqi.sbs/posts/raspberry/%E4%BD%BF%E7%94%A8%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%AE%BE%E7%BD%AE%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84wifi%E7%BD%91%E7%BB%9C/>阅读更多</a></div></div></li><li class="mb-3 border-bottom"><a class=post-title href=https://www.qinxiandiqi.sbs/posts/raspberry/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84.bashrc%E5%92%8C.bash_aliases%E6%96%87%E4%BB%B6/>树莓派的.bashrc和.bash_aliases文件</a>
+<span class="post-meta post-date float-end">2014-09-30</span><div class="post-summary my-3"><p>在你的home目录中，你可以找到一个包含用户配置的隐藏文件.bashrc。你可以根据自己的需要修改这个文件。
+文件中为你提供了一些有用的调整设置，默认情况下其中一些设置是被注释掉的。
+例如，一些ls命令的别名： alias ls='ls --color=auto' #alias dir='dir --color=auto' #alias vdir='vdir --color=auto</p><div><a class="btn btn-sm btn-outline-primary btn-read-more" href=https://www.qinxiandiqi.sbs/posts/raspberry/%E6%A0%91%E8%8E%93%E6%B4%BE%E7%9A%84.bashrc%E5%92%8C.bash_aliases%E6%96%87%E4%BB%B6/>阅读更多</a></div></div></li></ul></div></section><div class="card component row post-comments" id=post-comments><div class=card-header><h2 class="card-title my-2 fs-4 text-surface">评论</h2></div><div class=card-body><script src=https://utteranc.es/client.js repo=qinxiandiqi/qinxiandiqi.github.io issue-term=pathname label=comment theme=github-light crossorigin=anonymous async></script></div></div></div></div></div></main><footer class="footer mt-auto py-3 text-center container"><div class="offcanvas offcanvas-bottom h-auto" tabindex=-1 id=offcanvasActionsPanel aria-labelledby=offcanvasActionsPanelLabel><div class=offcanvas-header><h5 class="offcanvas-title fs-4" id=offcanvasActionsPanelLabel><i class="fas fa-fw fa-th-large me-1"></i>
+操作</h5><button type=button class="btn-close ms-auto" data-bs-dismiss=offcanvas data-bs-target=offcanvasActionsPanel aria-label=Close></button></div><div class="offcanvas-body mt-2"><div class="social-share mb-4 d-flex overflow-auto"><a class="btn-social-share d-flex flex-column align-items-center me-3" rel="noopener noreferrer" aria-label="Twitter Share Button" target=_blank href="https://twitter.com/intent/tweet?title=Android%20Bluetooth%20Low%20Energy%ef%bc%88Android%e4%bd%8e%e5%8a%9f%e8%80%97%e8%93%9d%e7%89%99%ef%bc%89&url=https%3a%2f%2fwww.qinxiandiqi.sbs%2fposts%2fandroid%2fandroidbluetoothlowenergyandroid%25E4%25BD%258E%25E5%258A%259F%25E8%2580%2597%25E8%2593%259D%25E7%2589%2599%2f"><i class="fab fa-2x fa-fw fa-twitter mb-2"></i> Twitter</a>
+<a class="btn-social-share d-flex flex-column align-items-center me-3" rel="noopener noreferrer" aria-label="Facebook Share Button" target=_blank href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fwww.qinxiandiqi.sbs%2fposts%2fandroid%2fandroidbluetoothlowenergyandroid%25E4%25BD%258E%25E5%258A%259F%25E8%2580%2597%25E8%2593%259D%25E7%2589%2599%2f"><i class="fab fa-2x fa-fw fa-facebook-f mb-2"></i> Facebook</a></div><hr class=mb-4><div class="actions d-flex overflow-auto align-items-center"><a role=button class="action action-go-back d-flex flex-column align-items-center me-3" href="javascript: window.history.back();"><span class="action-icon mb-2"><i class="fas fa-2x fa-chevron-circle-down" data-fa-transform=rotate-90></i></span> 返回</a>
+<a role=button class="action action-reload-page d-flex flex-column align-items-center me-3"><span class="action-icon mb-2"><i class="fas fa-2x fa-redo-alt"></i></span> 刷新</a>
+<a role=button class="action action-copy-url d-flex flex-column align-items-center me-3"><span class="action-icon mb-2"><i class="fas fa-2x fa-link"></i></span> 复制链接</a></div></div></div><ul class="nav justify-content-between footer-memu mb-3"><li class=nav-item><ul class="nav flex-column align-items-start"><li class=nav-item><a class="nav-link fw-bold fs-lg" href="javascript: void(0);">support</a></li><li class=nav-item><a class=nav-link href=/contact/><i class="fas fa-fw fa-info-circle"></i>联系我</a></li></ul></li></ul><nav class="social-links nav justify-content-center mb-2"><a class="nav-link social-link" target=_blank href=https://space.bilibili.com/438403014 title=bilibili rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-bilibili"></i></a>
+<a class="nav-link social-link" href=mailto:qinxiandiqi@foxmail.com title=Email><i class="fas fa-fw fa-2x fa-envelope"></i></a>
+<a class="nav-link social-link" target=_blank href=https://facebook.com/qinxiandiqi title=Facebook rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-facebook-f"></i></a>
+<a class="nav-link social-link" target=_blank href=https://github.com/qinxiandiqi title=GitHub rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-github"></i></a>
+<a class="nav-link social-link" target=_blank href="http://wpa.qq.com/msgrd?v=3&uin=493059154&site=qq&menu=yes" title=QQ rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-qq"></i></a>
+<a class="nav-link social-link" target=_blank href=https://twitter.com/qinxiandiqi title=Twitter rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-twitter"></i></a>
+<a class="nav-link social-link" target=_blank href=https://weibo.com/qinxiandiqi title=Weibo rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-weibo"></i></a>
+<a class="nav-link social-link" target=_blank href=https://www.zhihu.com/people/qinxiandiqi title=Zhihu rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-zhihu"></i></a>
+<a class="nav-link social-link" target=_blank href=https://www.qinxiandiqi.sbs/index.xml title=RSS rel="noopener noreferrer"><i class="fas fa-fw fa-2x fa-rss"></i></a></nav><div class="copyright mb-2">Copyright © 2012-2022 Jianan. All Rights Reserved.</div><div class="powered-by mb-2">Powered by <a class=text-primary href=https://gohugo.io target=_blank rel="noopener noreferrer">Hugo</a> and the <a class=text-primary href=https://github.com/razonyang/hugo-theme-bootstrap target=_blank rel="noopener noreferrer">HBS</a> theme.</div></footer><script data-precache src=https://www.qinxiandiqi.sbs/assets/main/bundle.min.6d6041952a17e1bf66466a0f64cb4314a10db145ad16ec1882d7a787599f41ff.js integrity="sha256-bWBBlSoX4b9mRmoPZMtDFKENsUWtFuwYgtenh1mfQf8=" crossorigin=anonymous defer></script><script data-precache src=https://www.qinxiandiqi.sbs/assets/icons/bundle.min.9b65a1892e3a9ee67ad669fdde6abd4963c890151073f181b3e730bce85680a6.js integrity="sha256-m2WhiS46nuZ61mn93mq9SWPIkBUQc/GBs+cwvOhWgKY=" crossorigin=anonymous defer></script>
+<script data-precache src=https://www.qinxiandiqi.sbs/assets/viewer/bundle.min.9f713149f059d05fcb65e7f7c27308e61c384500e80ab1c333c2510a36a5d70c.js integrity="sha256-n3ExSfBZ0F/LZef3wnMI5hw4RQDoCrHDM8JRCjal1ww=" crossorigin=anonymous defer></script><script>"serviceWorker"in navigator&&window.addEventListener("load",()=>{navigator.serviceWorker.register("https://www.qinxiandiqi.sbs/service-worker.min.js").then(function(e){console.log("Successfully registered service worker",e)}).catch(function(e){console.warn("Error whilst registering service worker",e)})})</script></body></html>

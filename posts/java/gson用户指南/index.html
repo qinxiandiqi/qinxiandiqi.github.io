@@ -1,0 +1,500 @@
+<!doctype html><html class=position-relative itemscope itemtype=http://schema.org/WebPage lang=zh-cn data-theme=auto data-bs-theme=auto data-palette=purple><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><title>Gson用户指南 - 琴弦第七</title><link rel=icon href=https://www.qinxiandiqi.sbs/favicon_huc1d2ba7c7d6d5aa3e01f2f328b911c53_11507_16x16_resize_box_3.png sizes=16x16 type=image/png><link rel=icon href=https://www.qinxiandiqi.sbs/favicon_huc1d2ba7c7d6d5aa3e01f2f328b911c53_11507_32x32_resize_box_3.png sizes=32x32 type=image/png><link rel=apple-touch-icon href=https://www.qinxiandiqi.sbs/favicon_huc1d2ba7c7d6d5aa3e01f2f328b911c53_11507_180x180_resize_box_3.png sizes=180x180 type=image/png><link rel=icon href=https://www.qinxiandiqi.sbs/favicon_huc1d2ba7c7d6d5aa3e01f2f328b911c53_11507_150x150_resize_box_3.png sizes=150x150 type=image/png><link rel=icon href=https://www.qinxiandiqi.sbs/favicon_huc1d2ba7c7d6d5aa3e01f2f328b911c53_11507_192x192_resize_box_3.png sizes=192x192 type=image/png><link rel=mask-icon href=https://www.qinxiandiqi.sbs/safari-pinned-tab.svg color=#6f42c1><link rel=icon href="https://www.qinxiandiqi.sbs/images/icons/favicon.ico?version=2a4098caa2eb82a1f873269b3ff57965"><meta name=keywords content><meta name=description content="作者：Inderjeet Singh, Joel Leitch, Jesse Wilson
+1、Overview（概览）
+Gson是一个Java类库，用于将Java对象转换为它们所代表的JSON数据，也可以用于将一个JSON字符串转换为对应的Java对象。Gson是一个开源项目，托管于http://code.google.com/p/google-gson。
+Gson可以用于任意"><meta name=robots content="index, follow"><meta name=twitter:card content="summary"><meta name=twitter:title content="Gson用户指南"><meta name=twitter:description content="作者：Inderjeet Singh, Joel Leitch, Jesse Wilson
+1、Overview（概览）
+Gson是一个Java类库，用于将Java对象转换为它们所代表的JSON数据，也可以用于将一个JSON字符串转换为对应的Java对象。Gson是一个开源项目，托管于http://code.google.com/p/google-gson。
+Gson可以用于任意"><meta name=twitter:site content="@qinxiandiqi"><meta property="og:title" content="Gson用户指南"><meta property="og:description" content="作者：Inderjeet Singh, Joel Leitch, Jesse Wilson
+1、Overview（概览）
+Gson是一个Java类库，用于将Java对象转换为它们所代表的JSON数据，也可以用于将一个JSON字符串转换为对应的Java对象。Gson是一个开源项目，托管于http://code.google.com/p/google-gson。
+Gson可以用于任意"><meta property="og:type" content="article"><meta property="og:url" content="https://www.qinxiandiqi.sbs/posts/java/gson%E7%94%A8%E6%88%B7%E6%8C%87%E5%8D%97/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2014-09-07T12:02:18+08:00"><meta property="article:modified_time" content="2014-09-07T12:02:18+08:00"><meta itemprop=name content="Gson用户指南"><meta itemprop=description content="作者：Inderjeet Singh, Joel Leitch, Jesse Wilson
+1、Overview（概览）
+Gson是一个Java类库，用于将Java对象转换为它们所代表的JSON数据，也可以用于将一个JSON字符串转换为对应的Java对象。Gson是一个开源项目，托管于http://code.google.com/p/google-gson。
+Gson可以用于任意"><meta itemprop=datePublished content="2014-09-07T12:02:18+08:00"><meta itemprop=dateModified content="2014-09-07T12:02:18+08:00"><meta itemprop=wordCount content="8710"><meta itemprop=keywords content="gson,json,java,"><meta property="og:image" content="https://www.qinxiandiqi.sbs/images/logo.png"><meta name=twitter:image content="https://www.qinxiandiqi.sbs/images/logo.png"><link rel=manifest href=https://www.qinxiandiqi.sbs/manifest.json><link data-precache rel=stylesheet href="https://www.qinxiandiqi.sbs/assets/main/bundle.min.4d0a628e427af2df862b411feced006985e5e7f4abf1d52b690dcf44facac475.css" integrity="sha256-TQpijkJ68t+GK0Ef7O0AaYXl5/Sr8dUraQ3PRPrKxHU=" crossorigin=anonymous><link data-precache rel=stylesheet href=https://www.qinxiandiqi.sbs/assets/viewer/bundle.min.6d0fc65b8b058ac563091dc5c36f61afba5dd705058680aa24f1d5a3bcf0064d.css integrity="sha256-bQ/GW4sFisVjCR3Fw29hr7pd1wUFhoCqJPHVo7zwBk0=" crossorigin=anonymous></head><body><script>const items=["theme","palette"];items.forEach(function(e){const t=localStorage.getItem("hbs:"+e);t&&document.body.parentElement.setAttribute("data-"+e,t)})</script><header><nav class="top-app-bar shadow navbar navbar-expand-lg fixed-top"><div class=container><a class="navbar-brand d-flex align-items-center flex-grow-1 flex-lg-grow-0 text-lg-start ms-2 ms-lg-0 mx-auto me-lg-2" href=https://www.qinxiandiqi.sbs/><picture><img class=logo alt=Logo src=https://www.qinxiandiqi.sbs/images/logo.png loading=lazy width=500 height=500>
+</picture>琴弦第七</a>
+<button class="navbar-toggler order-5" type=button data-bs-toggle=offcanvas data-bs-target=#navbarMenus aria-controls=navbarMenus aria-expanded=false aria-label="Toggle navigation">
+<i class="fas fa-ellipsis-h"></i></button><div class="offcanvas-lg offcanvas-end flex-grow-1" data-bs-scroll=true tabindex=-1 id=navbarMenus aria-labelledby=navbarMenusLabel><div class="offcanvas-header px-4 pb-0"><h5 class=offcanvas-title id=navbarMenusLabel>琴弦第七</h5><button type=button class="btn-close btn-close-white" data-bs-dismiss=offcanvas data-bs-target=#navbarMenus aria-label=Close></button></div><div class="offcanvas-body p-4 pt-0 p-lg-0"><hr class=d-lg-none><ul class="navbar-nav flex-row flex-wrap align-items-center me-auto"><li class="nav-item col-6 col-lg-auto"><a class="nav-link py-2 px-0 px-lg-2" href=https://www.qinxiandiqi.sbs/archives/><i class="fas fa-fw fa-file-archive"></i>归档</a></li><li class="nav-item col-6 col-lg-auto"><a class="nav-link py-2 px-0 px-lg-2" href=https://www.qinxiandiqi.sbs/series/><i class="fas fa-fw fa-columns"></i>专栏</a></li><li class="nav-item col-6 col-lg-auto"><a class="nav-link py-2 px-0 px-lg-2" href=https://www.qinxiandiqi.sbs/categories/><i class="fas fa-fw fa-folder"></i>分类</a></li><li class="nav-item col-6 col-lg-auto"><a class="nav-link py-2 px-0 px-lg-2" href=https://www.qinxiandiqi.sbs/tags/><i class="fas fa-fw fa-tags"></i>标签</a></li></ul><hr class=d-lg-none><form class="search-bar ms-auto my-1" action=https://www.qinxiandiqi.sbs/search/ novalidate><div class="input-group input-group-sm align-items-center"><span class="btn btn-search disabled position-absolute left-0 border-0"><i class="fas fa-fw fa-search fa-lg"></i></span>
+<input class="py-2 form-control rounded search-input" name=q type=search aria-label=Search required></div></form><hr class=d-lg-none><ul class="navbar-nav flex-row flex-wrap align-items-center ms-md-auto"><li class="nav-item py-2 py-lg-1 col-12 col-lg-auto"><nav class="social-links nav justify-content-center flex-row"><a class="nav-link social-link col-6 col-lg-auto p-1" target=_blank href=https://github.com/qinxiandiqi title=GitHub rel="noopener noreferrer"><i class="fa-fw fab fa-github"></i>
+<span class="ms-1 d-lg-none">GitHub</span></a>
+<a class="nav-link social-link col-6 col-lg-auto p-1" target=_blank href=https://www.qinxiandiqi.sbs/index.xml title=RSS rel="noopener noreferrer"><i class="fas fa-fw fa-rss"></i>
+<span class="ms-1 d-lg-none">RSS</span></a></nav></li><li class="nav-item py-2 py-lg-1 col-12 col-lg-auto"><div class="vr d-none d-lg-flex h-100 mx-lg-2 text-white"></div><hr class="d-lg-none my-2"></li><li class="nav-item dropdown py-1 py-lg-1 col-6 col-lg-auto"><a class="nav-link px-0 px-lg-1" href=# id=languageDropdown role=button data-bs-toggle=dropdown aria-expanded=false><i class="fas fa-fw fa-globe"></i>
+<span class=d-lg-none>语言</span></a><ul class="dropdown-menu dropdown-menu-end" aria-labelledby=languageDropdown><li><a class="dropdown-item active" href=https://www.qinxiandiqi.sbs/>简体中文</a></li><li><a class=dropdown-item href=https://www.qinxiandiqi.sbs/en/>English</a></li></ul></li><li class="nav-item py-1 col-12 col-lg-auto"><div class="vr d-none d-lg-flex h-100 mx-lg-2 text-white"></div><hr class="d-lg-none my-2"></li><li class="nav-item dropdown col-6 col-lg-auto"><a class="nav-link px-0 py-2 px-lg-1" href=# id=fontSizeDropdown role=button data-bs-toggle=dropdown aria-expanded=false><i class="fas fa-fw fa-font"></i>
+<span class=d-lg-none>字体大小</span></a><ul class="dropdown-menu dropdown-menu-end" aria-labelledby=fontSizeDropdown><li><button class="font-size-item dropdown-item" data-size=xs>
+特小号</button></li><li><button class="font-size-item dropdown-item" data-size=sm>
+小号</button></li><li><button class="font-size-item dropdown-item active" data-size=md>
+中等</button></li><li><button class="font-size-item dropdown-item" data-size=lg>
+大号</button></li><li><button class="font-size-item dropdown-item" data-size=xl>
+特大号</button></li></ul></li><li class="nav-item dropdown col-6 col-lg-auto"><a class="nav-link px-0 py-2 px-lg-1" href=# id=paletteDropdown role=button data-bs-toggle=dropdown aria-expanded=false><i class="fas fa-fw fa-palette"></i>
+<span class=d-lg-none>配色</span></a><ul class="dropdown-menu dropdown-menu-end px-2" aria-labelledby=paletteDropdown><div class=row><li class="col-4 my-1"><a role=button id=palette-blue aria-label=蓝色 class="btn btn-sm w-100 palette text-bg-blue" data-palette=blue></a></li><li class="col-4 my-1"><a role=button id=palette-blue-gray aria-label=蓝灰色 class="btn btn-sm w-100 palette text-bg-blue-gray" data-palette=blue-gray></a></li><li class="col-4 my-1"><a role=button id=palette-brown aria-label=棕色 class="btn btn-sm w-100 palette text-bg-brown" data-palette=brown></a></li><li class="col-4 my-1"><a role=button id=palette-cyan aria-label=青色 class="btn btn-sm w-100 palette text-bg-cyan" data-palette=cyan></a></li><li class="col-4 my-1"><a role=button id=palette-green aria-label=绿色 class="btn btn-sm w-100 palette text-bg-green" data-palette=green></a></li><li class="col-4 my-1"><a role=button id=palette-indigo aria-label=靛青色 class="btn btn-sm w-100 palette text-bg-indigo" data-palette=indigo></a></li><li class="col-4 my-1"><a role=button id=palette-orange aria-label=橙色 class="btn btn-sm w-100 palette text-bg-orange" data-palette=orange></a></li><li class="col-4 my-1"><a role=button id=palette-pink aria-label=粉色 class="btn btn-sm w-100 palette text-bg-pink" data-palette=pink></a></li><li class="col-4 my-1"><a role=button id=palette-purple aria-label=紫色 class="btn btn-sm w-100 palette text-bg-purple" data-palette=purple></a></li><li class="col-4 my-1"><a role=button id=palette-red aria-label=红色 class="btn btn-sm w-100 palette text-bg-red" data-palette=red></a></li><li class="col-4 my-1"><a role=button id=palette-teal aria-label=蓝绿色 class="btn btn-sm w-100 palette text-bg-teal" data-palette=teal></a></li><li class="col-4 my-1"><a role=button id=palette-yellow aria-label=黄色 class="btn btn-sm w-100 palette text-bg-yellow" data-palette=yellow></a></li></div></ul></li><li class="nav-item dropdown col-6 col-lg-auto"><a class="nav-link px-0 py-2 px-lg-1" href=# id=modeDropdown role=button data-bs-toggle=dropdown aria-expanded=false><i class="mode-icon fas fa-fw fa-adjust" id=modeIcon></i>
+<span class=d-lg-none>模式</span></a><ul class="dropdown-menu dropdown-menu-end" aria-labelledby=modeDropdown><li class=mode-item data-color-mode=light data-icon=sun><button class=dropdown-item>
+<i class="mode-icon fas fa-fw fa-sun"></i> Light</button></li><li class=mode-item data-color-mode=dark data-icon=moon><button class=dropdown-item>
+<i class="mode-icon fas fa-fw fa-moon"></i> Dark</button></li><li class="mode-item active" data-color-mode=auto data-icon=adjust><button class=dropdown-item>
+<i class="mode-icon fas fa-fw fa-adjust"></i> Auto</button></li></ul></li></ul></div></div></div></nav></header><main class=container><div class="row content"><noscript><div class="alert alert-danger" role=alert>你的浏览器不支持 JavaScript。</div></noscript><aside class="col-lg-4 sidebar d-flex order-lg-5"><div class="container d-flex flex-column"><div class="accordion profile"><div class="accordion-item card row text-center component"><div class="accordion-header card-header border-0" id=profile-header><a class="accordion-button d-lg-none mb-2 collapsed shadow-none p-0 bg-transparent text-surface" type=button data-bs-toggle=collapse data-bs-target=#profile aria-expanded=false aria-controls=profile>Profile</a></div><div class="card-body collapse accordion-collapse accordion-body d-lg-block" id=profile aria-labelledby=profile-header><div class="col-12 d-flex align-items-center justify-content-center"><picture><img class="profile-avatar rounded-circle" alt=Jianan src=https://www.qinxiandiqi.sbs/images/profile.png loading=lazy data-viewer-invisible width=500 height=500></picture></div><div class="col-12 profile-meta"><div class="profile-name fw-fold fs-lg">Jianan</div><div class=profile-bio>今天做点什么呢？</div><div class="profile-about text-primary"><i class="fas fa-fw fa-user"></i><a href=https://www.qinxiandiqi.sbs/about/>关于我</a></div><div class="profile-contact text-primary"><i class="fas fa-fw fa-question-circle"></i><a href=https://www.qinxiandiqi.sbs/contact/>联系我</a></div></div><nav class="social-links nav justify-content-center mt-1 justify-content-around"><a class="nav-link social-link" href=mailto:qinxiandiqi@foxmail.com title=Email><i class="fas fa-fw fa-2x fa-envelope"></i></a>
+<a class="nav-link social-link" target=_blank href=https://github.com/qinxiandiqi title=GitHub rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-github"></i></a>
+<a class="nav-link social-link" target=_blank href=https://twitter.com/qinxiandiqi title=Twitter rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-twitter"></i></a>
+<a class="nav-link social-link" target=_blank href=https://weibo.com/qinxiandiqi title=Weibo rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-weibo"></i></a>
+<a class="nav-link social-link" target=_blank href=https://www.zhihu.com/people/qinxiandiqi title=Zhihu rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-zhihu"></i></a></nav></div></div></div><div class="accordion taxonomies-toggle"><section class="row card component accordion-item"><div class="accordion-header card-header border-0"><a class="accordion-button d-lg-none mb-1 collapsed shadow-none p-0 bg-transparent" type=button data-bs-toggle=collapse data-bs-target=#taxonomies-toggle aria-expanded=false aria-controls=taxonomies-toggle>Taxonomies</a></div><div class="card-body collapse accordion-collapse accordion-body d-lg-block" id=taxonomies-toggle><ul class="nav nav-pills nav-fill" id=myTab role=tablist><li class=nav-item role=presentation><button class="nav-link active" id=taxonomySeriesTab data-bs-toggle=tab data-bs-target=#taxonomySeries type=button role=tab aria-controls=专栏 aria-selected=true>
+专栏</button></li><li class=nav-item role=presentation><button class=nav-link id=taxonomyCategoriesTab data-bs-toggle=tab data-bs-target=#taxonomyCategories type=button role=tab aria-controls=分类 aria-selected=true>
+分类</button></li><li class=nav-item role=presentation><button class=nav-link id=taxonomyTagsTab data-bs-toggle=tab data-bs-target=#taxonomyTags type=button role=tab aria-controls=标签 aria-selected=true>
+标签</button></li><li class=nav-item role=presentation><button class=nav-link id=taxonomyAuthorsTab data-bs-toggle=tab data-bs-target=#taxonomyAuthors type=button role=tab aria-controls=作者 aria-selected=true>
+作者</button></li><li class=nav-item role=presentation><button class=nav-link id=taxonomyArchivesTab data-bs-toggle=tab data-bs-target=#taxonomyArchive type=button role=tab aria-controls=taxonomyArchives aria-selected=true>
+归档</button></li></ul><div class="tab-content mt-3"><div class="tab-pane active" id=taxonomySeries role=tabpanel aria-labelledby=taxonomySeriesTab tabindex=0><a href=https://www.qinxiandiqi.sbs/series/raspberry/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title=RaspBerry>RaspBerry
+<span class="badge badge-sm text-secondary bg-white ms-1">27</span></a>
+<a href=https://www.qinxiandiqi.sbs/series/android/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title=Android>Android
+<span class="badge badge-sm text-secondary bg-white ms-1">20</span></a>
+<a href=https://www.qinxiandiqi.sbs/series/java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title=Java学习笔记>Java学习笔记
+<span class="badge badge-sm text-secondary bg-white ms-1">17</span></a>
+<a href=https://www.qinxiandiqi.sbs/series/javaweb%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title=JavaWeb学习笔记>JavaWeb学习笔记
+<span class="badge badge-sm text-secondary bg-white ms-1">12</span></a>
+<a href=https://www.qinxiandiqi.sbs/series/android-wear/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title="Android Wear">Android Wear
+<span class="badge badge-sm text-secondary bg-white ms-1">11</span></a>
+<a href=https://www.qinxiandiqi.sbs/series/libgdx/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title=libGDX>libGDX
+<span class="badge badge-sm text-secondary bg-white ms-1">8</span></a>
+<a href=https://www.qinxiandiqi.sbs/series/libgdx%E6%89%8B%E5%86%8C/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title=libGDX手册>libGDX手册
+<span class="badge badge-sm text-secondary bg-white ms-1">7</span></a>
+<a href=https://www.qinxiandiqi.sbs/series/android-gradle/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title="Android Gradle">Android Gradle
+<span class="badge badge-sm text-secondary bg-white ms-1">6</span></a>
+<a href=https://www.qinxiandiqi.sbs/series/javascript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title=JavaScript学习笔记>JavaScript学习笔记
+<span class="badge badge-sm text-secondary bg-white ms-1">6</span></a>
+<a href=https://www.qinxiandiqi.sbs/series/ide/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title=IDE>IDE
+<span class="badge badge-sm text-secondary bg-white ms-1">5</span></a>
+<a href=https://www.qinxiandiqi.sbs/series class="btn btn-sm btn-secondary post-taxonomy ps-3 post-series me-2 mb-2" title=全部>全部
+<span class="badge badge-sm text-secondary bg-white ms-1">26</span></a></div><div class=tab-pane id=taxonomyCategories role=tabpanel aria-labelledby=taxonomyCategoriesTab tabindex=0><a href=https://www.qinxiandiqi.sbs/categories/%E7%BF%BB%E8%AF%91/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title=翻译>翻译
+<span class="badge badge-sm text-secondary bg-white ms-1">67</span></a>
+<a href=https://www.qinxiandiqi.sbs/categories/raspberry/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title=RaspBerry>RaspBerry
+<span class="badge badge-sm text-secondary bg-white ms-1">27</span></a>
+<a href=https://www.qinxiandiqi.sbs/categories/android/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title=Android>Android
+<span class="badge badge-sm text-secondary bg-white ms-1">21</span></a>
+<a href=https://www.qinxiandiqi.sbs/categories/javaweb%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title=JavaWeb学习笔记>JavaWeb学习笔记
+<span class="badge badge-sm text-secondary bg-white ms-1">12</span></a>
+<a href=https://www.qinxiandiqi.sbs/categories/android-wear/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title="Android Wear">Android Wear
+<span class="badge badge-sm text-secondary bg-white ms-1">11</span></a>
+<a href=https://www.qinxiandiqi.sbs/categories/libgdx/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title=libGDX>libGDX
+<span class="badge badge-sm text-secondary bg-white ms-1">8</span></a>
+<a href=https://www.qinxiandiqi.sbs/categories/libgdx%E6%89%8B%E5%86%8C/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title=libGDX手册>libGDX手册
+<span class="badge badge-sm text-secondary bg-white ms-1">7</span></a>
+<a href=https://www.qinxiandiqi.sbs/categories/android-gradle/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title="Android Gradle">Android Gradle
+<span class="badge badge-sm text-secondary bg-white ms-1">6</span></a>
+<a href=https://www.qinxiandiqi.sbs/categories/javascript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title=JavaScript学习笔记>JavaScript学习笔记
+<span class="badge badge-sm text-secondary bg-white ms-1">6</span></a>
+<a href=https://www.qinxiandiqi.sbs/categories/ide/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title=IDE>IDE
+<span class="badge badge-sm text-secondary bg-white ms-1">5</span></a>
+<a href=https://www.qinxiandiqi.sbs/categories class="btn btn-sm btn-secondary post-taxonomy ps-3 post-category me-2 mb-2" title=全部>全部
+<span class="badge badge-sm text-secondary bg-white ms-1">28</span></a></div><div class=tab-pane id=taxonomyTags role=tabpanel aria-labelledby=taxonomyTagsTab tabindex=0><a href=https://www.qinxiandiqi.sbs/tags/android/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title=android>android
+<span class="badge badge-sm text-secondary bg-white ms-1">30</span></a>
+<a href=https://www.qinxiandiqi.sbs/tags/java/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title=java>java
+<span class="badge badge-sm text-secondary bg-white ms-1">30</span></a>
+<a href=https://www.qinxiandiqi.sbs/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title=树莓派>树莓派
+<span class="badge badge-sm text-secondary bg-white ms-1">28</span></a>
+<a href=https://www.qinxiandiqi.sbs/tags/raspberry/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title=RaspBerry>RaspBerry
+<span class="badge badge-sm text-secondary bg-white ms-1">27</span></a>
+<a href=https://www.qinxiandiqi.sbs/tags/android-wear/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title="Android Wear">Android Wear
+<span class="badge badge-sm text-secondary bg-white ms-1">11</span></a>
+<a href=https://www.qinxiandiqi.sbs/tags/javaweb/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title=javaweb>javaweb
+<span class="badge badge-sm text-secondary bg-white ms-1">11</span></a>
+<a href=https://www.qinxiandiqi.sbs/tags/%E5%8F%AF%E7%A9%BF%E6%88%B4%E8%AE%BE%E5%A4%87/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title=可穿戴设备>可穿戴设备
+<span class="badge badge-sm text-secondary bg-white ms-1">9</span></a>
+<a href=https://www.qinxiandiqi.sbs/tags/libgdx/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title=libgdx>libgdx
+<span class="badge badge-sm text-secondary bg-white ms-1">8</span></a>
+<a href=https://www.qinxiandiqi.sbs/tags/javascript/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title=javascript>javascript
+<span class="badge badge-sm text-secondary bg-white ms-1">7</span></a>
+<a href=https://www.qinxiandiqi.sbs/tags/xml/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title=xml>xml
+<span class="badge badge-sm text-secondary bg-white ms-1">7</span></a>
+<a href=https://www.qinxiandiqi.sbs/tags class="btn btn-sm btn-secondary post-taxonomy ps-3 post-tag me-2 mb-2" title=全部>全部
+<span class="badge badge-sm text-secondary bg-white ms-1">306</span></a></div><div class=tab-pane id=taxonomyAuthors role=tabpanel aria-labelledby=taxonomyAuthorsTab tabindex=0><a href=https://www.qinxiandiqi.sbs/authors/jianan/ class="btn btn-sm btn-secondary post-taxonomy ps-3 post-author me-2 mb-2" title=Jianan>Jianan
+<span class="badge badge-sm text-secondary bg-white ms-1">142</span></a></div><div class=tab-pane id=taxonomyArchive role=tabpanel aria-labelledby=taxonomyArchiveTab tabindex=0><a href=https://www.qinxiandiqi.sbs/archives/2022/ class="btn btn-sm btn-secondary post-taxonomy ps-3 me-2 mb-2" title=2022>2022 <span class="badge badge-sm text-secondary bg-white ms-1">3</span></a>
+<a href=https://www.qinxiandiqi.sbs/archives/2021/ class="btn btn-sm btn-secondary post-taxonomy ps-3 me-2 mb-2" title=2021>2021 <span class="badge badge-sm text-secondary bg-white ms-1">1</span></a>
+<a href=https://www.qinxiandiqi.sbs/archives/2020/ class="btn btn-sm btn-secondary post-taxonomy ps-3 me-2 mb-2" title=2020>2020 <span class="badge badge-sm text-secondary bg-white ms-1">2</span></a>
+<a href=https://www.qinxiandiqi.sbs/archives/2018/ class="btn btn-sm btn-secondary post-taxonomy ps-3 me-2 mb-2" title=2018>2018 <span class="badge badge-sm text-secondary bg-white ms-1">7</span></a>
+<a href=https://www.qinxiandiqi.sbs/archives/2017/ class="btn btn-sm btn-secondary post-taxonomy ps-3 me-2 mb-2" title=2017>2017 <span class="badge badge-sm text-secondary bg-white ms-1">2</span></a>
+<a href=https://www.qinxiandiqi.sbs/archives/2016/ class="btn btn-sm btn-secondary post-taxonomy ps-3 me-2 mb-2" title=2016>2016 <span class="badge badge-sm text-secondary bg-white ms-1">7</span></a>
+<a href=https://www.qinxiandiqi.sbs/archives/2015/ class="btn btn-sm btn-secondary post-taxonomy ps-3 me-2 mb-2" title=2015>2015 <span class="badge badge-sm text-secondary bg-white ms-1">21</span></a>
+<a href=https://www.qinxiandiqi.sbs/archives/2014/ class="btn btn-sm btn-secondary post-taxonomy ps-3 me-2 mb-2" title=2014>2014 <span class="badge badge-sm text-secondary bg-white ms-1">93</span></a>
+<a href=https://www.qinxiandiqi.sbs/archives/2012/ class="btn btn-sm btn-secondary post-taxonomy ps-3 me-2 mb-2" title=2012>2012 <span class="badge badge-sm text-secondary bg-white ms-1">6</span></a></div></div></div></section></div><div class="accordion posts-toggle"><section class="row card component accordion-item"><div class="accordion-header card-header border-0"><a class="accordion-button d-lg-none mb-1 collapsed shadow-none p-0 bg-transparent" type=button data-bs-toggle=collapse data-bs-target=#posts-toggle aria-expanded=false aria-controls=posts-toggle>文章</a></div><div class="card-body collapse accordion-collapse accordion-body d-lg-block" id=posts-toggle><ul class="nav nav-pills nav-fill" id=myTab role=tablist><li class=nav-item role=presentation><button class="nav-link active" id=recent-posts-tab data-bs-toggle=tab data-bs-target=#recent-posts type=button role=tab aria-controls=recent-posts aria-selected=true>
+最近文章</button></li></ul><div class="tab-content mt-3"><div class="tab-pane active" id=recent-posts role=tabpanel aria-labelledby=recent-posts-tab tabindex=0><ul class="post-list list-unstyled ms-1"><li class=mb-2><div class=d-flex><div class="flex-grow-1 d-flex flex-column h-auto justify-content-center"><a class=post-title href=https://www.qinxiandiqi.sbs/posts/opengl/glsl/glsl%E7%9A%84uniform%E5%8F%98%E9%87%8F%E8%87%AA%E5%8A%A8%E4%BC%98%E5%8C%96/>GLSL的uniform变量自动优化</a><div class="post-meta mt-2"><span class=post-date>2022-09-26</span></div></div></div></li><li class=mb-2><div class=d-flex><div class="flex-grow-1 d-flex flex-column h-auto justify-content-center"><a class=post-title href=https://www.qinxiandiqi.sbs/posts/git/filenametoolongbygitofwindows/>Windows平台下git报错Filename Too Long</a><div class="post-meta mt-2"><span class=post-date>2022-09-18</span></div></div></div></li><li class=mb-2><div class=d-flex><div class="flex-grow-1 d-flex flex-column h-auto justify-content-center"><a class=post-title href=https://www.qinxiandiqi.sbs/posts/system/%E7%94%9F%E6%88%90%E6%96%B0ssh%E5%AF%86%E9%92%A5%E5%B9%B6%E6%B7%BB%E5%8A%A0%E5%88%B0ssh-agent/>生成新SSH密钥并添加到ssh-Agent</a><div class="post-meta mt-2"><span class=post-date>2022-09-11</span></div></div></div></li><li class=mb-2><div class=d-flex><div class="flex-grow-1 d-flex flex-column h-auto justify-content-center"><a class=post-title href=https://www.qinxiandiqi.sbs/posts/kotlin/kotlin%E7%9A%84%E5%B1%9E%E6%80%A7%E5%88%9D%E5%A7%8B%E5%99%A8%E4%B8%8E%E5%B1%9E%E6%80%A7setter/>Kotlin的属性初始器与属性Setter</a><div class="post-meta mt-2"><span class=post-date>2021-07-18</span></div></div></div></li><li class=mb-2><div class=d-flex><div class="flex-grow-1 d-flex flex-column h-auto justify-content-center"><a class=post-title href=https://www.qinxiandiqi.sbs/posts/system/linux/%E8%AE%BE%E7%BD%AElinux%E5%9C%A8%E6%9C%AA%E7%99%BB%E5%BD%95%E8%B4%A6%E5%8F%B7%E6%83%85%E5%86%B5%E4%B8%8B%E8%87%AA%E5%8A%A8%E8%BF%9E%E6%8E%A5wifi/>设置Linux在未登录账号情况下自动连接wifi</a><div class="post-meta mt-2"><span class=post-date>2020-12-29</span></div></div></div></li></ul></div></div></div></section></div><div class="accordion post-toc"><div class="accordion-item row mb-4 card component" id=postTOC><div class="card-header accordion-header"><h2 class="card-title fs-4 my-2 text-surface d-none d-lg-block">目录</h2><a class="accordion-button d-lg-none mb-1 collapsed shadow-none p-0 bg-transparent" type=button data-bs-toggle=collapse data-bs-target=#post-toc aria-expanded=false aria-controls=post-toc>目录</a></div><div class="card-body collapse accordion-collapse accordion-body d-lg-block" id=post-toc aria-labelledby=post-toc-header><nav id=TableOfContents><ul><li><a href=#51-primitives-examples基本示例>5.1 Primitives Examples（基本示例）</a></li><li><a href=#52-object-examples对象示例>5.2 Object Examples（对象示例）</a><ul><li><a href=#521-finer-points-with-objects关于对象的一些细节>5.2.1 Finer Points with Objects（关于对象的一些细节）</a></li></ul></li><li><a href=#53-nested-classesincluding-inner-classes-嵌套类包括内部类>5.3 Nested Classes（including Inner Classes）—— 嵌套类（包括内部类）</a></li><li><a href=#54-array-examples数组示例>5.4 Array Examples（数组示例）</a></li><li><a href=#55-collections-examples集合示例>5.5 Collections Examples（集合示例）</a><ul><li><a href=#551-collections-limitations集合的局限性>5.5.1 Collections Limitations（集合的局限性）</a></li></ul></li><li><a href=#56-serializing-and-deserializing-generic-types序列化和反序列化泛型>5.6 Serializing and Deserializing Generic Types（序列化和反序列化泛型）</a></li><li><a href=#57-serializing-and-deserializing-collection-with-objects-of-arbitrary>5.7 Serializing and Deserializing Collection with Objects of Arbitrary</a></li><li><a href=#58-built-in-serializers-and-deserializers内置的序列化构造器和反序列化解析器>5.8 Built-in Serializers and Deserializers（内置的序列化构造器和反序列化解析器）</a></li><li><a href=#59-custom-serialization-and-deserialization自定义序列化和反序列化>5.9 Custom Serialization and Deserialization（自定义序列化和反序列化）</a><ul><li><a href=#591-writing-a-serializer设计一个序列化构造器>5.9.1 Writing a Serializer（设计一个序列化构造器）</a></li><li><a href=#592-writing-a-deserializer设计一个反序列化解析器>5.9.2 Writing a Deserializer（设计一个反序列化解析器）</a></li><li><a href=#593-finer-points-withs-serializers-and-deserializers序列化构造器和反序列化解析器的细节>5.9.3 Finer points withs Serializers and Deserializers（序列化构造器和反序列化解析器的细节）</a></li></ul></li><li><a href=#510-writing-an-instance-creator设计一个实例构造器>5.10 Writing an Instance Creator（设计一个实例构造器）</a><ul><li><a href=#5101-instance-creator-example实例构造器示例>5.10.1 Instance Creator Example（实例构造器示例）</a></li><li><a href=#5102-instancecreator-for-a-parameterized-type带参数类型的实例构造器>5.10.2 InstanceCreator for a Parameterized Type（带参数类型的实例构造器）</a></li></ul></li><li><a href=#511-compact-vs-pretty-printing-for-json-output-fromat对比gson紧凑型和优雅型的输出格式>5.11 Compact Vs. Pretty Printing for JSON Output Fromat（对比Gson紧凑型和优雅型的输出格式）</a></li><li><a href=#512-null-object-support空对象支持>5.12 Null Object Support（空对象支持）</a></li><li><a href=#513-versioning-support版本支持>5.13 Versioning Support（版本支持）</a></li><li><a href=#514-excluding-fields-from-serialization-and-deserialization在序列化和反序列中排除字段>5.14 Excluding Fields From Serialization and Deserialization（在序列化和反序列中排除字段）</a><ul><li><a href=#5141-java-modifier-exclusionjava修正器排除>5.14.1 Java Modifier Exclusion（Java修正器排除）</a></li><li><a href=#5142-gsons-exposegson的expose注解>5.14.2 Gson&rsquo;s @Expose（Gson的@Expose注解）</a></li><li><a href=#5143-user-defined-exclusion-strategies用户自定义排除策略>5.14.3 User Defined Exclusion Strategies（用户自定义排除策略）</a></li></ul></li><li><a href=#515-json-field-naming-supportjson字段命名支持>5.15 JSON Field Naming Support（JSON字段命名支持）</a></li><li><a href=#516-sharing-state-across-custom-serializers-and>5.16 Sharing State Across Custom Serializers and</a></li><li><a href=#517-streaming-流操作>5.17 Streaming （流操作）</a></li></ul></nav></div></div></div></div></aside><div class=col-lg-8><div class=container><nav class="row card component" aria-label=breadcrumb><div class="card-body pb-0"><ol class=breadcrumb><li class="breadcrumb-item text-surface"><a href=https://www.qinxiandiqi.sbs/>主页</a></li><li class="breadcrumb-item text-surface"><a href=https://www.qinxiandiqi.sbs/posts/>Posts</a></li><li class="breadcrumb-item active">Gson用户指南</li></ol></div></nav><div class="post-panel-wrapper position-sticky"><div class="d-flex flex-column component rounded post-panel position-absolute border"><a class="action action-panel-toggler" role=button title="Panel toggler"><i class="fas fa-fw fa-chevron-circle-down"></i></a>
+<a id=sidebarToggler class="action d-none d-lg-block" role=button title="Sidebar toggler"><i class="fas fa-fw fa-expand-alt" data-fa-transform=rotate-45></i></a>
+<a class="action btn-reward" role=button data-bs-toggle=modal data-bs-target=#rewardModal title=打赏><i class="fas fa-fw fa-coffee"></i></a>
+<a class=action href=#post-copyright role=button aria-label=Copyright title=Copyright><i class="fas fa-fw fa-copyright"></i></a>
+<a class=action href=#post-comments role=button aria-label=Comments title=Comments><i class="fas fa-fw fa-comments"></i></a>
+<a class=action href=#postTOC aria-controls="Table of contents" role=button title="Table of contents"><i class="fas fa-fw fa-list-alt"></i></a></div></div><article class="row card component mb-4 post"><div class=card-header><h1 class="card-title post-title my-2">Gson用户指南</h1></div><div class=card-body><div class="post-meta mb-3"><span class="post-date me-1 mb-1" title="创建于 2014-09-07 04:02:18 +0000 UTC。">2014-09-07</span><span class="post-reading-time me-1 mb-1">18 分钟阅读</span><a href=https://www.qinxiandiqi.sbs/authors/jianan/ class="btn btn-sm btn-secondary mb-1 me-2 py-0 pe-1 post-taxonomy post-author">
+<i class="fas fa-fw fa-user me-1"></i>Jianan</a><a href=https://www.qinxiandiqi.sbs/categories/gson/ class="btn btn-sm btn-secondary mb-1 me-2 py-0 pe-1 post-taxonomy post-category">
+<i class="fas fa-fw fa-folder me-1"></i>Gson</a><a href=https://www.qinxiandiqi.sbs/categories/%E7%BF%BB%E8%AF%91/ class="btn btn-sm btn-secondary mb-1 me-2 py-0 pe-1 post-taxonomy post-category">
+<i class="fas fa-fw fa-folder me-1"></i>翻译</a><a href=https://www.qinxiandiqi.sbs/series/gson/ class="btn btn-sm btn-secondary mb-1 me-2 py-0 pe-1 post-taxonomy post-series">
+<i class="fas fa-fw fa-columns me-1"></i>Gson</a><a href=https://www.qinxiandiqi.sbs/tags/gson/ class="btn btn-sm btn-secondary mb-1 me-2 py-0 pe-1 post-taxonomy post-tag">Gson</a><a href=https://www.qinxiandiqi.sbs/tags/java/ class="btn btn-sm btn-secondary mb-1 me-2 py-0 pe-1 post-taxonomy post-tag">Java</a><a href=https://www.qinxiandiqi.sbs/tags/json/ class="btn btn-sm btn-secondary mb-1 me-2 py-0 pe-1 post-taxonomy post-tag">Json</a></div><div class="post-content mb-3" data-bs-spy=scroll data-bs-target=#TableOfContents tabindex=0><p>作者：Inderjeet Singh, Joel Leitch, Jesse Wilson</p><h1 id=1overview概览 data-numberify>1、Overview（概览）<a class="anchor ms-1 d-none" href=#1overview概览>#</a></h1><p>Gson是一个Java类库，用于将Java对象转换为它们所代表的JSON数据，也可以用于将一个JSON字符串转换为对应的Java对象。Gson是一个开源项目，托管于&lt;http://code.google.com/p/google-
+gson>。</p><p>Gson可以用于任意的Java对象，包括已经存在但你没有对应源代码的对象。</p><h1 id=2goals-for-gsongson的目标 data-numberify>2、Goals for Gson（Gson的目标）<a class="anchor ms-1 d-none" href=#2goals-for-gsongson的目标>#</a></h1><pre><code>* 提供像toString()和构造方法（工厂方法）一样简单使用的机制来将Java对象转换为JSON或者反过来将JSON转换为Java对象。
+
+* 允许将已经存在并且不可修改的对象转换JSON，或者反过来。
+
+* 允许为对象自定义映射关系。
+
+* 支持任意复杂的对象。
+
+* 生成紧凑又易读的JSON输出。
+</code></pre><h1 id=3gson-performance-and-scalabilitygson的性能和可扩展性 data-numberify>3、Gson Performance and Scalability（Gson的性能和可扩展性）<a class="anchor ms-1 d-none" href=#3gson-performance-and-scalabilitygson的性能和可扩展性>#</a></h1><p>以下是我们在一个台式机（皓龙双核，8GB内存，64位Ubuntu系统）下进行大量测试得出的指标。你可以使用[PerformanceTest](<a href=http://code.google.com/p/google- target=_blank rel="noopener noreferrer">http://code.google.com/p/google-<i class="fas fa-external-link-square-alt ms-1"></i></a>
+gson/source/browse/trunk/gson/src/test/java/com/google/gson/metrics/PerformanceTest.java)
+类进行重新测试。</p><pre><code>* String字符串：反序列化一个超过25MB的字符串没有任何问题（参考PerformanceTest类中的disabled_testStringDeserializationPerformance方法）。
+
+* 大型集合对象：
+
+    ** 序列化一个包含一百四十万个对象的集合（参考PerformanceTest中的disabled_testLargeCollectionSerialization方法）
+
+    ** 反序列化一个包含八万七千个对象的集合（参考PerformanceTest中的disabled_testLargeCollectionDeserialization方法）
+
+* Gson 1.4将字节数组和集合的限制从80KB提升到11MB。
+</code></pre><p>注意：删除disabled_前缀后再运行测试。我们添加这个前缀是为了防止每一次运行JUnit测试都要将这些测试重新运行一遍。</p><h1 id=4gson-usersgson用户 data-numberify>4、Gson Users（Gson用户）<a class="anchor ms-1 d-none" href=#4gson-usersgson用户>#</a></h1><p>Gson原本是为Google内部大量项目创建使用的，但是现在已经有大量公司和公共项目都在实现，详细可查看[这里](<a href=https://sites.google.com/site/gson/gson- target=_blank rel="noopener noreferrer">https://sites.google.com/site/gson/gson-<i class="fas fa-external-link-square-alt ms-1"></i></a>
+users)。</p><h1 id=5using-gsongson的使用 data-numberify>5、Using Gson（Gson的使用）<a class="anchor ms-1 d-none" href=#5using-gsongson的使用>#</a></h1><p>Gson主要的类即为Gson类，你可以简单的使用new
+Gson()创建一个Gson对象。另外也可以使用GsonBuilder这个类，它允许使用参数（例如版本控制等等）来才创建一个Gson实例。</p><p>Gson实例并不会保存Json操作的状态。因此，你可以重用同一个Gson对象进行多次Json序列化和反序列化操作。</p><h2 id=51-primitives-examples基本示例 data-numberify>5.1 Primitives Examples（基本示例）<a class="anchor ms-1 d-none" href=#51-primitives-examples基本示例>#</a></h2><p>（序列化）</p><pre><code>Gson gson = new Gson();
+gson.toJson(1);            ==&gt; 结果为 1
+gson.toJson(&quot;abcd&quot;);       ==&gt; 结果为 &quot;abcd&quot;
+gson.toJson(new Long(10)); ==&gt; 结果为 10
+int[] values = { 1 };
+gson.toJson(values);       ==&gt; 结果为 [1]
+</code></pre><p>（反序列化）</p><pre><code>int one = gson.fromJson(&quot;1&quot;, int.class);
+Integer one = gson.fromJson(&quot;1&quot;, Integer.class);
+Long one = gson.fromJson(&quot;1&quot;, Long.class);
+Boolean false = gson.fromJson(&quot;false&quot;, Boolean.class);
+String str = gson.fromJson(&quot;\&quot;abc\&quot;&quot;, String.class);
+String anotherStr = gson.fromJson(&quot;[\&quot;abc\&quot;]&quot;, String.class);
+</code></pre><h2 id=52-object-examples对象示例 data-numberify>5.2 Object Examples（对象示例）<a class="anchor ms-1 d-none" href=#52-object-examples对象示例>#</a></h2><pre><code>class BagOfPrimitives {
+  private int value1 = 1;
+  private String value2 = &quot;abc&quot;;
+  private transient int value3 = 3;
+  BagOfPrimitives() {
+    // no-args constructor
+  }
+}
+</code></pre><p>（序列化）</p><pre><code>BagOfPrimitives obj = new BagOfPrimitives();
+Gson gson = new Gson();
+String json = gson.toJson(obj);
+==&gt;结果为{&quot;value1&quot;:1,&quot;value2&quot;:&quot;abc&quot;}
+</code></pre><p>注意，你不能序列化一个内部包含循环引用（比如包含自身引用）的对象，那会导致无限递归。</p><p>（反序列化）</p><pre><code>BagOfPrimitives obj2 = gson.fromJson(json, BagOfPrimitives.class);  
+==&gt; obj2对象与obj对象一样
+</code></pre><h3 id=521-finer-points-with-objects关于对象的一些细节 data-numberify>5.2.1 Finer Points with Objects（关于对象的一些细节）<a class="anchor ms-1 d-none" href=#521-finer-points-with-objects关于对象的一些细节>#</a></h3><pre><code>* 完美支持对象的私有成员变量。
+
+* 不需要任何注解来声明一个成员变量是否需要进行序列化和反序列化。类中所有的成员变量（包括父类的成员）默认都要进行序列化和反序列化。
+
+* 如果一个成员变量使用了transient关键字标识，默认情况下它将被忽略，将不会进行JSON的序列化和反序列化。
+
+* 对于null值的正确处理：
+
+    ** 进行序列化的时候，一个值为null的成员在输出中将被忽略。
+
+    ** 进行反序列化的时候，对应JSON数据中丢失的成员变量将会使用null。
+
+* 使用synthetic关键字标识的成员将被忽略，不进行JSON的序列化和反序列化。
+
+* 对应外部类，内部类、匿名类和局部类中的成员将被忽略，不进行序列化和反序列化。
+</code></pre><h2 id=53-nested-classesincluding-inner-classes-嵌套类包括内部类 data-numberify>5.3 Nested Classes（including Inner Classes）—— 嵌套类（包括内部类）<a class="anchor ms-1 d-none" href=#53-nested-classesincluding-inner-classes-嵌套类包括内部类>#</a></h2><p>Gson可以很容易的序列化静态嵌套类。</p><p>Gson也可以反序列化静态嵌套类。但是，Gson没办法自动序列化一个纯内部类。因为即使内部类的构造方法不需要参数，但实际上也需要一个外部类对象的引用。这个外部类对象在反序列化的时候已经是不可访问的了。你可以通过将内部类标识为静态类或者提供自定义的InstanceCreator来解决这个问题。以下是例子：</p><pre><code>public class A {
+  public String a;
+
+  class B {
+
+    public String b;
+
+    public B() {
+      // No args constructor for B
+    }
+  }
+}
+</code></pre><p>注意：上面的类B默认情况下不能使用Gson序列化。</p><p>Gson没办法将{&ldquo;b&rdquo;:&ldquo;abc&rdquo;}反序列化为B类的实例，因为B是一个内部类。如果使用static class
+B将B类标识为静态内部类，那么Gson就能够将这个字符串反序列化为B类的实例。另一种解决方法是为B类写一个自定义的InstanceCreator：</p><pre><code>public class InstanceCreatorForB implements InstanceCreator&lt;A.B&gt; {
+  private final A a;
+  public InstanceCreatorForB(A a)  {
+    this.a = a;
+  }
+  public A.B createInstance(Type type) {
+    return a.new B();
+  }
+}
+</code></pre><p>上面的方法可以解决这个问题，但是不推荐。</p><h2 id=54-array-examples数组示例 data-numberify>5.4 Array Examples（数组示例）<a class="anchor ms-1 d-none" href=#54-array-examples数组示例>#</a></h2><pre><code>Gson gson = new Gson();
+int[] ints = {1, 2, 3, 4, 5};
+String[] strings = {&quot;abc&quot;, &quot;def&quot;, &quot;ghi&quot;};
+</code></pre><p>(序列化)</p><pre><code>gson.toJson(ints);     ==&gt; 结果为 [1,2,3,4,5]
+gson.toJson(strings);  ==&gt; 结果为 [&quot;abc&quot;, &quot;def&quot;, &quot;ghi&quot;]
+</code></pre><p>(反序列化)</p><pre><code>int[] ints2 = gson.fromJson(&quot;[1,2,3,4,5]&quot;, int[].class);
+==&gt; ints2数组与ints数组一样
+</code></pre><p>我们同样支持任意复杂类型的多维数组。</p><h2 id=55-collections-examples集合示例 data-numberify>5.5 Collections Examples（集合示例）<a class="anchor ms-1 d-none" href=#55-collections-examples集合示例>#</a></h2><pre><code>Gson gson = new Gson();
+Collection&lt;Integer&gt; ints = Lists.immutableList(1,2,3,4,5);
+</code></pre><p>(序列化)</p><pre><code>String json = gson.toJson(ints); ==&gt; json is [1,2,3,4,5]
+</code></pre><p>(反序列化)</p><pre><code>Type collectionType = new TypeToken&lt;Collection&lt;Integer&gt;&gt;(){}.getType();
+Collection&lt;Integer&gt; ints2 = gson.fromJson(json, collectionType);
+==&gt; ints2集合与ints集合一样
+</code></pre><p>相当可怕的：注意我们是如何定义集合的类型的，很不幸单纯在Java中没有办法解决这个问题。</p><h3 id=551-collections-limitations集合的局限性 data-numberify>5.5.1 Collections Limitations（集合的局限性）<a class="anchor ms-1 d-none" href=#551-collections-limitations集合的局限性>#</a></h3><pre><code>* 能够序列化任意对象类型的集合，但是没办法反序列化，因为没有办法让我们指定结果对象的类型。
+
+* 反序列化的时候，集合必须是一个具体的泛型。
+</code></pre><p>然而只要遵循良好的Java编程习惯，所有的这些都是意义的，很少会成为一个问题。</p><h2 id=56-serializing-and-deserializing-generic-types序列化和反序列化泛型 data-numberify>5.6 Serializing and Deserializing Generic Types（序列化和反序列化泛型）<a class="anchor ms-1 d-none" href=#56-serializing-and-deserializing-generic-types序列化和反序列化泛型>#</a></h2><p>当你调用toJson(obj)方法的时候，Gson会调用obj.getClass()方法来获取类中成员变量的信息来进行序列化。同样的，你可以直接传递MyClass.class对象到formJson(json,
+MyClass.class)方法，这种做法非常适合对象不是泛型的情况。然而，如果对象是一个泛型，由于Java类型的擦除关系，泛型的信息将会丢失。下面的例子可以很好的说明这个问题：</p><pre><code>class Foo&lt;T&gt; {
+  T value;
+}
+Gson gson = new Gson();
+Foo&lt;Bar&gt; foo = new Foo&lt;Bar&gt;();
+gson.toJson(foo); // 没办法正确序列化foo.value
+
+gson.fromJson(json, foo.getClass()); // 将foo.value反序列化为Bar对象失败
+</code></pre><p>上面的代码将结果解析为Bar对象失败，是因为Gson调用foo.getClass()方法来获取它的类信息，但是这个方法返回的是一个原始类，也就是Foo.class。这意味着Gson没有办法知道那是一个Foo类型的对象，因此失败。</p><p>为了解决这个问题，你可以为你的泛型指定一个当前的参数类型。你可以使用TypeToken类来实现：</p><pre><code>Type fooType = new TypeToken&lt;Foo&lt;Bar&gt;&gt;() {}.getType();
+gson.toJson(foo, fooType);
+
+gson.fromJson(json, fooType);
+</code></pre><p>上面的fooType实际是定义了一个局部匿名内部类，这个类里面包含了一个getType()方法可以返回完整的参数类型。</p><h2 id=57-serializing-and-deserializing-collection-with-objects-of-arbitrary data-numberify>5.7 Serializing and Deserializing Collection with Objects of Arbitrary<a class="anchor ms-1 d-none" href=#57-serializing-and-deserializing-collection-with-objects-of-arbitrary>#</a></h2><p>Types（序列化和反序列化任意对象类型的集合）</p><p>有时候你需要处理一些包含混合数据类的JSON数组，例如：</p><pre><code>['hello',5,{name:'GREETINGS',source:'guest'}]
+</code></pre><p>其中相对的集合如下：</p><pre><code>Collection collection = new ArrayList();
+collection.add(&quot;hello&quot;);
+collection.add(5);
+collection.add(new Event(&quot;GREETINGS&quot;, &quot;guest&quot;));
+</code></pre><p>里面对应的Event类如下：</p><pre><code>class Event {
+  private String name;
+  private String source;
+  private Event(String name, String source) {
+    this.name = name;
+    this.source = source;
+  }
+}
+</code></pre><p>你可以使用Gson序列化这个集合而不需要指定任何东西：toJson(collection)将会得到以上输出。</p><p>然而，使用fromJson(json,
+Collection.class)进行反序列化将会失败，因为Gson没办法知道如何映射其中的类型。Gson要求你在fromJson中提供一个集合的泛型版本。因此，你有三种选择：</p><p>第一种选择：使用Gson的解析API（底层的数据流解析器或者DOM解析器JsonParser）来解析出数组元素，然后为每一个数组元素调用Gson.fromJson()方法。这是一种比较好的实现方法，具体做法可以参考以下例子：</p><pre><code>/*
+ * Copyright (C) 2011 Google Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+package com.google.gson.extras.examples.rawcollections;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonParser;
+
+public class RawCollectionsExample {
+  static class Event {
+    private String name;
+    private String source;
+    private Event(String name, String source) {
+      this.name = name;
+      this.source = source;
+    }
+    @Override
+    public String toString() {
+      return String.format(&quot;(name=%s, source=%s)&quot;, name, source);
+    }
+  }
+
+  @SuppressWarnings({ &quot;unchecked&quot;, &quot;rawtypes&quot; })
+  public static void main(String[] args) {
+    Gson gson = new Gson();
+    Collection collection = new ArrayList();
+    collection.add(&quot;hello&quot;);
+    collection.add(5);
+    collection.add(new Event(&quot;GREETINGS&quot;, &quot;guest&quot;));
+    String json = gson.toJson(collection);
+    System.out.println(&quot;Using Gson.toJson() on a raw collection: &quot; + json);
+    JsonParser parser = new JsonParser();
+    JsonArray array = parser.parse(json).getAsJsonArray();
+    String message = gson.fromJson(array.get(0), String.class);
+    int number = gson.fromJson(array.get(1), int.class);
+    Event event = gson.fromJson(array.get(2), Event.class);
+    System.out.printf(&quot;Using Gson.fromJson() to get: %s, %d, %s&quot;, message, number, event);
+  }
+}
+</code></pre><p>第二种选择：注册一个Collection.class的类型适配器来查找数组中的每一个元素，并映射为合适的对象。这种做法的缺点是它可能会破坏Gson反序列化中的其它集合类型。</p><p>第三种选择：注册一个MyCollectionMemberType的类型适配器，并使用Collection的fromJson。这种做法只适合数组是顶层元素的情况，或者你可以改变字段的类型以匹配Collection。</p><h2 id=58-built-in-serializers-and-deserializers内置的序列化构造器和反序列化解析器 data-numberify>5.8 Built-in Serializers and Deserializers（内置的序列化构造器和反序列化解析器）<a class="anchor ms-1 d-none" href=#58-built-in-serializers-and-deserializers内置的序列化构造器和反序列化解析器>#</a></h2><p>Gson为常用的类提供了内置的序列化构造器和反序列化解析器（但是默认的设置可能不太适合你具体的要求）。</p><p>下面是这些类的列表：</p><p>1、java.net.URL匹配类似“http://code.google.com/p/google-gson/”的字符串。</p><p>2、java.net.URI匹配类似“/p/google-gson/”的字符串。</p><p>（译注：这段话什么意思我一直理解不了= =）</p><p>你同样也能在[这里](<a href=https://sites.google.com/site/gson/gson-type-adapters-for-common- target=_blank rel="noopener noreferrer">https://sites.google.com/site/gson/gson-type-adapters-for-common-<i class="fas fa-external-link-square-alt ms-1"></i></a>
+classes-1)找到类似JodaTime这样常用类的源代码。</p><h2 id=59-custom-serialization-and-deserialization自定义序列化和反序列化 data-numberify>5.9 Custom Serialization and Deserialization（自定义序列化和反序列化）<a class="anchor ms-1 d-none" href=#59-custom-serialization-and-deserialization自定义序列化和反序列化>#</a></h2><p>有时候默认的配置可能不符合你的要求。这种情况在处理类库中的类（DateTime等等）时经常出现。</p><p>Gson允许你注册自己自定义的序列化构造器和反序列化解析器。这需要通过定义两个部分来完成：</p><ul><li><p>Json序列化构造器：需要为一个对象定义自定义的序列化过程。</p></li><li><p>Json反序列化解析器：需要为一个类型定义自定义的反序列化过程。</p></li><li><p>实例构造器：如果有不带参数的构造器可以访问或者已经注册了反序列化解析器，那么可以不需要提供。</p><p>GsonBuilder gson = new GsonBuilder();
+gson.registerTypeAdapter(MyType2.class, new MyTypeAdapter());
+gson.registerTypeAdapter(MyType.class, new MySerializer());
+gson.registerTypeAdapter(MyType.class, new MyDeserializer());
+gson.registerTypeAdapter(MyType.class, new MyInstanceCreator());</p></li></ul><p>registerTypeAdapter将会检查类型适配器是否实现了多个接口，如果有会全部注册上去。</p><h3 id=591-writing-a-serializer设计一个序列化构造器 data-numberify>5.9.1 Writing a Serializer（设计一个序列化构造器）<a class="anchor ms-1 d-none" href=#591-writing-a-serializer设计一个序列化构造器>#</a></h3><p>下面是自定义JodaTime DateTime类序列化构造器的例子：</p><pre><code>private class DateTimeSerializer implements JsonSerializer&lt;DateTime&gt; {
+  public JsonElement serialize(DateTime src, Type typeOfSrc, JsonSerializationContext context) {
+    return new JsonPrimitive(src.toString());
+  }
+}
+</code></pre><p>Gson在序列化时进入DateTime对象将会调用toJson()方法。</p><h3 id=592-writing-a-deserializer设计一个反序列化解析器 data-numberify>5.9.2 Writing a Deserializer（设计一个反序列化解析器）<a class="anchor ms-1 d-none" href=#592-writing-a-deserializer设计一个反序列化解析器>#</a></h3><p>下面是自定义JodaTime DateTime类反序列化解析器的例子：</p><pre><code>private class DateTimeDeserializer implements JsonDeserializer&lt;DateTime&gt; {
+  public DateTime deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context)
+      throws JsonParseException {
+    return new DateTime(json.getAsJsonPrimitive().getAsString());
+  }
+}
+</code></pre><p>当Gson需要将一段JSON字符串片段解析为DataTime对象的时候将会调用fromJson()方法。</p><h3 id=593-finer-points-withs-serializers-and-deserializers序列化构造器和反序列化解析器的细节 data-numberify>5.9.3 Finer points withs Serializers and Deserializers（序列化构造器和反序列化解析器的细节）<a class="anchor ms-1 d-none" href=#593-finer-points-withs-serializers-and-deserializers序列化构造器和反序列化解析器的细节>#</a></h3><p>你经常需要为一个原始类型的泛型注册一个单一的处理器。</p><ul><li><p>例如，假设你有一个“Id”类来代表或者转换Id（例如内部代表和外部代表）</p></li><li><p>Id类型对于所有的泛型都具有相同的序列化过程：输出本质代表的Id值。</p></li><li><p>反序列过程很类似但是不完全一样：需要调用“new Id(Class, String)”来返回一个Id实例。</p></li></ul><p>Gson支持注册一个单一的处理器来处理这些事情。你也可以为一个指定的类型（例如Id需要指定的处理过程）注册特定的处理器。</p><p>toJson()和fromJson()包含的泛型类型参数可以帮你为所有对应相同原始类型的泛型写一个单一的处理器。</p><h2 id=510-writing-an-instance-creator设计一个实例构造器 data-numberify>5.10 Writing an Instance Creator（设计一个实例构造器）<a class="anchor ms-1 d-none" href=#510-writing-an-instance-creator设计一个实例构造器>#</a></h2><p>反序列化一个对象的时候，Gson需要为对应的类创建一个默认的实例。</p><p>规范的类会为序列化和反序列化提供一个不带参数的构造方法（无论是public或者private的构造方法）。</p><p>典型的情况是你需要处理类库中没有定义不带参数构造方法的类，你就需要一个实例构造器。</p><h3 id=5101-instance-creator-example实例构造器示例 data-numberify>5.10.1 Instance Creator Example（实例构造器示例）<a class="anchor ms-1 d-none" href=#5101-instance-creator-example实例构造器示例>#</a></h3><pre><code>private class MoneyInstanceCreator implements InstanceCreator&lt;Money&gt; {
+  public Money createInstance(Type type) {
+    return new Money(&quot;1000000&quot;, CurrencyCode.USD);
+  }
+}
+</code></pre><p>Type可以是一个相关的泛型类型：</p><ul><li><p>当需要特定泛型类型信息的时候，调用构造器是非常有用的做法。</p></li><li><p>例如，Id类保存了将要被创建Id的类信息。</p></li></ul><h3 id=5102-instancecreator-for-a-parameterized-type带参数类型的实例构造器 data-numberify>5.10.2 InstanceCreator for a Parameterized Type（带参数类型的实例构造器）<a class="anchor ms-1 d-none" href=#5102-instancecreator-for-a-parameterized-type带参数类型的实例构造器>#</a></h3><p>有时候你要实例化的类型是一个带参数的类型。通常这不是一个问题，因为实际实例是原始类型中的一种。</p><p>以下是一个例子：</p><pre><code>class MyList&lt;T&gt; extends ArrayList&lt;T&gt; {
+}
+
+class MyListInstanceCreator implements InstanceCreator&lt;MyList&lt;?&gt;&gt; {
+    @SuppressWarnings(&quot;unchecked&quot;)
+  public MyList&lt;?&gt; createInstance(Type type) {
+    // No need to use a parameterized list since the actual instance will have the raw type anyway.
+    return new MyList();
+  }
+}
+</code></pre><p>然而，有时候你需要创建对应实际带参数类型的实例。这种情况下，你可以使用传递进createInstance方法的类型参数。以下是例子：</p><pre><code>public class Id&lt;T&gt; {
+  private final Class&lt;T&gt; classOfId;
+  private final long value;
+  public Id(Class&lt;T&gt; classOfId, long value) {
+    this.classOfId = classOfId;
+    this.value = value;
+  }
+}
+
+class IdInstanceCreator implements InstanceCreator&lt;Id&lt;?&gt;&gt; {
+  public Id&lt;?&gt; createInstance(Type type) {
+    Type[] typeParameters = ((ParameterizedType)type).getActualTypeArguments();
+    Type idType = typeParameters[0]; // Id has only one parameterized type T
+    return Id.get((Class)idType, 0L);
+  }
+}
+</code></pre><p>上面的例子中，由于没有实际传递进来的带参数类型，Id类的实例没办法创建。我们通过传递type参数到方法里面来解决这个问题。上面例子中的type对象是一个java带参数类型，假如是Id，那么创建的实例应该是Id实例。因为Id类只包含一个带参数类型的参数T，我们直接使用getActualTypeArgument()方法返回的数组中的第一个元素，在这个例子中也就是Foo.class。</p><h2 id=511-compact-vs-pretty-printing-for-json-output-fromat对比gson紧凑型和优雅型的输出格式 data-numberify>5.11 Compact Vs. Pretty Printing for JSON Output Fromat（对比Gson紧凑型和优雅型的输出格式）<a class="anchor ms-1 d-none" href=#511-compact-vs-pretty-printing-for-json-output-fromat对比gson紧凑型和优雅型的输出格式>#</a></h2><p>Gson提供的默认输出格式是紧凑型的JSON格式。这意味着在输出的JSON结构中没有任何空白，也就是在输出的JSON中字段名和字段值、对象成员、数组中的对象之间没有任何留白。另外，“null”字段将会在输出中被忽略（注意null值仍然包含在对象的集合或者数组中）。参考下面Null
+Object Support章节来配置Gson输出所有的null值。</p><p>如果你想要使用优雅的格式输出，你可以使用GsonBuilder配置你的Gson实例。由于我们的public
+API中没有开放JsonFormatter，因此没有办法配置默认JSON输出的设置和边距。目前，我们只提供了一个默认的JsonPrintFormatter，它规定输出的格式每一行的长度为80个字符，2个字符缩进，4个字符的右边距。</p><p>下面的例子展示了如何使用默认的JsonPrintFormatter取代JsonCompactFormatter配置一个Gson实例。</p><pre><code>Gson gson = new GsonBuilder().setPrettyPrinting().create();
+String jsonOutput = gson.toJson(someObject);Gson gson = new GsonBuilder().setPrettyPrinting().create();
+String jsonOutput = gson.toJson(someObject);
+</code></pre><h2 id=512-null-object-support空对象支持 data-numberify>5.12 Null Object Support（空对象支持）<a class="anchor ms-1 d-none" href=#512-null-object-support空对象支持>#</a></h2><p>Gson对于null字段的默认处理是忽略掉，因为这样才能生成更加紧凑的输出格式。然而，客户端必须为这些字段定义默认值，这样JSON格式才能转换回对应的Java对象。</p><p>以下是配置一个Gson实例来输出null的方法：</p><pre><code>Gson gson = new GsonBuilder().serializeNulls().create();
+</code></pre><p>注意：当使用Gson序列化null值的时候，它将添加一个JsonNull元素到JsonElement结构中。因此，这个对象能够被用于自定义的序列化和反序列化。</p><p>下面是示例：</p><pre><code>public class Foo {
+  private final String s;
+  private final int i;
+
+  public Foo() {
+    this(null, 5);
+  }
+
+  public Foo(String s, int i) {
+    this.s = s;
+    this.i = i;
+  }
+}
+
+Gson gson = new GsonBuilder().serializeNulls().create();
+Foo foo = new Foo();
+String json = gson.toJson(foo);
+System.out.println(json);
+
+json = gson.toJson(null);
+System.out.println(json);
+</code></pre><p>======== 输出结果 ========<br>{&ldquo;s&rdquo;:null,&ldquo;i&rdquo;:5}<br>null</p><h2 id=513-versioning-support版本支持 data-numberify>5.13 Versioning Support（版本支持）<a class="anchor ms-1 d-none" href=#513-versioning-support版本支持>#</a></h2><p>可以使用@Since注解来维护同一个对象的多个版本。这个注解可以用于类、字段、未来发布、方法。为了充分利用这个特性，你必须配置你的Gson实例忽略掉版本比一些版本号更大的字段或者对象。如果Gson实例没有设置版本，那么它将序列化和反序列所有的字段和类而不考虑版本的影响。</p><pre><code>public class VersionedClass {
+  @Since(1.1) private final String newerField;
+  @Since(1.0) private final String newField;
+  private final String field;
+
+  public VersionedClass() {
+    this.newerField = &quot;newer&quot;;
+    this.newField = &quot;new&quot;;
+    this.field = &quot;old&quot;;
+  }
+}
+
+VersionedClass versionedObject = new VersionedClass();
+Gson gson = new GsonBuilder().setVersion(1.0).create();
+String jsonOutput = gson.toJson(someObject);
+System.out.println(jsonOutput);
+System.out.println();
+
+gson = new Gson();
+jsonOutput = gson.toJson(someObject);
+System.out.println(jsonOutput);
+</code></pre><p>======== 输出结果 ========</p><p>{&ldquo;newField&rdquo;:&ldquo;new&rdquo;,&ldquo;field&rdquo;:&ldquo;old&rdquo;}</p><p>{&ldquo;newerField&rdquo;:&ldquo;newer&rdquo;,&ldquo;newField&rdquo;:&ldquo;new&rdquo;,&ldquo;field&rdquo;:&ldquo;old&rdquo;}</p><h2 id=514-excluding-fields-from-serialization-and-deserialization在序列化和反序列中排除字段 data-numberify>5.14 Excluding Fields From Serialization and Deserialization（在序列化和反序列中排除字段）<a class="anchor ms-1 d-none" href=#514-excluding-fields-from-serialization-and-deserialization在序列化和反序列中排除字段>#</a></h2><p>Gson提供了多种途径来排除顶级类、字段和字段类型。以下是排除字段和类的一些方法。如果以下方法对于你需求来说不安全，那么你也可以直接自定义序列化构造器和反序列化解析器来实现。</p><h3 id=5141-java-modifier-exclusionjava修正器排除 data-numberify>5.14.1 Java Modifier Exclusion（Java修正器排除）<a class="anchor ms-1 d-none" href=#5141-java-modifier-exclusionjava修正器排除>#</a></h3><p>默认情况下，如果你将一个字段声明为transient，这个字段就会被排除。同样，如果一个字段被标识为“static”，那么默认也会被排除。如果你想把一些transient字段也包含进来，那么你可以尝试以下做法：</p><pre><code>import java.lang.reflect.Modifier;
+
+Gson gson = new GsonBuilder()
+    .excludeFieldsWithModifiers(Modifier.STATIC)
+    .create();
+</code></pre><p>注意：你可以同时在excludeFieldsWithModifiers方法中包含多个Modifier数值，例如：</p><pre><code>Gson gson = new GsonBuilder()
+    .excludeFieldsWithModifiers(Modifier.STATIC, Modifier.TRANSIENT, Modifier.VOLATILE)
+    .create();
+</code></pre><h3 id=5142-gsons-exposegson的expose注解 data-numberify>5.14.2 Gson&rsquo;s @Expose（Gson的@Expose注解）<a class="anchor ms-1 d-none" href=#5142-gsons-exposegson的expose注解>#</a></h3><p>这个功能提供一种途径来表示你的对象中哪些字段是JSON的序列化和反序列化时候要排除的。要使用这个注解，你需要使用以下方式创建Gson实例：</p><pre><code>new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create();
+</code></pre><p>这个Gson实例将会排除类中没有使用@Expose注解的字段。</p><h3 id=5143-user-defined-exclusion-strategies用户自定义排除策略 data-numberify>5.14.3 User Defined Exclusion Strategies（用户自定义排除策略）<a class="anchor ms-1 d-none" href=#5143-user-defined-exclusion-strategies用户自定义排除策略>#</a></h3><p>如果上述排除字段和类型的方法不符合你的要求，你可以定义自己的排除策略然后添加到Gson中。参考[ExclusionStrategy](http://google-
+gson.googlecode.com/svn/trunk/gson/docs/javadocs/com/google/gson/ExclusionStrategy.html)的Java文档获取更多信息。</p><p>下面的例子展示了如何排除由指定“@Foo”注解标识和顶层类型（或者声明字段类型）String的字段。</p><pre><code>  @Retention(RetentionPolicy.RUNTIME)
+  @Target({ElementType.FIELD})
+  public @interface Foo {
+    // Field tag only annotation
+  }
+
+  public class SampleObjectForTest {
+    @Foo private final int annotatedField;
+    private final String stringField;
+    private final long longField;
+    private final Class&lt;?&gt; clazzField;
+
+    public SampleObjectForTest() {
+      annotatedField = 5;
+      stringField = &quot;someDefaultValue&quot;;
+      longField = 1234;
+    }
+  }
+
+  public class MyExclusionStrategy implements ExclusionStrategy {
+    private final Class&lt;?&gt; typeToSkip;
+
+    private MyExclusionStrategy(Class&lt;?&gt; typeToSkip) {
+      this.typeToSkip = typeToSkip;
+    }
+
+    public boolean shouldSkipClass(Class&lt;?&gt; clazz) {
+      return (clazz == typeToSkip);
+    }
+
+    public boolean shouldSkipField(FieldAttributes f) {
+      return f.getAnnotation(Foo.class) != null;
+    }
+  }
+
+  public static void main(String[] args) {
+    Gson gson = new GsonBuilder()
+        .setExclusionStrategies(new MyExclusionStrategy(String.class))
+        .serializeNulls()
+        .create();
+    SampleObjectForTest src = new SampleObjectForTest();
+    String json = gson.toJson(src);
+    System.out.println(json);
+  }
+</code></pre><p>======== 输出结果 ========</p><p>{&ldquo;longField&rdquo;:1234}</p><h2 id=515-json-field-naming-supportjson字段命名支持 data-numberify>5.15 JSON Field Naming Support（JSON字段命名支持）<a class="anchor ms-1 d-none" href=#515-json-field-naming-supportjson字段命名支持>#</a></h2><p>Gson支持一些预定义的字段命名策略来将标准的Java字段名（例如小写字母开头的骆驼命名法——“sampleFieldNameInJava”）覆盖为Json的字段名（例如sample_field_name_in_java或者SampleFieldNameInJava）。参考[FieldNamingPolicy](http://google-
+gson.googlecode.com/svn/trunk/gson/docs/javadocs/com/google/gson/FieldNamingPolicy.html)类查看预定义的命名策略。</p><p>Gson同样也提供了一个基于策略的注解允许客户端为每一个字段自定义名字。注意基于策略的注解会检查字段的名字，如果注解值提供了一个无效的名字将会抛出“Runtime”异常。</p><p>下面例子展示了如何同时使用Gson的预定义命名策略和注解命名策略特性：</p><pre><code>private class SomeObject {
+  @SerializedName(&quot;custom_naming&quot;) private final String someField;
+  private final String someOtherField;
+
+  public SomeObject(String a, String b) {
+    this.someField = a;
+    this.someOtherField = b;
+  }
+}
+
+SomeObject someObject = new SomeObject(&quot;first&quot;, &quot;second&quot;);
+Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE).create();
+String jsonRepresentation = gson.toJson(someObject);
+System.out.println(jsonRepresentation);
+</code></pre><p>======== 输出结果 ========</p><p>{&ldquo;custom_naming&rdquo;:&ldquo;first&rdquo;,&ldquo;SomeOtherField&rdquo;:&ldquo;second&rdquo;}</p><p>如果你需要自定义命名策略（参考这个[讨论](<a href=http://groups.google.com/group/google- target=_blank rel="noopener noreferrer">http://groups.google.com/group/google-<i class="fas fa-external-link-square-alt ms-1"></i></a>
+gson/browse_thread/thread/cb441a2d717f6892)），你可以使用@SerializedName注解。</p><h2 id=516-sharing-state-across-custom-serializers-and data-numberify>5.16 Sharing State Across Custom Serializers and<a class="anchor ms-1 d-none" href=#516-sharing-state-across-custom-serializers-and>#</a></h2><p>Deserializers（通过自定义序列化构造器和反序列化解析器共享状态）</p><p>有时候你需要通过自定义序列化构造器和反序列化解析器来共享状态（参考这里的[讨论](<a href=http://groups.google.com/group/google- target=_blank rel="noopener noreferrer">http://groups.google.com/group/google-<i class="fas fa-external-link-square-alt ms-1"></i></a>
+gson/browse_thread/thread/2850010691ea09fb)）。你可以通过以下三种方法来达到目的：</p><p>1、使用静态变量保存共享的状态。</p><p>2、声明序列化构造器或反序列化解析器作为父类的内部类，然后使用父类的实例变量保存共享的状态。</p><p>3、使用Java ThreadLocal。</p><p>1和2是非线程安全的做法，3是线程安全的。</p><h2 id=517-streaming-流操作 data-numberify>5.17 Streaming （流操作）<a class="anchor ms-1 d-none" href=#517-streaming-流操作>#</a></h2><p>由于Gson的对象模型和数据绑定，你可以使用Gson读写一个数据流。你可以组合数据流和对象模型入口来获取最佳的实现。</p><h1 id=6issues-in-designing-gson设计中的问题 data-numberify>6、Issues in Designing Gson（设计中的问题）<a class="anchor ms-1 d-none" href=#6issues-in-designing-gson设计中的问题>#</a></h1><p>参考[Gson design document](<a href=https://sites.google.com/site/gson/gson-design- target=_blank rel="noopener noreferrer">https://sites.google.com/site/gson/gson-design-<i class="fas fa-external-link-square-alt ms-1"></i></a>
+document)中关于我们在设计Gson过程中遇到的问题。里面也包含Gson和其它用于Json转换的Java类库的比较。</p><h1 id=7future-enhancements-to-gsongson未来的强化 data-numberify>7、Future Enhancements to Gson（Gson未来的强化）<a class="anchor ms-1 d-none" href=#7future-enhancements-to-gsongson未来的强化>#</a></h1><p>对于最新的功能增强建议列表或者你有什么新的建议，可以参考[Issue Session](<a href=http://code.google.com/p/google- target=_blank rel="noopener noreferrer">http://code.google.com/p/google-<i class="fas fa-external-link-square-alt ms-1"></i></a>
+gson/issues/list)。</p><p>原文地址：<a href=https://sites.google.com/site/gson/gson-user-guide target=_blank rel="noopener noreferrer">https://sites.google.com/site/gson/gson-user-guide<i class="fas fa-external-link-square-alt ms-1"></i></a></p></div><div class="modal fade" id=rewardModal tabindex=-1 aria-labelledby=rewardModalLabel aria-hidden=true><div class=modal-dialog><div class="modal-content surface"><div class=modal-header><h5 class="modal-title text-surface" id=rewardModalLabel><i class="fas fa-fw fa-coffee me-1"></i>打赏</h5><a href=# data-bs-dismiss=modal class=btn-close aria-label=Close></a></div><div class=modal-body><ul class="nav nav-tabs mb-3" role=tablist><li class="nav-item text-nowrap" role=presentation><a class="nav-link active" id=reward-alipay-tab data-bs-toggle=tab href=#reward-alipay role=tab aria-controls=reward-alipay aria-selected=true><i class="fab fa-fw fa-alipay me-1"></i>支付宝</a></li><li class="nav-item text-nowrap" role=presentation><a class=nav-link id=reward-wechat-tab data-bs-toggle=tab href=#reward-wechat role=tab aria-controls=reward-wechat aria-selected=true><i class="fab fa-fw fa-weixin me-1"></i>微信</a></li></ul><div class=tab-content id=rewardTabContent><div class="tab-pane fade post-reward-content text-center show active" id=reward-alipay role=tabpanel aria-labelledby=reward-alipay-tab><img class="img-fluid post-reward-img" src=https://www.qinxiandiqi.sbs/images/reward/alipay.jpg loading=lazy data-viewer-invisible></div><div class="tab-pane fade post-reward-content text-center show" id=reward-wechat role=tabpanel aria-labelledby=reward-wechat-tab><img class="img-fluid post-reward-img" src=https://www.qinxiandiqi.sbs/images/reward/wechat.png loading=lazy data-viewer-invisible></div></div></div></div></div></div></div><div class=card-footer><div class="post-navs d-flex justify-content-evenly"><div class="post-nav post-prev"><i class="fas fa-fw fa-chevron-down post-prev-icon me-1" data-fa-transform=rotate-90></i>
+<a href=https://www.qinxiandiqi.sbs/posts/hardware/ibeacon%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86howdoibeaconwork/>IBeacon工作原理（How Do IBeacon Work？）</a></div><div class="post-nav post-next"><a href=https://www.qinxiandiqi.sbs/posts/raspberry/%E6%97%A0%E6%98%BE%E7%A4%BA%E5%99%A8%E5%AE%89%E8%A3%85%E6%A0%91%E8%8E%93%E6%B4%BE%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/>无显示器安装树莓派操作系统</a>
+<i class="fas fa-fw fa-chevron-down post-next-icon ms-1" data-fa-transform=rotate-270></i></div></div></div></article><div class="post-copyright mb-3 row card component" id=post-copyright><div class=card-header><h2 class="card-title fs-4 my-2 text-surface">版权</h2></div><div class=card-body><a class="d-flex align-items-center flex-column" target=_blank rel="license noopener noreferrer" href=https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh><span><i class="fab fa-fw fa-2x fa-creative-commons"></i><i class="fab fa-fw fa-2x fa-creative-commons-by"></i><i class="fab fa-fw fa-2x fa-creative-commons-nc"></i><i class="fab fa-fw fa-2x fa-creative-commons-nd"></i></span>
+CC BY-NC-ND 4.0</a></div></div><section class="related-posts row card component"><div class=card-header><h2 class="card-title fs-4 my-2 text-surface">相关文章</h2></div><div class=card-body><ul class="post-list list-unstyled"><li class="mb-3 border-bottom"><a class=post-title href=https://www.qinxiandiqi.sbs/posts/javascript/javascript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/javascript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%85%AD%E8%AE%B0/>JavaScript学习笔记 第六记</a>
+<span class="post-meta post-date float-end">2014-07-11</span><div class="post-summary my-3"><p>1、浏览器的事件机制：冒泡事件机制，IE浏览器的冒泡机制是内容元素的事件处理后逐层抛出给外层元素进行事件处理，其它浏览器基本沿用这个方向，但也有相反的。
+2、浏览器自动生成的事件对象even方法.stopPropagation()可以阻断事件继续冒泡到下一层，而.perventDeafult()可以阻止这个对象的默认行为，如表单对象的action事件默认行为是提交表单。而在事件处理方法中使用</p><div><a class="btn btn-sm btn-outline-primary btn-read-more" href=https://www.qinxiandiqi.sbs/posts/javascript/javascript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/javascript%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%85%AD%E8%AE%B0/>阅读更多</a></div></div></li><li class="mb-3 border-bottom"><a class=post-title href=https://www.qinxiandiqi.sbs/posts/ant%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/>Ant学习笔记</a>
+<span class="post-meta post-date float-end">2014-07-11</span><div class="post-summary my-3"><p>1、Ant（another neat tool）是一个基于Java的生成工具，其作用类似于命令的批处理，通过设置一个xml文件后，Ant将会执行xml文件中指定的系列命令。这对于随着应用程序的生成过程变得更加复杂，又需要确保在每次生成期间都使用精确相同的生成步骤，同时实现尽可能多的自动化，以便于及时产生一致的生成版本非常重要。
+2、Ant是基于命令行操作的。单纯使用ant命令时，Ant将会在</p><div><a class="btn btn-sm btn-outline-primary btn-read-more" href=https://www.qinxiandiqi.sbs/posts/ant%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/>阅读更多</a></div></div></li><li class="mb-3 border-bottom"><a class=post-title href=https://www.qinxiandiqi.sbs/posts/java/java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/javase%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E4%B8%83%E8%AE%B0/>Java SE 学习笔记 第十七记</a>
+<span class="post-meta post-date float-end">2014-06-17</span><div class="post-summary my-3"><p>1、java.lang.ClassLoader抽象类中的方法若使用String类型作为参数表示一个类的话，需要使用类的二进制名称。每个Class对象都包含一个定义它的ClassLoader的引用。
+2、java.lang.ClassLoader抽象类的方法loadClass(String name)接收一个类的二进制名字，用于加载这个类，并由Java虚拟机创建这个类的Class对象作为结</p><div><a class="btn btn-sm btn-outline-primary btn-read-more" href=https://www.qinxiandiqi.sbs/posts/java/java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/javase%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E4%B8%83%E8%AE%B0/>阅读更多</a></div></div></li><li class="mb-3 border-bottom"><a class=post-title href=https://www.qinxiandiqi.sbs/posts/java/java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/javase%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E5%85%AD%E8%AE%B0/>Java SE 学习笔记 第十六记</a>
+<span class="post-meta post-date float-end">2014-06-17</span><div class="post-summary my-3"><p>1、Dom4J的document.asXML();将document的XML文档转换为字符串。 2、InputStream的read方法在输入数据可用，或者检测到流末尾以及抛出异常之前，read方法一直处于阻塞状态。 3、Java虚拟机：当应用程序执行的时候会先创建一个JVM虚拟机进程以及一个主线程来执行应用程序。 4、Java虚拟机结束生命周期的情况： 1）执行了System.exit(</p><div><a class="btn btn-sm btn-outline-primary btn-read-more" href=https://www.qinxiandiqi.sbs/posts/java/java%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/javase%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E7%AC%AC%E5%8D%81%E5%85%AD%E8%AE%B0/>阅读更多</a></div></div></li><li class="mb-3 border-bottom"><a class=post-title href=https://www.qinxiandiqi.sbs/posts/hardware/ibeacon%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86howdoibeaconwork/>IBeacon工作原理（How Do IBeacon Work？）</a>
+<span class="post-meta post-date float-end">2014-09-02</span><div class="post-summary my-3"><p>iBeacon是最近非常火的话题。这种技术能够实现室内定位，让你的手机能够知道是否处于一个Beacon的范围内。使用这种技术能够产生很多应用程序：比如帮助你在停车场中找到你的汽车，或者在零售店中根据所处位置提供优惠券或者其它一些位置相关的服务。还有很多我们现在无法想象得到的应用程序。
+现在有很多种关于iBeacon是什么，以及我们可以如何使用它们的解释。然而从技术角度上来说，它们是如何工作的</p><div><a class="btn btn-sm btn-outline-primary btn-read-more" href=https://www.qinxiandiqi.sbs/posts/hardware/ibeacon%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86howdoibeaconwork/>阅读更多</a></div></div></li></ul></div></section><div class="card component row post-comments" id=post-comments><div class=card-header><h2 class="card-title my-2 fs-4 text-surface">评论</h2></div><div class=card-body><script src=https://utteranc.es/client.js repo=qinxiandiqi/qinxiandiqi.github.io issue-term=pathname label=comment theme=github-light crossorigin=anonymous async></script></div></div></div></div></div></main><footer class="footer mt-auto py-3 text-center container"><div class="offcanvas offcanvas-bottom h-auto" tabindex=-1 id=offcanvasActionsPanel aria-labelledby=offcanvasActionsPanelLabel><div class=offcanvas-header><h5 class="offcanvas-title fs-4" id=offcanvasActionsPanelLabel><i class="fas fa-fw fa-th-large me-1"></i>
+操作</h5><button type=button class="btn-close ms-auto" data-bs-dismiss=offcanvas data-bs-target=offcanvasActionsPanel aria-label=Close></button></div><div class="offcanvas-body mt-2"><div class="social-share mb-4 d-flex overflow-auto"><a class="btn-social-share d-flex flex-column align-items-center me-3" rel="noopener noreferrer" aria-label="Twitter Share Button" target=_blank href="https://twitter.com/intent/tweet?title=Gson%e7%94%a8%e6%88%b7%e6%8c%87%e5%8d%97&url=https%3a%2f%2fwww.qinxiandiqi.sbs%2fposts%2fjava%2fgson%25E7%2594%25A8%25E6%2588%25B7%25E6%258C%2587%25E5%258D%2597%2f"><i class="fab fa-2x fa-fw fa-twitter mb-2"></i> Twitter</a>
+<a class="btn-social-share d-flex flex-column align-items-center me-3" rel="noopener noreferrer" aria-label="Facebook Share Button" target=_blank href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fwww.qinxiandiqi.sbs%2fposts%2fjava%2fgson%25E7%2594%25A8%25E6%2588%25B7%25E6%258C%2587%25E5%258D%2597%2f"><i class="fab fa-2x fa-fw fa-facebook-f mb-2"></i> Facebook</a></div><hr class=mb-4><div class="actions d-flex overflow-auto align-items-center"><a role=button class="action action-go-back d-flex flex-column align-items-center me-3" href="javascript: window.history.back();"><span class="action-icon mb-2"><i class="fas fa-2x fa-chevron-circle-down" data-fa-transform=rotate-90></i></span> 返回</a>
+<a role=button class="action action-reload-page d-flex flex-column align-items-center me-3"><span class="action-icon mb-2"><i class="fas fa-2x fa-redo-alt"></i></span> 刷新</a>
+<a role=button class="action action-copy-url d-flex flex-column align-items-center me-3"><span class="action-icon mb-2"><i class="fas fa-2x fa-link"></i></span> 复制链接</a></div></div></div><ul class="nav justify-content-between footer-memu mb-3"><li class=nav-item><ul class="nav flex-column align-items-start"><li class=nav-item><a class="nav-link fw-bold fs-lg" href="javascript: void(0);">support</a></li><li class=nav-item><a class=nav-link href=/contact/><i class="fas fa-fw fa-info-circle"></i>联系我</a></li></ul></li></ul><nav class="social-links nav justify-content-center mb-2"><a class="nav-link social-link" target=_blank href=https://space.bilibili.com/438403014 title=bilibili rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-bilibili"></i></a>
+<a class="nav-link social-link" href=mailto:qinxiandiqi@foxmail.com title=Email><i class="fas fa-fw fa-2x fa-envelope"></i></a>
+<a class="nav-link social-link" target=_blank href=https://facebook.com/qinxiandiqi title=Facebook rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-facebook-f"></i></a>
+<a class="nav-link social-link" target=_blank href=https://github.com/qinxiandiqi title=GitHub rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-github"></i></a>
+<a class="nav-link social-link" target=_blank href="http://wpa.qq.com/msgrd?v=3&uin=493059154&site=qq&menu=yes" title=QQ rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-qq"></i></a>
+<a class="nav-link social-link" target=_blank href=https://twitter.com/qinxiandiqi title=Twitter rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-twitter"></i></a>
+<a class="nav-link social-link" target=_blank href=https://weibo.com/qinxiandiqi title=Weibo rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-weibo"></i></a>
+<a class="nav-link social-link" target=_blank href=https://www.zhihu.com/people/qinxiandiqi title=Zhihu rel="noopener noreferrer"><i class="fa-fw fa-2x fab fa-zhihu"></i></a>
+<a class="nav-link social-link" target=_blank href=https://www.qinxiandiqi.sbs/index.xml title=RSS rel="noopener noreferrer"><i class="fas fa-fw fa-2x fa-rss"></i></a></nav><div class="copyright mb-2">Copyright © 2012-2022 Jianan. All Rights Reserved.</div><div class="powered-by mb-2">Powered by <a class=text-primary href=https://gohugo.io target=_blank rel="noopener noreferrer">Hugo</a> and the <a class=text-primary href=https://github.com/razonyang/hugo-theme-bootstrap target=_blank rel="noopener noreferrer">HBS</a> theme.</div></footer><script data-precache src=https://www.qinxiandiqi.sbs/assets/main/bundle.min.6d6041952a17e1bf66466a0f64cb4314a10db145ad16ec1882d7a787599f41ff.js integrity="sha256-bWBBlSoX4b9mRmoPZMtDFKENsUWtFuwYgtenh1mfQf8=" crossorigin=anonymous defer></script><script data-precache src=https://www.qinxiandiqi.sbs/assets/icons/bundle.min.9b65a1892e3a9ee67ad669fdde6abd4963c890151073f181b3e730bce85680a6.js integrity="sha256-m2WhiS46nuZ61mn93mq9SWPIkBUQc/GBs+cwvOhWgKY=" crossorigin=anonymous defer></script>
+<script data-precache src=https://www.qinxiandiqi.sbs/assets/viewer/bundle.min.9f713149f059d05fcb65e7f7c27308e61c384500e80ab1c333c2510a36a5d70c.js integrity="sha256-n3ExSfBZ0F/LZef3wnMI5hw4RQDoCrHDM8JRCjal1ww=" crossorigin=anonymous defer></script><script>"serviceWorker"in navigator&&window.addEventListener("load",()=>{navigator.serviceWorker.register("https://www.qinxiandiqi.sbs/service-worker.min.js").then(function(e){console.log("Successfully registered service worker",e)}).catch(function(e){console.warn("Error whilst registering service worker",e)})})</script></body></html>
