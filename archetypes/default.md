@@ -15,7 +15,8 @@ reward: true
 pinned: false
 carousel: false
 draft: true
-read: 
+read_num: 0
+comment_num: 0 
 ---
 
 
