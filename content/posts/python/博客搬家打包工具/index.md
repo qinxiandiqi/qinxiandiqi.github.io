@@ -51,7 +51,7 @@ comment_num: 0
     - author：csdn博客作者名
     - cookie：csdn博客的cookie。cookie的获取方式：  
         使用chrome相关浏览器登录csdn后，按F12打开开发者工具。刷新自己的csdn博客主页，在开发者工具中找到自己博客主页的网络请求，在header头参数中找到cookie字段，右键菜单选择复制值，复制到`config.ini`配置文件的cookie字段（注意保留配置文件中的单引号）
-        ![cookie](./cookie.png)
+        ![cookie](cookie.png)
     - start_page: 扫描csdn文章开始分页页码，默认1，从第1页开始扫描
     - end_page: 扫描csdn文章结束分页页码，默认100。当没有下一页或到达指定结束分页时停止扫描。
 5. `blogs/packer/hugo/template.md`文件为导出hugo markdown文章模板，需要修改导出文章模板的话可以修改这个文件，具体支持的参数可查看默认模板文件中的参数。

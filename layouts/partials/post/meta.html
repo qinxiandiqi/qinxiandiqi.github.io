@@ -1,0 +1,40 @@
+<!-- 不蒜子 -->
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script>
+  window.onload = function() {
+    var pvSpan = document.getElementById("busuanzi_value_page_pv")
+    var pv = parseInt(pvSpan.innerText)
+    var busuanziPvOffset = {{- .Params.read_num }}
+    pvSpan.innerText = pv + busuanziPvOffset
+    console.log(pv)
+  };
+</script>
+<div class="post-meta mb-3">
+  {{- if default .Site.Params.postDate .Params.postDate }}
+  {{- $dateParams := dict "createdOn" .Date.Local }}
+  {{- if gt .Lastmod .Date }}
+    {{- $dateParams = merge $dateParams (dict "updatedOn" .Lastmod.Local) }}
+  {{- end }}
+  <span class="post-date me-1 mb-1" title="{{ i18n "post_date" $dateParams }}">{{- .Date | time.Format $.Site.Params.dateFormat }}</span>
+  {{- end }}
+  {{- if default .Site.Params.readingTime .Params.readingTime -}}
+  <span class="post-reading-time me-1 mb-1">{{- i18n "reading_time" . }}</span>
+  {{- end }}
+  <span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span>次阅读</span>
+  {{- range $key, $value := .Site.Taxonomies }}
+    {{- $taxonomies := ($.GetTerms $key).ByTitle }}
+    {{- if eq $.Site.Params.taxonomySortingMethod "popularity" }}{{ $taxonomies = (sort $taxonomies ".Data.Pages" "desc") }}{{ end }}
+    {{- range $taxonomies -}}
+    <a href="{{ .Permalink }}" class="btn btn-sm btn-secondary mb-1 me-2 py-0 pe-1 post-taxonomy post-{{ $key | singularize }}">
+      {{- if eq $key "series" }}
+      <i class="fas fa-fw fa-columns me-1"></i>
+      {{- else if eq $key "categories" }}
+      <i class="fas fa-fw fa-folder me-1"></i>
+      {{- else if eq $key "authors" }}
+      <i class="fas fa-fw fa-user me-1"></i>
+      {{- end }}
+      {{- .Name | title -}}
+    </a>
+    {{- end }}
+  {{- end }}
+</div>
