@@ -4,7 +4,7 @@ title: "设置Google Play Services SDK(Set Up Google Play Services SDK)"
 date: 2014-06-09T18:35:28+08:00
 authors: ["Jianan"]
 summary: "Google Play Services SDK的初始化。"
-series: []
+series: ["Android"]
 categories: ["翻译", "Android"]
 tags: ["Android", "翻译", "Google Play Service"]
 images: []
