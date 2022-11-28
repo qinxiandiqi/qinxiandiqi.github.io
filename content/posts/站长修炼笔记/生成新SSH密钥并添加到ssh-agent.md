@@ -4,7 +4,7 @@ title: 生成新SSH密钥并添加到ssh-agent
 date: 2022-09-11T13:05:10+08:00
 authors: ["Jianan"]
 summary: "新建SSH密钥，并添加到ssh-agent。"
-series: []
+series: ["站长修炼笔记"]
 categories: []
 tags: [SSH]
 images: []
@@ -16,6 +16,8 @@ pinned: false
 carousel: false
 draft: false
 ---
+
+SSH远程登录是站长的日常，使用密钥远程登录可以提高便捷性和服务器的安全性，首先从配置本地SSH密钥开始。
 
 ## 一、Window系统
 ### 1.1 新建ssh密钥
