@@ -62,12 +62,13 @@ class Obj {
 ```
 
 结果输出：
-
->obj.x = 1.0
-set value:2.0
-obj.x = 2.0
-set value:3.0
+```shell
+obj.x = 1.0  
+set value:2.0  
+obj.x = 2.0  
+set value:3.0  
 obj.x = 3.0
+```  
 
 ## 三、需要注意的使用场景
 
@@ -96,11 +97,13 @@ class Obj(x: Float) {
 ```
 结果输出：
 
->obj.x = 1.0
-set value:2.0
-obj.x = 2.0
-set value:3.0
+```shell
+obj.x = 1.0  
+set value:2.0  
+obj.x = 2.0  
+set value:3.0  
 obj.x = 3.0
+```
 
 ### 2）在类构造器中为属性赋值会使用属性的Setter
 
@@ -130,15 +133,16 @@ class Obj {
         }
 }
 ```
-结果输入：
+结果输出：
 
->set value:1.0
-obj.x = 1.0
-set value:2.0
-obj.x = 2.0
-set value:3.0
-obj.x = 3.0
-
+```shell
+set value:1.0  
+obj.x = 1.0  
+set value:2.0  
+obj.x = 2.0  
+set value:3.0  
+obj.x = 3.0  
+```
  
  __特别要注意：方式2的写法，IDE会提示将constructor简化成方式1的写法，实际上两者的执行过程并不完全相同。__ 
 
